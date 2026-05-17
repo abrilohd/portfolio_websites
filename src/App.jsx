@@ -1,30 +1,64 @@
-import React from "react";
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import './index.css';
+import { useEffect } from 'react'
+import Lenis from '@studio-freight/lenis'
 
-function App() {
-  console.log("App.jsx loaded"); // <-- diagnostic
+import { ThemeProvider } from './context/ThemeContext'
+
+import PageLoader     from './components/PageLoader'
+import CustomCursor   from './components/CustomCursor'
+import ScrollProgress from './components/ScrollProgress'
+import ScrollToTop    from './components/ScrollToTop'
+import Navbar         from './components/Navbar'
+import Hero           from './components/Hero'
+import About          from './components/About'
+import Skills         from './components/Skills'
+import Projects       from './components/Projects'
+import Certifications from './components/Certifications'
+import Contact        from './components/Contact'
+import Footer         from './components/Footer'
+
+function AppInner() {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.4,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true,
+    })
+
+    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf) }
+    requestAnimationFrame(raf)
+
+    return () => lenis.destroy()
+  }, [])
+
   return (
-    <div className="min-h-screen">
-      <div style={{padding:20, background:'#fffae6', color:'#1f2937', textAlign:'center', fontWeight:700}}>
-        DEBUG: This is the new App.jsx — if you see this box, App.jsx changes are active
-      </div>
-
-      <Header />
-      <main className="pt-20">
+    <>
+      <PageLoader />
+      <CustomCursor />
+      <ScrollProgress />
+      <ScrollToTop />
+      <Navbar />
+      <main>
         <Hero />
+        <div className="section-divider" />
         <About />
+        <div className="section-divider" />
+        <Skills />
+        <div className="section-divider" />
         <Projects />
+        <div className="section-divider" />
+        <Certifications />
+        <div className="section-divider" />
         <Contact />
       </main>
       <Footer />
-    </div>
-  );
+    </>
+  )
 }
 
-export default App;
+export default function App() {
+  return (
+    <ThemeProvider>
+      <AppInner />
+    </ThemeProvider>
+  )
+}
