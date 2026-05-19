@@ -151,6 +151,80 @@
     0%, 100% { opacity: 1; }
     50%       { opacity: 0; }
   }
+
+  /* Shimmer animation for buttons */
+  @keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(200%); }
+  }
+
+  /* Hero scroll line */
+  .hero-scroll-line {
+    width: 1px;
+    height: 2rem;
+    background: linear-gradient(to bottom, #6366F1, transparent);
+  }
+
+  /* Neural canvas fade-in */
+  .neural-fade {
+    animation: fadeIn 1.2s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  /* Section fade-in on load */
+  .section-fade {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .section-fade.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Premium card hover glow */
+  .card-glow:hover {
+    box-shadow:
+      0 0 0 1px rgba(99,102,241,0.2),
+      0 8px 40px rgba(99,102,241,0.08);
+  }
+
+  /* Monospace accent text */
+  .mono-label {
+    font-family: 'Plus Jakarta Sans', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  /* Subtle horizontal scan line effect */
+  .scan-line {
+    background: linear-gradient(to bottom,
+      transparent 49%,
+      rgba(99,102,241,0.03) 50%,
+      transparent 51%);
+    background-size: 100% 4px;
+  }
+
+  /* Impact badge */
+  .impact-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid rgba(34,197,94,0.15);
+    background: rgba(34,197,94,0.06);
+    color: rgb(74,222,128);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

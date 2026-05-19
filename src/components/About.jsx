@@ -4,6 +4,7 @@ import { useInView } from 'react-intersection-observer'
 import { HiCode, HiCollection, HiLightningBolt, HiAcademicCap } from 'react-icons/hi'
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
 import { useTheme } from '../context/ThemeContext'
+import { identity } from '../data/identity'
 
 const fadeUp = {
   initial:     { opacity: 0, y: 30 },
@@ -26,10 +27,11 @@ const socials = [
 ]
 
 const timeline = [
-  { year: '2022', event: 'Started learning Python and web fundamentals' },
-  { year: '2023', event: 'Built first Django + PostgreSQL applications' },
-  { year: '2024', event: 'Expanded into Azure cloud and React full-stack' },
-  { year: '2025', event: 'Shipping production-grade Python applications' },
+  { year: '2022', event: 'Started engineering — Python, web fundamentals, backend basics' },
+  { year: '2023', event: 'Built production Django + PostgreSQL systems. REST API architecture.' },
+  { year: '2024', event: 'Azure cloud, Docker, React full-stack. First AI feature integrations.' },
+  { year: '2025', event: 'Transitioning fully into AI engineering. LLMs, RAG, agent systems.' },
+  { year: '2026', event: 'Building AI-native applications. Targeting international AI roles.' },
 ]
 
 function StatCard({ stat, index, dark }) {
@@ -82,28 +84,24 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 items-start">
           <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.1 }}>
             <h3 className={`text-xl font-bold mb-4 ${heading}`}>
-              Python Developer based in{' '}
+              AI Systems Engineer based in{' '}
               <span className="gradient-text">Addis Ababa, Ethiopia</span>
             </h3>
 
             <p className={`leading-relaxed mb-4 text-sm ${muted}`}>
-              I'm a dedicated Python developer with a strong foundation in backend
-              web development, REST APIs, and database design. I enjoy building
-              clean, efficient solutions that solve real-world problems.
+              {identity.manifesto}
             </p>
 
             <p className={`leading-relaxed mb-8 text-sm ${muted}`}>
-              Currently expanding into Azure cloud services and modern full-stack
-              development. My goal is to contribute to impactful projects and grow
-              as a professional software engineer in 2026 and beyond.
+              {identity.philosophy}
             </p>
 
             <div className="grid grid-cols-2 gap-3 mb-8">
               {[
-                { label: 'Name',     value: 'Abrham G/medhin' },
-                { label: 'Location', value: 'Addis Ababa, ET' },
-                { label: 'Email',    value: 'abrsh067@gmail.com' },
-                { label: 'Status',   value: 'Open to work' },
+                { label: 'Role',     value: identity.title },
+                { label: 'Location', value: identity.location },
+                { label: 'Email',    value: identity.email },
+                { label: 'Status',   value: identity.availabilityText },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -183,9 +181,9 @@ export default function About() {
                 <p className={`text-sm leading-relaxed ${muted}`}>
                   <span className={`font-semibold ${heading}`}>Currently focused</span>
                   {' '}
-                  on backend Python development, Azure cloud architecture, and
-                  building full-stack applications that are clean, scalable,
-                  and production-ready.
+                  on AI application development, intelligent backend systems,
+                  and building production-ready LLM integrations with FastAPI,
+                  LangChain, and modern AI tooling.
                 </p>
               </div>
             </motion.div>

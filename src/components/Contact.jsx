@@ -115,7 +115,7 @@ export default function Contact() {
                   <label className={labelClass}>Your Name</label>
                   <input
                     type="text" name="name" value={form.name}
-                    onChange={handleChange} placeholder="John Smith"
+                    onChange={handleChange} placeholder="Full Name"
                     required className={inputClass}
                   />
                 </div>

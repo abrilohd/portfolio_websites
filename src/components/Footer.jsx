@@ -70,13 +70,11 @@ export default function Footer() {
       <div className={`border-t ${divider}`}>
         <div className="container-width py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className={`text-xs ${muted}`}>
-            © {year} Abrham G/medhin. All rights reserved.
+            © {year} Abrham G/medhin — AI Systems Engineer
           </p>
           <p className={`text-xs ${muted}`}>
-            Built with{' '}
-            <span className="text-accent font-medium">React</span>
-            {' '}+{' '}
-            <span className="text-accent font-medium">Tailwind CSS</span>
+            Designed & engineered with{' '}
+            <span className="text-accent font-medium">intention</span>
           </p>
         </div>
       </div>
