@@ -98,7 +98,7 @@ export default function Contact() {
       <div className="container-width relative z-10">
         <motion.div {...fadeUp} className="text-center mb-16">
           <span className="section-label font-mono text-xs text-py-500 tracking-widest uppercase mb-2 block">
-            // CONTACT
+            {'// CONTACT'}
           </span>
           <h2 className="font-display text-display text-white mt-2 leading-tight">
             Let's Work Together
