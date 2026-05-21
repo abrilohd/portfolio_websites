@@ -7,7 +7,7 @@ import { useTheme } from '../context/ThemeContext'
 const links = [
   { label: 'Home',           href: '#home' },
   { label: 'About',          href: '#about' },
-  { label: 'Skills',         href: '#skills' },
+  { label: 'Expertise',      href: '#skills' },
   { label: 'Projects',       href: '#projects' },
   { label: 'Certifications', href: '#certifications' },
   { label: 'Contact',        href: '#contact' },
@@ -20,7 +20,7 @@ export default function Navbar() {
   const [active,   setActive]   = useState('#home')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20)
+    const onScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
@@ -31,51 +31,51 @@ export default function Navbar() {
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' })
   }
 
-  const navBg = scrolled
-    ? dark
-      ? 'bg-[#0F0F1A]/90 border-b border-[#1E1E3A] shadow-lg backdrop-blur-xl'
-      : 'bg-white/90 border-b border-[#E2E2F0] shadow-md backdrop-blur-xl'
-    : 'bg-transparent'
-
-  const mobileBg = dark
-    ? 'bg-[#0F0F1A]/95 border-t border-[#1E1E3A]'
-    : 'bg-white/95 border-t border-[#E2E2F0]'
-
-  const linkBase = dark
-    ? 'text-[#94A3B8] hover:text-[#E2E8F0]'
-    : 'text-[#64748B] hover:text-[#0F0F1A]'
-
-  const activeStyle = 'text-accent bg-accent/10'
-
   return (
     <motion.header
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0,   opacity: 1 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${navBg}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled
+          ? 'border-b'
+          : 'bg-transparent'
+      }`}
+      style={scrolled ? {
+        backdropFilter: 'blur(12px)',
+        background: dark ? 'rgba(7,17,42,0.92)' : 'rgba(240,244,255,0.92)',
+        borderColor: dark ? 'rgba(74,127,212,0.15)' : 'rgba(74,127,212,0.20)'
+      } : {}}
     >
       <div className="container-width flex items-center justify-between h-16">
+        {/* Logo */}
         <button
           onClick={() => handleClick('#home')}
-          className="text-xl font-extrabold gradient-text tracking-tight hover:opacity-80 transition-opacity"
+          className="text-xl font-display font-extrabold tracking-tight hover:opacity-80 transition-opacity"
+          style={{ color: dark ? '#FFFFFF' : '#07112A' }}
         >
-          Abrham.
+          <span style={{ color: dark ? '#FFFFFF' : '#07112A' }}>Abrham</span>
+          <span className="text-py-500">.</span>
         </button>
 
+        {/* Desktop Nav */}
         <nav className="hidden md:flex items-center gap-1">
           {links.map((link) => (
             <button
               key={link.href}
               onClick={() => handleClick(link.href)}
-              className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                active === link.href ? activeStyle : linkBase
+              className={`relative px-4 py-2 rounded-lg text-sm font-body font-medium transition-all duration-150 ${
+                active === link.href
+                  ? 'text-py-500'
+                  : 'text-[#A8C3EC] hover:text-py-500'
               }`}
             >
               {link.label}
               {active === link.href && (
                 <motion.div
                   layoutId="nav-indicator"
-                  className="absolute inset-0 rounded-lg bg-accent/10"
+                  className="absolute left-0 right-0 h-[2px] bg-py-500"
+                  style={{ bottom: '-4px' }}
                   transition={{ type: 'spring', duration: 0.4 }}
                 />
               )}
@@ -83,14 +83,32 @@ export default function Navbar() {
           ))}
         </nav>
 
+        {/* Right side: CTA + Theme Toggle + Mobile Menu */}
         <div className="flex items-center gap-2">
+          {/* CTA Button - hidden on mobile */}
+          <button
+            onClick={() => handleClick('#contact')}
+            className="hidden sm:flex items-center gap-2 font-display font-bold text-sm transition-all duration-150"
+            style={{
+              background: '#F5C518',
+              color: '#07112A',
+              fontWeight: 700,
+              borderRadius: '8px',
+              padding: '10px 20px'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.background = '#FFD03A'}
+            onMouseLeave={(e) => e.currentTarget.style.background = '#F5C518'}
+          >
+            Hire Me →
+          </button>
+
+          {/* Theme Toggle */}
           <button
             onClick={toggle}
-            className={`p-2 rounded-lg transition-all duration-200 ${
-              dark
-                ? 'text-[#94A3B8] hover:text-[#E2E8F0] hover:bg-white/5'
-                : 'text-[#64748B] hover:text-[#0F0F1A] hover:bg-black/5'
-            }`}
+            className="p-2 rounded-btn border border-navy-600 transition-all duration-150"
+            style={{ color: '#7AABEA' }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#F5C518'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#7AABEA'}
             aria-label="Toggle theme"
           >
             <motion.div
@@ -99,16 +117,16 @@ export default function Navbar() {
               animate={{ rotate: 0,   opacity: 1 }}
               transition={{ duration: 0.25 }}
             >
-              {dark ? <HiSun size={18} /> : <HiMoon size={18} />}
+              {dark ? <HiSun size={16} /> : <HiMoon size={16} />}
             </motion.div>
           </button>
 
+          {/* Mobile Menu Toggle */}
           <button
-            className={`md:hidden p-2 transition-colors ${
-              dark
-                ? 'text-[#94A3B8] hover:text-[#E2E8F0]'
-                : 'text-[#64748B] hover:text-[#0F0F1A]'
-            }`}
+            className="md:hidden p-2 transition-colors"
+            style={{ color: '#A8C3EC' }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#F5C518'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#A8C3EC'}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -117,6 +135,7 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -124,22 +143,56 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className={`md:hidden overflow-hidden ${mobileBg}`}
+            className="md:hidden overflow-hidden backdrop-blur-md border-t"
+            style={{
+              background: dark ? 'rgba(7,17,42,0.95)' : 'rgba(240,244,255,0.95)',
+              borderColor: dark ? 'rgba(74,127,212,0.15)' : 'rgba(74,127,212,0.20)'
+            }}
           >
             <nav className="container-width py-3 flex flex-col gap-1">
               {links.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => handleClick(link.href)}
-                  className={`text-left px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  className={`text-left px-4 py-3 rounded-lg text-sm font-body font-medium transition-all duration-150 ${
                     active === link.href
-                      ? activeStyle
-                      : linkBase
+                      ? 'text-py-500 bg-py-500/10'
+                      : 'hover:text-py-500'
                   }`}
+                  style={active !== link.href ? { 
+                    color: dark ? '#A8C3EC' : '#163060',
+                    backgroundColor: 'transparent'
+                  } : {}}
+                  onMouseEnter={(e) => {
+                    if (active !== link.href) {
+                      e.currentTarget.style.backgroundColor = dark ? 'rgba(74,127,212,0.1)' : 'rgba(74,127,212,0.08)'
+                    }
+                  }}
+                  onMouseLeave={(e) => {
+                    if (active !== link.href) {
+                      e.currentTarget.style.backgroundColor = 'transparent'
+                    }
+                  }}
                 >
                   {link.label}
                 </button>
               ))}
+              {/* Mobile CTA */}
+              <button
+                onClick={() => handleClick('#contact')}
+                className="mt-2 font-display font-bold text-sm text-center transition-all duration-150"
+                style={{
+                  background: '#F5C518',
+                  color: '#07112A',
+                  fontWeight: 700,
+                  borderRadius: '8px',
+                  padding: '12px 20px'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = '#FFD03A'}
+                onMouseLeave={(e) => e.currentTarget.style.background = '#F5C518'}
+              >
+                Hire Me →
+              </button>
             </nav>
           </motion.div>
         )}

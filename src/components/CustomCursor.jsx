@@ -41,12 +41,12 @@ export default function CustomCursor() {
     const onDown = () => {
       if (ring.current) {
         ring.current.style.transform += ' scale(0.75)'
-        ring.current.style.borderColor = '#8B5CF6'
+        ring.current.style.borderColor = '#FFD03A'
       }
     }
 
     const onUp = () => {
-      if (ring.current) ring.current.style.borderColor = '#6366F1'
+      if (ring.current) ring.current.style.borderColor = '#F5C518'
     }
 
     document.addEventListener('mousemove',  onMove)
@@ -76,7 +76,7 @@ export default function CustomCursor() {
           width: '8px',
           height: '8px',
           borderRadius: '50%',
-          background: '#6366F1',
+          background: '#F5C518',
           opacity: 0,
           transition: 'opacity 0.3s',
           willChange: 'transform',
@@ -89,7 +89,7 @@ export default function CustomCursor() {
           width: '40px',
           height: '40px',
           borderRadius: '50%',
-          border: '1.5px solid #6366F1',
+          border: '1.5px solid #F5C518',
           opacity: 0,
           transition: 'opacity 0.3s, border-color 0.2s',
           willChange: 'transform',

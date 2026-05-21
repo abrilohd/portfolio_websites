@@ -1,194 +1,532 @@
 import { motion } from 'framer-motion'
-import CountUp from 'react-countup'
-import { useInView } from 'react-intersection-observer'
-import { HiCode, HiCollection, HiLightningBolt, HiAcademicCap } from 'react-icons/hi'
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
-import { useTheme } from '../context/ThemeContext'
-
-const fadeUp = {
-  initial:     { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport:    { once: true },
-  transition:  { duration: 0.6 },
-}
-
-const stats = [
-  { icon: <HiCode size={22} />,          end: 10, suffix: '+', label: 'Projects Built' },
-  { icon: <HiLightningBolt size={22} />, end: 2,  suffix: '+', label: 'Years Learning' },
-  { icon: <HiCollection size={22} />,    end: 15, suffix: '+', label: 'Technologies' },
-  { icon: <HiAcademicCap size={22} />,   end: 4,  suffix: '',  label: 'Certifications' },
-]
-
-const socials = [
-  { icon: <FaGithub size={18} />,   href: 'https://github.com/abrilohd',                               label: 'GitHub' },
-  { icon: <FaLinkedin size={18} />, href: 'https://www.linkedin.com/in/abrham-gebremedhin-962130360/', label: 'LinkedIn' },
-  { icon: <FaTwitter size={18} />,  href: 'https://x.com/abrsh067',                                    label: 'Twitter' },
-]
-
-const timeline = [
-  { year: '2022', event: 'Started learning Python and web fundamentals' },
-  { year: '2023', event: 'Built first Django + PostgreSQL applications' },
-  { year: '2024', event: 'Expanded into Azure cloud and React full-stack' },
-  { year: '2025', event: 'Shipping production-grade Python applications' },
-]
-
-function StatCard({ stat, index, dark }) {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.5 })
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="glass gradient-border rounded-2xl p-5 flex items-center gap-4 hover:border-accent/30 transition-all duration-300 group"
-    >
-      <div className="p-2.5 rounded-xl bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors duration-200 flex-shrink-0">
-        {stat.icon}
-      </div>
-      <div>
-        <div className="text-2xl font-extrabold gradient-text">
-          {inView
-            ? <CountUp end={stat.end} duration={2} suffix={stat.suffix} />
-            : `0${stat.suffix}`
-          }
-        </div>
-        <div className={`text-xs font-medium mt-0.5 ${dark ? 'text-[#94A3B8]' : 'text-[#64748B]'}`}>
-          {stat.label}
-        </div>
-      </div>
-    </motion.div>
-  )
-}
+import { identity } from '../data/identity'
+import { HiLocationMarker, HiMail, HiCheckCircle, HiClock, HiLightningBolt } from 'react-icons/hi'
 
 export default function About() {
-  const { dark } = useTheme()
-
-  const heading  = dark ? 'text-[#E2E8F0]' : 'text-[#0F0F1A]'
-  const muted    = dark ? 'text-[#94A3B8]' : 'text-[#64748B]'
-  const infoBg   = dark ? 'bg-[#16162A]/80 border-[#1E1E3A]' : 'bg-white border-[#E2E2F0]'
-
   return (
-    <section id="about" className="section-padding">
-      <div className="container-width">
-        <motion.div {...fadeUp} className="text-center mb-16">
-          <span className="text-accent text-sm font-semibold tracking-widest uppercase">
-            About Me
-          </span>
-          <h2 className={`text-3xl sm:text-4xl font-extrabold mt-2 ${heading}`}>Who I Am</h2>
+    <section id="about" className="relative overflow-hidden section-light" style={{ padding: '80px 0' }}>
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 circuit-bg opacity-[0.02] pointer-events-none" />
+      
+      <div className="container-width relative z-10">
+        {/* Section header - CONSISTENT STYLE */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-10"
+        >
+          <p 
+            className="font-mono section-label-text"
+            style={{
+              fontSize: '11px',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 600,
+              marginBottom: '8px'
+            }}
+          >
+            {'// ABOUT'}
+          </p>
+          <h2 
+            className="font-display section-title-text"
+            style={{
+              fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
+              fontWeight: 700,
+              marginBottom: '6px'
+            }}
+          >
+            Who I Am
+          </h2>
+          <p 
+            className="font-body section-desc-text"
+            style={{
+              fontSize: '1rem',
+              maxWidth: '560px'
+            }}
+          >
+            AI Engineer building production systems that scale.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.1 }}>
-            <h3 className={`text-xl font-bold mb-4 ${heading}`}>
-              Python Developer based in{' '}
-              <span className="gradient-text">Addis Ababa, Ethiopia</span>
-            </h3>
-
-            <p className={`leading-relaxed mb-4 text-sm ${muted}`}>
-              I'm a dedicated Python developer with a strong foundation in backend
-              web development, REST APIs, and database design. I enjoy building
-              clean, efficient solutions that solve real-world problems.
-            </p>
-
-            <p className={`leading-relaxed mb-8 text-sm ${muted}`}>
-              Currently expanding into Azure cloud services and modern full-stack
-              development. My goal is to contribute to impactful projects and grow
-              as a professional software engineer in 2026 and beyond.
-            </p>
-
-            <div className="grid grid-cols-2 gap-3 mb-8">
-              {[
-                { label: 'Name',     value: 'Abrham G/medhin' },
-                { label: 'Location', value: 'Addis Ababa, ET' },
-                { label: 'Email',    value: 'abrsh067@gmail.com' },
-                { label: 'Status',   value: 'Open to work' },
-              ].map((item) => (
-                <div
-                  key={item.label}
-                  className={`rounded-xl px-4 py-3 border ${infoBg}`}
-                >
-                  <p className={`text-xs uppercase tracking-wider mb-1 ${muted}`}>
-                    {item.label}
-                  </p>
-                  <p className={`text-sm font-semibold ${heading}`}>{item.value}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex gap-3 mb-10">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={s.label}
-                  className={`p-3 rounded-xl border transition-all duration-200 hover:text-accent hover:border-accent/40 hover:bg-accent/5 ${
-                    dark
-                      ? 'border-[#1E1E3A] text-[#94A3B8]'
-                      : 'border-[#E2E2F0] text-[#64748B]'
-                  }`}
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
-
+        <div className="grid lg:grid-cols-[1.15fr,0.85fr] gap-10 lg:gap-14">
+          {/* Left column - Main content */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col gap-7"
+          >
+            {/* What I Do */}
             <div>
-              <h4 className={`text-sm font-bold uppercase tracking-widest mb-5 ${heading}`}>
-                Journey
-              </h4>
-              <div className="relative flex flex-col gap-4 pl-4">
-                <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-accent via-accent2 to-transparent opacity-30" />
-                {timeline.map((item, i) => (
-                  <motion.div
-                    key={item.year}
-                    initial={{ opacity: 0, x: -16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+              <h3 
+                className="font-display about-subsection-title"
+                style={{
+                  fontSize: '1.0625rem',
+                  fontWeight: 600,
+                  marginBottom: '10px'
+                }}
+              >
+                What I Do
+              </h3>
+              <p 
+                className="font-body about-body-text"
+                style={{
+                  fontSize: '0.9375rem',
+                  lineHeight: '1.7'
+                }}
+              >
+                {identity.manifesto}
+              </p>
+            </div>
+
+            {/* How I Work */}
+            <div>
+              <h3 
+                className="font-display about-subsection-title"
+                style={{
+                  fontSize: '1.0625rem',
+                  fontWeight: 600,
+                  marginBottom: '10px'
+                }}
+              >
+                How I Work
+              </h3>
+              <p 
+                className="font-body about-body-text"
+                style={{
+                  fontSize: '0.9375rem',
+                  lineHeight: '1.7'
+                }}
+              >
+                {identity.philosophy}
+              </p>
+            </div>
+
+            {/* Current Focus */}
+            <div>
+              <h3 
+                className="font-display about-subsection-title"
+                style={{
+                  fontSize: '1.0625rem',
+                  fontWeight: 600,
+                  marginBottom: '10px'
+                }}
+              >
+                Current Focus
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {identity.focus.map((item, i) => (
+                  <motion.span
+                    key={item}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    className="relative pl-5"
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                    className="font-mono"
+                    style={{
+                      fontSize: '12px',
+                      padding: '6px 12px',
+                      borderRadius: '6px',
+                      background: 'rgba(245, 197, 24, 0.08)',
+                      border: '1px solid rgba(245, 197, 24, 0.25)',
+                      color: '#F5C518',
+                      fontWeight: 500
+                    }}
                   >
-                    <div className="absolute left-[-4px] top-1.5 w-2 h-2 rounded-full bg-accent" />
-                    <span className="text-accent text-xs font-bold">{item.year}</span>
-                    <p className={`text-sm mt-0.5 leading-snug ${muted}`}>
-                      {item.event}
-                    </p>
-                  </motion.div>
+                    {item}
+                  </motion.span>
                 ))}
+              </div>
+            </div>
+
+            {/* Work Style - NEW */}
+            <div className="about-card">
+              <h3 
+                className="font-display about-subsection-title"
+                style={{
+                  fontSize: '1.0625rem',
+                  fontWeight: 600,
+                  marginBottom: '12px'
+                }}
+              >
+                Work Style
+              </h3>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="flex items-start gap-3">
+                  <HiClock 
+                    size={20}
+                    className="about-icon"
+                    style={{ 
+                      flexShrink: 0,
+                      marginTop: '2px'
+                    }}
+                  />
+                  <div>
+                    <p 
+                      className="font-body about-card-label"
+                      style={{
+                        fontSize: '13px',
+                        fontWeight: 600,
+                        marginBottom: '2px'
+                      }}
+                    >
+                      Fast Response
+                    </p>
+                    <p 
+                      className="font-mono about-card-value"
+                      style={{
+                        fontSize: '11px',
+                        lineHeight: '1.5'
+                      }}
+                    >
+                      Usually within 24 hours
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <HiLightningBolt 
+                    size={20}
+                    className="about-icon"
+                    style={{ 
+                      flexShrink: 0,
+                      marginTop: '2px'
+                    }}
+                  />
+                  <div>
+                    <p 
+                      className="font-body about-card-label"
+                      style={{
+                        fontSize: '13px',
+                        fontWeight: 600,
+                        marginBottom: '2px'
+                      }}
+                    >
+                      Agile Mindset
+                    </p>
+                    <p 
+                      className="font-mono about-card-value"
+                      style={{
+                        fontSize: '11px',
+                        lineHeight: '1.5'
+                      }}
+                    >
+                      Ship fast, iterate often
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </motion.div>
 
+          {/* Right column - Contact & Status */}
           <motion.div
-            {...fadeUp}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="grid grid-cols-2 gap-4"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-col gap-4"
           >
-            {stats.map((stat, i) => (
-              <StatCard key={stat.label} stat={stat} index={i} dark={dark} />
-            ))}
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.5 }}
-              className="col-span-2 glass rounded-2xl p-5 hover:border-accent/25 transition-all duration-300"
-            >
-              <div className="flex items-start gap-3">
-                <div className="w-1 min-h-[40px] rounded-full bg-gradient-to-b from-accent to-accent2 flex-shrink-0" />
-                <p className={`text-sm leading-relaxed ${muted}`}>
-                  <span className={`font-semibold ${heading}`}>Currently focused</span>
-                  {' '}
-                  on backend Python development, Azure cloud architecture, and
-                  building full-stack applications that are clean, scalable,
-                  and production-ready.
-                </p>
+            {/* Contact Card */}
+            <div className="about-card">
+              <div className="flex items-center gap-2 mb-4">
+                <div 
+                  style={{
+                    width: '3px',
+                    height: '18px',
+                    background: '#F5C518',
+                    borderRadius: '2px'
+                  }}
+                />
+                <h3 
+                  className="font-display about-card-title"
+                  style={{
+                    fontSize: '0.9375rem',
+                    fontWeight: 600
+                  }}
+                >
+                  Contact
+                </h3>
               </div>
-            </motion.div>
+              
+              <div className="flex flex-col gap-3">
+                <div className="flex items-start gap-3">
+                  <HiLocationMarker 
+                    className="flex-shrink-0 mt-0.5 about-icon" 
+                    size={17}
+                  />
+                  <div>
+                    <p 
+                      className="font-body about-card-label"
+                      style={{
+                        fontSize: '13px',
+                        fontWeight: 500,
+                        marginBottom: '2px'
+                      }}
+                    >
+                      {identity.location}
+                    </p>
+                    <p 
+                      className="font-mono about-card-muted"
+                      style={{
+                        fontSize: '10px'
+                      }}
+                    >
+                      {identity.locationNote}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <HiMail 
+                    className="flex-shrink-0 about-icon" 
+                    size={17}
+                  />
+                  <a
+                    href={`mailto:${identity.email}`}
+                    className="font-body about-card-label hover:opacity-80 transition-opacity"
+                    style={{
+                      fontSize: '13px',
+                      fontWeight: 500,
+                      textDecoration: 'none'
+                    }}
+                  >
+                    {identity.email}
+                  </a>
+                </div>
+
+                {identity.available && (
+                  <div 
+                    className="flex items-center gap-3 mt-2 pt-3 about-card-divider"
+                  >
+                    <HiCheckCircle 
+                      className="flex-shrink-0" 
+                      size={17}
+                      style={{ color: '#4ADE80' }}
+                    />
+                    <p 
+                      className="font-body"
+                      style={{
+                        fontSize: '13px',
+                        fontWeight: 500,
+                        color: '#4ADE80'
+                      }}
+                    >
+                      {identity.availabilityText}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Quick Stats - NEW */}
+            <div className="about-card">
+              <div className="flex items-center gap-2 mb-4">
+                <div 
+                  style={{
+                    width: '3px',
+                    height: '18px',
+                    background: '#4A7FD4',
+                    borderRadius: '2px'
+                  }}
+                />
+                <h3 
+                  className="font-display about-card-title"
+                  style={{
+                    fontSize: '0.9375rem',
+                    fontWeight: 600
+                  }}
+                >
+                  Quick Stats
+                </h3>
+              </div>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <p 
+                    className="font-display"
+                    style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 700,
+                      color: '#F5C518',
+                      lineHeight: '1',
+                      marginBottom: '4px'
+                    }}
+                  >
+                    10+
+                  </p>
+                  <p 
+                    className="font-mono about-card-muted"
+                    style={{
+                      fontSize: '10px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    AI Projects
+                  </p>
+                </div>
+
+                <div>
+                  <p 
+                    className="font-display"
+                    style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 700,
+                      color: '#F5C518',
+                      lineHeight: '1',
+                      marginBottom: '4px'
+                    }}
+                  >
+                    2+
+                  </p>
+                  <p 
+                    className="font-mono about-card-muted"
+                    style={{
+                      fontSize: '10px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    Years Exp
+                  </p>
+                </div>
+
+                <div>
+                  <p 
+                    className="font-display"
+                    style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 700,
+                      color: '#F5C518',
+                      lineHeight: '1',
+                      marginBottom: '4px'
+                    }}
+                  >
+                    5+
+                  </p>
+                  <p 
+                    className="font-mono about-card-muted"
+                    style={{
+                      fontSize: '10px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    Certifications
+                  </p>
+                </div>
+
+                <div>
+                  <p 
+                    className="font-display"
+                    style={{
+                      fontSize: '1.5rem',
+                      fontWeight: 700,
+                      color: '#F5C518',
+                      lineHeight: '1',
+                      marginBottom: '4px'
+                    }}
+                  >
+                    100%
+                  </p>
+                  <p 
+                    className="font-mono about-card-muted"
+                    style={{
+                      fontSize: '10px',
+                      textTransform: 'uppercase',
+                      letterSpacing: '0.05em'
+                    }}
+                  >
+                    Remote
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Currently Building */}
+            <div className="about-card">
+              <div className="flex items-center gap-2 mb-3">
+                <div 
+                  style={{
+                    width: '3px',
+                    height: '18px',
+                    background: '#1E4D9B',
+                    borderRadius: '2px'
+                  }}
+                />
+                <h3 
+                  className="font-display about-card-title"
+                  style={{
+                    fontSize: '0.9375rem',
+                    fontWeight: 600
+                  }}
+                >
+                  Currently Building
+                </h3>
+              </div>
+              <p 
+                className="font-body about-body-text"
+                style={{
+                  fontSize: '13px',
+                  lineHeight: '1.6'
+                }}
+              >
+                {identity.currentlyBuilding}
+              </p>
+            </div>
+
+            {/* Currently Learning */}
+            <div className="about-card">
+              <div className="flex items-center gap-2 mb-3">
+                <div 
+                  style={{
+                    width: '3px',
+                    height: '18px',
+                    background: '#7AABEA',
+                    borderRadius: '2px'
+                  }}
+                />
+                <h3 
+                  className="font-display about-card-title"
+                  style={{
+                    fontSize: '0.9375rem',
+                    fontWeight: 600
+                  }}
+                >
+                  Currently Learning
+                </h3>
+              </div>
+              <ul className="flex flex-col gap-2">
+                {identity.currentlyLearning.map((item, i) => (
+                  <motion.li
+                    key={item}
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                    className="flex items-center gap-2 font-body about-body-text"
+                    style={{
+                      fontSize: '13px'
+                    }}
+                  >
+                    <div 
+                      style={{
+                        width: '5px',
+                        height: '5px',
+                        borderRadius: '50%',
+                        background: '#F5C518',
+                        flexShrink: 0
+                      }}
+                    />
+                    {item}
+                  </motion.li>
+                ))}
+              </ul>
+            </div>
           </motion.div>
         </div>
       </div>

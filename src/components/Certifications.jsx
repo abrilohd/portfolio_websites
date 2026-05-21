@@ -1,91 +1,280 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { HiBadgeCheck, HiExternalLink, HiAcademicCap } from 'react-icons/hi'
 import { certificates } from '../data/certificates'
-import { useTheme } from '../context/ThemeContext'
+import { HiExternalLink } from 'react-icons/hi'
 
-const fadeUp = {
-  initial:     { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport:    { once: true },
-  transition:  { duration: 0.6 },
+// Map category to color
+const categoryColors = {
+  'AI/ML': { bg: 'rgba(245,197,24,0.12)', border: 'rgba(245,197,24,0.3)', color: '#F5C518' },
+  'Cloud': { bg: 'rgba(74,127,212,0.12)', border: 'rgba(74,127,212,0.3)', color: '#4A7FD4' },
+  'Backend': { bg: 'rgba(122,171,234,0.12)', border: 'rgba(122,171,234,0.3)', color: '#7AABEA' },
+  'Data': { bg: 'rgba(29,158,117,0.12)', border: 'rgba(29,158,117,0.3)', color: '#1D9E75' },
+}
+
+// CertCard component for carousel
+function CertCard({ data, dimmed = false }) {
+  const categoryStyle = categoryColors[data.category] || categoryColors['AI/ML']
+
+  return (
+    <div className={`cert-card-inner ${dimmed ? 'cert-card-dimmed' : ''}`}>
+      {/* Card header */}
+      <div className="cert-card-header">
+        <div className="cert-badge-icon">🎓</div>
+        <div className="cert-header-content">
+          <h3 className="cert-card-title">{data.title}</h3>
+          <span 
+            className="cert-category-pill"
+            style={{
+              background: categoryStyle.bg,
+              border: `1px solid ${categoryStyle.border}`,
+              color: categoryStyle.color
+            }}
+          >
+            {data.category}
+          </span>
+        </div>
+      </div>
+
+      {/* Issuer and date */}
+      <div className="cert-meta-row">
+        <div className="cert-issuer">
+          <span className="cert-check">✓</span>
+          <span className="cert-issuer-name">{data.issuer}</span>
+        </div>
+        <div className="cert-date-badge">{data.year}</div>
+      </div>
+
+      {/* Relevance description */}
+      <p className="cert-relevance">{data.relevance}</p>
+
+      {/* Date detail */}
+      <div className="cert-date-detail">
+        <span className="cert-date-label">Issued:</span>
+        <span className="cert-date-value">{data.date}</span>
+      </div>
+
+      {/* Action */}
+      <div className="cert-actions">
+        <a
+          href={data.credential}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="cert-action-link"
+        >
+          <HiExternalLink size={14} />
+          <span>View Credential</span>
+        </a>
+      </div>
+    </div>
+  )
 }
 
 export default function Certifications() {
-  const { dark } = useTheme()
+  const [active, setActive] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+  const [direction, setDirection] = useState('right')
+  const [progress, setProgress] = useState(0)
 
-  const heading = dark ? 'text-[#E2E8F0]' : 'text-[#0F0F1A]'
-  const muted   = dark ? 'text-[#94A3B8]' : 'text-[#64748B]'
-  const divider = dark ? 'border-[#1E1E3A]' : 'border-[#E2E2F0]'
-  const yearBg  = dark
-    ? 'bg-[#0F0F1A] border-[#1E1E3A] text-[#94A3B8]'
-    : 'bg-[#F0F0FF] border-[#E2E2F0] text-[#64748B]'
+  const certList = certificates
+
+  // Auto-advance
+  useEffect(() => {
+    if (isHovered) return
+    const timer = setInterval(() => {
+      setDirection('right')
+      setActive((prev) => (prev + 1) % certList.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [isHovered, certList.length])
+
+  // Progress bar animation
+  useEffect(() => {
+    setProgress(0)
+    const t = setTimeout(() => setProgress(100), 50)
+    return () => clearTimeout(t)
+  }, [active])
+
+  const goNext = () => {
+    setDirection('right')
+    setActive((prev) => (prev + 1) % certList.length)
+  }
+
+  const goPrev = () => {
+    setDirection('left')
+    setActive((prev) => (prev - 1 + certList.length) % certList.length)
+  }
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === 'ArrowRight') goNext()
+      if (e.key === 'ArrowLeft') goPrev()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Compute prev, active, next indices
+  const prevIdx = (active - 1 + certList.length) % certList.length
+  const nextIdx = (active + 1) % certList.length
 
   return (
-    <section id="certifications" className="section-padding">
-      <div className="container-width">
-        <motion.div {...fadeUp} className="text-center mb-16">
-          <span className="text-accent text-sm font-semibold tracking-widest uppercase">
-            Certifications
-          </span>
-          <h2 className={`text-3xl sm:text-4xl font-extrabold mt-2 ${heading}`}>
+    <section id="certifications" className="relative overflow-hidden section-dark" style={{ padding: '80px 0' }}>
+      {/* Circuit overlay */}
+      <div className="absolute inset-0 circuit-bg opacity-[0.04] pointer-events-none" />
+
+      <div className="container-width relative z-10">
+        {/* Section header - CONSISTENT STYLE */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '48px' }}
+        >
+          <p 
+            className="font-mono section-label-text"
+            style={{
+              fontSize: '11px',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 600,
+              marginBottom: '8px'
+            }}
+          >
+            {'// CERTIFICATIONS'}
+          </p>
+          <h2 
+            className="font-display section-title-text"
+            style={{
+              fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
+              fontWeight: 700,
+              marginBottom: '6px'
+            }}
+          >
             Credentials & Learning
           </h2>
-          <p className={`mt-3 max-w-md mx-auto text-sm leading-relaxed ${muted}`}>
-            Professional certifications that validate my technical skills and commitment to continuous learning.
+          <p 
+            className="font-body section-desc-text"
+            style={{
+              fontSize: '1rem',
+              maxWidth: '600px'
+            }}
+          >
+            Professional certifications validating my technical foundation.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {certificates.map((cert, i) => (
-            <motion.div
-              key={cert.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="glass rounded-2xl p-6 flex flex-col gap-4 hover:border-accent/30 hover:-translate-y-1 transition-all duration-300 group"
+        {/* Carousel */}
+        <div
+          className="carousel-viewport"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* Progress bar */}
+          <div
+            className={`carousel-progress ${!isHovered ? 'running' : ''}`}
+            style={{ width: isHovered ? `${progress}%` : undefined }}
+          />
+
+          {/* Left arrow */}
+          <button
+            className="carousel-arrow carousel-arrow-left"
+            onClick={goPrev}
+            aria-label="Previous certification"
+          >
+            ‹
+          </button>
+
+          {/* Cards track */}
+          <div className="carousel-track">
+            {/* Prev peek card */}
+            <div
+              className="carousel-card carousel-card-peek carousel-card-peek-left"
+              onClick={goPrev}
             >
-              <div className="flex items-start justify-between">
-                <div className="p-2.5 rounded-xl bg-accent/10 text-accent group-hover:bg-accent/20 transition-colors duration-200">
-                  <HiAcademicCap size={20} />
-                </div>
-                <span className={`px-2.5 py-1 rounded-full text-xs font-semibold border ${yearBg}`}>
-                  {cert.year}
-                </span>
-              </div>
+              <CertCard data={certList[prevIdx]} dimmed />
+            </div>
 
-              <div className="flex-1">
-                <h3 className={`font-bold text-base mb-2 leading-snug group-hover:text-accent transition-colors duration-200 ${heading}`}>
-                  {cert.title}
-                </h3>
-                <div className="flex items-center gap-1.5">
-                  <HiBadgeCheck size={15} className="text-accent flex-shrink-0" />
-                  <span className="text-xs font-semibold text-accent">{cert.issuer}</span>
-                  <span className={`text-xs ${muted}`}>· Verified</span>
-                </div>
-              </div>
+            {/* Active card */}
+            <div
+              className={`carousel-card carousel-card-active slide-in-${direction}`}
+              key={active}
+            >
+              <CertCard data={certList[active]} />
+            </div>
 
-              <div className={`pt-3 border-t ${divider}`}>
-                <a
-                  href={cert.credential}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`flex items-center gap-1.5 text-xs font-semibold transition-colors duration-200 hover:text-accent ${muted}`}
-                >
-                  <HiExternalLink size={13} />
-                  View Credential
-                </a>
-              </div>
-            </motion.div>
+            {/* Next peek card */}
+            <div
+              className="carousel-card carousel-card-peek carousel-card-peek-right"
+              onClick={goNext}
+            >
+              <CertCard data={certList[nextIdx]} dimmed />
+            </div>
+          </div>
+
+          {/* Right arrow */}
+          <button
+            className="carousel-arrow carousel-arrow-right"
+            onClick={goNext}
+            aria-label="Next certification"
+          >
+            ›
+          </button>
+        </div>
+
+        {/* Dot pagination */}
+        <div className="carousel-dots">
+          {certList.map((cert, i) => (
+            <button
+              key={cert.title}
+              className={`carousel-dot ${i === active ? 'carousel-dot-active' : ''}`}
+              onClick={() => {
+                setDirection(i > active ? 'right' : 'left')
+                setActive(i)
+              }}
+              aria-label={`Go to ${cert.title}`}
+            />
           ))}
         </div>
 
-        <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.4 }} className="text-center mt-12">
-          <p className={`text-sm ${muted}`}>
-            All certifications issued through{' '}
-            <span className="text-accent font-semibold">Skillsoft</span>
-            {' '}— a globally recognized professional learning platform.
-          </p>
+        {/* Certification name indicator */}
+        <div className="carousel-category-name">{certList[active].title}</div>
+
+        {/* Footer CTA */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+          style={{ 
+            textAlign: 'center', 
+            marginTop: '32px',
+            paddingTop: '24px',
+            borderTop: '1px solid rgba(74, 127, 212, 0.15)'
+          }}
+        >
+          <a
+            href="https://skillsoft.digitalbadges-eu.skillsoft.com/profile/eu-abrsh067647217/wallet"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 font-mono text-sm font-semibold transition-all duration-200 footer-link"
+            style={{
+              textDecoration: 'none'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = '#F5C518'
+              e.currentTarget.style.transform = 'translateY(-2px)'
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = ''
+              e.currentTarget.style.transform = 'translateY(0)'
+            }}
+          >
+            <span>View Full Badge Wallet</span>
+            <HiExternalLink size={16} />
+          </a>
         </motion.div>
       </div>
     </section>

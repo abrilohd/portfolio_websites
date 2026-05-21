@@ -20,7 +20,7 @@ export default function ScrollToTop() {
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 z-50 p-3 rounded-xl bg-accent hover:bg-accent/90 text-white shadow-glow hover:shadow-glow-lg transition-all duration-200 hover:-translate-y-1"
+          className="fixed bottom-8 right-8 z-50 p-3 rounded-xl bg-py-500 hover:bg-py-400 text-navy-900 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1"
           aria-label="Back to top"
         >
           <HiArrowUp size={18} />
