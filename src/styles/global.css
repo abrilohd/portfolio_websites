@@ -1528,7 +1528,7 @@ html:not(.dark) .cert-date-value {
   }
   
   /* Stack work style cards */
-  section#about .grid.sm\\:grid-cols-2 {
+  section#about > div > div:first-child > div:nth-child(4) > div {
     grid-template-columns: 1fr;
   }
   
@@ -1560,7 +1560,7 @@ html:not(.dark) .cert-date-value {
 
 @media (max-width: 768px) {
   /* Stack contact columns */
-  section#contact .grid.md\\:grid-cols-2 {
+  section#contact > div > div > div.grid {
     grid-template-columns: 1fr;
     gap: 32px;
   }
@@ -1577,11 +1577,9 @@ html:not(.dark) .cert-date-value {
     padding: 60px 0 !important;
   }
   
-  /* Adjust contact info cards */
-  section#contact .bg-navy-600\\/20 {
+  /* Adjust contact info cards - use more generic selector */
+  section#contact .rounded-xl {
     padding: 12px 16px;
-    flex-direction: row;
-    align-items: center;
   }
   
   /* Adjust form padding */
