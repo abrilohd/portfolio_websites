@@ -411,8 +411,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Abrham Gebremedhin**
 - Email: abrsh067@gmail.com
-- GitHub: [@abrhamgg](https://github.com/abrhamgg)
-- LinkedIn: [Abrham Gebremedhin](https://linkedin.com/in/abrham-gebremedhin)
+- GitHub: [@abrilohd](https://github.com/abrilohd)
+- LinkedIn: [Abrham Gebremedhin](https://www.linkedin.com/in/abrham-gebremedhin-962130360/)
+- Twitter: [@abrsh067](https://x.com/abrsh067)
 - Location: Addis Ababa, Ethiopia
 
 ---

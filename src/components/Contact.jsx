@@ -21,22 +21,22 @@ const contactInfo = [
 const SOCIAL_LINKS = [
   {
     name: 'GitHub',
-    handle: '@abrhamgg',
-    url: 'https://github.com/abrhamgg',
+    handle: '@abrilohd',
+    url: 'https://github.com/abrilohd',
     icon: <FaGithub size={20} />,
     color: '#A8C3EC',
   },
   {
     name: 'LinkedIn',
     handle: 'Abrham Gebremedhin',
-    url: 'https://linkedin.com/in/abrham-gebremedhin',
+    url: 'https://www.linkedin.com/in/abrham-gebremedhin-962130360/',
     icon: <FaLinkedin size={20} />,
     color: '#4A7FD4',
   },
   {
     name: 'Twitter / X',
-    handle: '@abrhamdev',
-    url: 'https://twitter.com/abrhamdev',
+    handle: '@abrsh067',
+    url: 'https://x.com/abrsh067',
     icon: <FaTwitter size={20} />,
     color: '#A8C3EC',
   },
