@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@fortawesome/fontawesome-free": "^7.1.0",
     "@gsap/react": "^2.1.2",
     "@studio-freight/lenis": "^1.0.42",

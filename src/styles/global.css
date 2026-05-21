@@ -176,6 +176,23 @@
 }
 
 @layer utilities {
+  /* ═══════════════════════════════════════
+     RESPONSIVE CONTAINERS & SPACING
+  ═══════════════════════════════════════ */
+  
+  .container-main {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: clamp(16px, 5vw, 80px);
+    padding-right: clamp(16px, 5vw, 80px);
+  }
+  
+  .section-spacing {
+    padding-top: clamp(60px, 8vw, 100px);
+    padding-bottom: clamp(60px, 8vw, 100px);
+  }
+
   .section-padding {
     padding-top: 6rem;
     padding-bottom: 6rem;
@@ -261,6 +278,91 @@
   
   .dark .footer-link {
     color: #7AABEA;
+  }
+
+  /* ═══════════════════════════════════════
+     ABOUT SECTION - THEME AWARE
+  ═══════════════════════════════════════ */
+  
+  /* About cards */
+  .about-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(74, 127, 212, 0.2);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .dark .about-card {
+    background: #111827;
+    border-color: rgba(74, 127, 212, 0.15);
+  }
+  
+  /* About subsection titles */
+  .about-subsection-title {
+    color: #07112A;
+  }
+  
+  .dark .about-subsection-title {
+    color: #FFFFFF;
+  }
+  
+  /* About body text */
+  .about-body-text {
+    color: #1A3E7A;
+  }
+  
+  .dark .about-body-text {
+    color: #A8C3EC;
+  }
+  
+  /* About card titles */
+  .about-card-title {
+    color: #07112A;
+  }
+  
+  .dark .about-card-title {
+    color: #FFFFFF;
+  }
+  
+  /* About card labels */
+  .about-card-label {
+    color: #07112A;
+  }
+  
+  .dark .about-card-label {
+    color: #EAF1FB;
+  }
+  
+  /* About card values */
+  .about-card-value {
+    color: #4A7FD4;
+  }
+  
+  .dark .about-card-value {
+    color: #7AABEA;
+  }
+  
+  /* About card muted text */
+  .about-card-muted {
+    color: #4A7FD4;
+  }
+  
+  .dark .about-card-muted {
+    color: #64748B;
+  }
+  
+  /* About icons */
+  .about-icon {
+    color: #F5C518;
+  }
+  
+  /* About card divider */
+  .about-card-divider {
+    border-top: 1px solid rgba(74, 127, 212, 0.2);
+  }
+  
+  .dark .about-card-divider {
+    border-top-color: rgba(74, 127, 212, 0.15);
   }
 
   /* Impact badge */
@@ -1274,5 +1376,497 @@ html:not(.dark) .cert-date-value {
   
   .cert-badge-icon {
     font-size: 28px;
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   NAVBAR RESPONSIVE
+═══════════════════════════════════════ */
+
+/* Mobile nav */
+@media (max-width: 767px) {
+  .navbar-links { display: none; }
+  .navbar-links.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: rgba(7, 17, 42, 0.98);
+    backdrop-filter: blur(16px);
+    padding: 24px;
+    gap: 20px;
+    border-bottom: 1px solid rgba(74,127,212,0.15);
+    z-index: 99;
+  }
+  .navbar-links.open a {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #EAF1FB;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(74,127,212,0.1);
+  }
+  .navbar-links.open a:hover { color: #F5C518; }
+  .hamburger-btn { display: flex; }
+  .hire-me-nav { display: none; }
+}
+
+@media (min-width: 768px) {
+  .hamburger-btn { display: none; }
+}
+
+
+/* ═══════════════════════════════════════
+   HERO SECTION RESPONSIVE
+═══════════════════════════════════════ */
+
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    min-height: auto;
+  }
+  .hero-avatar-col {
+    order: -1;
+    display: flex;
+    justify-content: center;
+  }
+  .hero-cta-row {
+    justify-content: center;
+  }
+  .hero-stats {
+    justify-content: center;
+  }
+  .hero-tags {
+    justify-content: center;
+  }
+  .hero-bio {
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-name {
+    font-size: clamp(2.4rem, 11vw, 3.5rem);
+  }
+  .avatar-container {
+    width: 240px;
+    height: 240px;
+  }
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hero-cta-row button,
+  .hero-cta-row a {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+  .hero-stats {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   ABOUT SECTION RESPONSIVE
+═══════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .about-card {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Stack columns on tablet */
+  section#about .grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  /* Adjust card spacing */
+  .about-card {
+    padding: 16px;
+  }
+  
+  /* Adjust font sizes */
+  .about-subsection-title {
+    font-size: 1rem !important;
+  }
+  
+  .about-body-text {
+    font-size: 0.875rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Further reduce spacing on mobile */
+  section#about {
+    padding: 60px 0 !important;
+  }
+  
+  .about-card {
+    padding: 14px;
+  }
+  
+  /* Stack work style cards */
+  section#about .grid.sm\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Stack quick stats */
+  section#about .grid.grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  /* Adjust font sizes */
+  .about-subsection-title {
+    font-size: 0.9375rem !important;
+  }
+  
+  .about-card-title {
+    font-size: 0.875rem !important;
+  }
+  
+  .about-body-text,
+  .about-card-label {
+    font-size: 0.8125rem !important;
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   CONTACT SECTION RESPONSIVE
+═══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  /* Stack contact columns */
+  section#contact .grid.md\\:grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  /* Adjust form padding */
+  section#contact form {
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Reduce section padding */
+  section#contact {
+    padding: 60px 0 !important;
+  }
+  
+  /* Adjust contact info cards */
+  section#contact .bg-navy-600\\/20 {
+    padding: 12px 16px;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  /* Adjust form padding */
+  section#contact form {
+    padding: 20px;
+  }
+  
+  /* Adjust input padding */
+  section#contact input,
+  section#contact textarea {
+    padding: 10px 14px;
+    font-size: 0.875rem;
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   CAROUSEL RESPONSIVE IMPROVEMENTS
+═══════════════════════════════════════ */
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .carousel-viewport {
+    padding: 0 50px;
+  }
+  
+  .carousel-card-active,
+  .carousel-card-peek {
+    width: 500px;
+  }
+  
+  .carousel-arrow {
+    width: 44px;
+    height: 44px;
+    font-size: 28px;
+  }
+}
+
+/* Mobile landscape */
+@media (max-width: 768px) {
+  .carousel-card-peek {
+    display: none;
+  }
+  
+  .carousel-card-active {
+    width: 100%;
+    max-width: 480px;
+  }
+  
+  .carousel-viewport {
+    padding: 0 52px;
+  }
+  
+  .skill-card-inner,
+  .project-card-inner,
+  .cert-card-inner {
+    padding: 24px 20px;
+  }
+  
+  .carousel-dots {
+    margin-top: 32px;
+    gap: 6px;
+  }
+  
+  .carousel-dot {
+    width: 7px;
+    height: 7px;
+  }
+  
+  .carousel-dot-active {
+    width: 24px;
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 480px) {
+  .carousel-viewport {
+    padding: 0 44px;
+  }
+  
+  .carousel-card-active {
+    max-width: 100%;
+  }
+  
+  .carousel-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 24px;
+  }
+  
+  .carousel-arrow-left {
+    left: 2px;
+  }
+  
+  .carousel-arrow-right {
+    right: 2px;
+  }
+  
+  /* Skill cards */
+  .skill-card-inner {
+    padding: 20px 16px;
+  }
+  
+  .skill-card-title {
+    font-size: 17px;
+  }
+  
+  .skill-card-header {
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+  }
+  
+  .skill-list {
+    gap: 14px;
+  }
+  
+  .skill-name {
+    font-size: 13px;
+  }
+  
+  .skill-pct {
+    font-size: 11px;
+  }
+  
+  /* Project cards */
+  .project-card-inner {
+    padding: 20px 16px;
+    min-height: 340px;
+  }
+  
+  .project-card-title {
+    font-size: 16px;
+  }
+  
+  .project-description,
+  .project-achievement-text {
+    font-size: 13px;
+  }
+  
+  .project-tags {
+    gap: 5px;
+  }
+  
+  .project-tag {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  
+  /* Cert cards */
+  .cert-card-inner {
+    padding: 20px 16px;
+    min-height: 280px;
+  }
+  
+  .cert-card-title {
+    font-size: 15px;
+  }
+  
+  .cert-badge-icon {
+    font-size: 26px;
+  }
+  
+  .cert-relevance {
+    font-size: 13px;
+  }
+  
+  .cert-meta-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  /* Category name */
+  .carousel-category-name {
+    font-size: 11px;
+    margin-top: 12px;
+  }
+  
+  /* Dots */
+  .carousel-dots {
+    margin-top: 28px;
+    gap: 5px;
+  }
+  
+  .carousel-dot {
+    width: 6px;
+    height: 6px;
+  }
+  
+  .carousel-dot-active {
+    width: 20px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+  .carousel-viewport {
+    padding: 0 40px;
+  }
+  
+  .carousel-arrow {
+    width: 36px;
+    height: 36px;
+    font-size: 22px;
+  }
+  
+  .skill-card-inner,
+  .project-card-inner,
+  .cert-card-inner {
+    padding: 18px 14px;
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   SECTION SPACING RESPONSIVE
+═══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  section {
+    padding: 60px 0 !important;
+  }
+  
+  .container-width {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  
+  /* Section headers */
+  section h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem) !important;
+  }
+  
+  section p.font-body {
+    font-size: 0.9375rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding: 50px 0 !important;
+  }
+  
+  .container-width {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Section headers */
+  section h2 {
+    font-size: clamp(1.375rem, 6vw, 1.75rem) !important;
+  }
+  
+  section p.font-mono {
+    font-size: 10px !important;
+  }
+  
+  section p.font-body {
+    font-size: 0.875rem !important;
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   FOOTER RESPONSIVE
+═══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  footer .grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    text-align: center;
+  }
+  
+  footer .flex {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding: 40px 0 !important;
+  }
+  
+  footer .text-sm {
+    font-size: 0.8125rem;
   }
 }

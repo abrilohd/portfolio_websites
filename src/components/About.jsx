@@ -448,14 +448,7 @@ export default function About() {
             </div>
 
             {/* Currently Building */}
-            <div 
-              style={{
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border-card)',
-                borderRadius: '10px',
-                padding: '20px'
-              }}
-            >
+            <div className="about-card">
               <div className="flex items-center gap-2 mb-3">
                 <div 
                   style={{
@@ -466,21 +459,19 @@ export default function About() {
                   }}
                 />
                 <h3 
-                  className="font-display"
+                  className="font-display about-card-title"
                   style={{
                     fontSize: '0.9375rem',
-                    fontWeight: 600,
-                    color: 'var(--text-primary)'
+                    fontWeight: 600
                   }}
                 >
                   Currently Building
                 </h3>
               </div>
               <p 
-                className="font-body"
+                className="font-body about-body-text"
                 style={{
                   fontSize: '13px',
-                  color: 'var(--text-secondary)',
                   lineHeight: '1.6'
                 }}
               >
@@ -489,14 +480,7 @@ export default function About() {
             </div>
 
             {/* Currently Learning */}
-            <div 
-              style={{
-                background: 'var(--bg-card)',
-                border: '1px solid var(--border-card)',
-                borderRadius: '10px',
-                padding: '20px'
-              }}
-            >
+            <div className="about-card">
               <div className="flex items-center gap-2 mb-3">
                 <div 
                   style={{
@@ -507,11 +491,10 @@ export default function About() {
                   }}
                 />
                 <h3 
-                  className="font-display"
+                  className="font-display about-card-title"
                   style={{
                     fontSize: '0.9375rem',
-                    fontWeight: 600,
-                    color: 'var(--text-primary)'
+                    fontWeight: 600
                   }}
                 >
                   Currently Learning
@@ -525,10 +508,9 @@ export default function About() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.08 }}
-                    className="flex items-center gap-2 font-body"
+                    className="flex items-center gap-2 font-body about-body-text"
                     style={{
-                      fontSize: '13px',
-                      color: 'var(--text-secondary)'
+                      fontSize: '13px'
                     }}
                   >
                     <div 
