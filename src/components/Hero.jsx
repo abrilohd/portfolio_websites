@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { HiArrowDown, HiDownload } from 'react-icons/hi'
+import { HiArrowDown } from 'react-icons/hi'
 import { useState, useEffect } from 'react'
 import CircuitOverlay from './CircuitOverlay'
 import HeroMetrics    from './HeroMetrics'
@@ -7,27 +7,28 @@ import profileImg     from '../assets/images/profile.jpg'
 
 const roles = [
   'AI Engineer',
-  'Machine Learning Engineer',
   'LLM Application Developer',
+  'Machine Learning Engineer',
+  'AI Solutions Architect',
 ]
 
-// Organized by category for a real AI Engineer portfolio
-const techStack = {
-  languages: ['Python', 'SQL'],
-  aiFrameworks: ['TensorFlow', 'PyTorch', 'LangChain', 'OpenAI', 'Hugging Face'],
-  dataViz: ['Pandas', 'NumPy', 'Matplotlib', 'Scikit-learn'],
-}
+// Premium Tech Stack - Top 8 Most Important
+const topSkills = [
+  'Python',
+  'PyTorch', 
+  'LangChain',
+  'OpenAI API',
+  'FastAPI',
+  'Docker',
+  'Azure',
+  'PostgreSQL'
+]
 
 const stagger = { animate: { transition: { staggerChildren: 0.08 } } }
 const fadeUp  = {
   initial:    { opacity: 0, y: 20 },
   animate:    { opacity: 1, y: 0 },
   transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
-}
-const fadeIn  = {
-  initial:    { opacity: 0 },
-  animate:    { opacity: 1 },
-  transition: { duration: 0.8, ease: 'easeOut' },
 }
 
 export default function Hero() {
@@ -39,17 +40,17 @@ export default function Hero() {
     const current = roles[roleIndex]
 
     if (!deleting && displayed.length < current.length) {
-      const t = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 72)
+      const t = setTimeout(() => setDisplayed(current.slice(0, displayed.length + 1)), 50)
       return () => clearTimeout(t)
     }
 
     if (!deleting && displayed.length === current.length) {
-      const t = setTimeout(() => setDeleting(true), 2400)
+      const t = setTimeout(() => setDeleting(true), 2200)
       return () => clearTimeout(t)
     }
 
     if (deleting && displayed.length > 0) {
-      const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 32)
+      const t = setTimeout(() => setDisplayed(displayed.slice(0, -1)), 25)
       return () => clearTimeout(t)
     }
 
@@ -62,29 +63,32 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden bg-navy-900"
+      className="relative min-h-screen flex items-center overflow-hidden"
+      style={{ background: '#0D1B3E' }}
     >
       {/* Circuit pattern overlay */}
-      <CircuitOverlay opacity={0.08} />
+      <CircuitOverlay opacity={0.04} />
 
-      <div className="container-width relative z-10 pt-24 pb-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+      <div className="container-width relative z-10 py-20 lg:py-0">
+        <div className="grid lg:grid-cols-[1.1fr,0.9fr] gap-12 lg:gap-20 items-center">
           {/* ── LEFT COLUMN ── */}
           <motion.div
             variants={stagger}
             initial="initial"
             animate="animate"
-            className="flex flex-col gap-6"
+            className="flex flex-col gap-5"
           >
             {/* Eyebrow label */}
             <motion.div variants={fadeUp}>
               <p 
                 className="font-mono"
                 style={{
-                  fontSize: '13px',
+                  fontSize: '11px',
                   color: '#F5C518',
-                  letterSpacing: '0.05em',
-                  lineHeight: '1.5'
+                  letterSpacing: '0.1em',
+                  lineHeight: '1.5',
+                  fontWeight: 600,
+                  textTransform: 'uppercase'
                 }}
               >
                 AI Engineer · Addis Ababa, Ethiopia
@@ -92,7 +96,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Name */}
-            <motion.div variants={fadeUp} className="flex flex-col" style={{ gap: '8px' }}>
+            <motion.div variants={fadeUp} className="flex flex-col" style={{ gap: '6px' }}>
               <h1 
                 className="font-display"
                 style={{
@@ -103,69 +107,121 @@ export default function Hero() {
                   letterSpacing: '-0.02em'
                 }}
               >
-                Hi, I'm <span style={{ color: '#FFFFFF' }}>Abrham</span><span style={{ color: '#F5C518' }}>G/medhin</span>
+                Abrham <span style={{ color: '#F5C518' }}>G/Medhin</span>
               </h1>
 
-              {/* Subtitle */}
-              <h2 
-                className="font-display"
+              {/* Subtitle - Rotating Roles */}
+              <div 
                 style={{
-                  fontSize: 'clamp(1.125rem, 2.5vw, 1.5rem)',
-                  fontWeight: 600,
-                  color: '#7AABEA',
-                  lineHeight: '1.4'
+                  minHeight: '2.2rem',
+                  display: 'flex',
+                  alignItems: 'center'
                 }}
               >
-                {displayed}
-                <span
-                  className="ml-0.5"
-                  style={{ 
-                    color: '#F5C518',
-                    fontSize: '1.25rem',
-                    animation: 'cursorBlink 1s step-end infinite' 
+                <h2 
+                  className="font-display"
+                  style={{
+                    fontSize: 'clamp(1.125rem, 2.5vw, 1.375rem)',
+                    fontWeight: 600,
+                    color: '#7AABEA',
+                    lineHeight: '1.4',
+                    minWidth: '300px'
                   }}
                 >
-                  |
-                </span>
-              </h2>
+                  {displayed}
+                  <span
+                    className="ml-0.5"
+                    style={{ 
+                      color: '#F5C518',
+                      fontSize: '1.25rem',
+                      animation: 'cursorBlink 1s step-end infinite' 
+                    }}
+                  >
+                    |
+                  </span>
+                </h2>
+              </div>
             </motion.div>
 
-            {/* Bio */}
+            {/* Bio - Concise & Direct */}
             <motion.p
               variants={fadeUp}
-              className="font-body leading-relaxed"
+              className="font-body"
               style={{
                 fontSize: '1.0625rem',
                 color: '#A8C3EC',
-                lineHeight: '1.7',
-                maxWidth: '540px'
+                lineHeight: '1.65',
+                maxWidth: '520px'
               }}
             >
-              I build AI solutions that solve real problems. From training ML models to deploying 
-              LLM applications, I turn data into intelligent systems that businesses actually use.
+              I build production AI systems with Python, LLMs, and FastAPI. 
+              From model training to cloud deployment, I ship solutions that scale.
             </motion.p>
 
+            {/* Status Badge */}
+            <motion.div
+              variants={fadeUp}
+              className="inline-flex items-center gap-2"
+              style={{
+                background: 'rgba(74,222,128,0.08)',
+                border: '1px solid rgba(74,222,128,0.25)',
+                borderRadius: '24px',
+                padding: '8px 16px',
+                width: 'fit-content'
+              }}
+            >
+              <span 
+                className="rounded-full animate-pulse"
+                style={{
+                  width: '8px',
+                  height: '8px',
+                  background: '#4ADE80'
+                }}
+              />
+              <span 
+                className="font-mono font-semibold"
+                style={{
+                  fontSize: '12px',
+                  color: '#4ADE80',
+                  letterSpacing: '0.02em'
+                }}
+              >
+                Available for Opportunities
+              </span>
+            </motion.div>
+
             {/* CTA buttons */}
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-3">
+            <motion.div variants={fadeUp} className="flex flex-wrap gap-3 mt-1">
               <button
                 onClick={() =>
                   document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
                 }
-                className="group flex items-center gap-2 font-display transition-all duration-150"
+                className="group flex items-center gap-2 font-display transition-all duration-300"
                 style={{
                   background: '#F5C518',
                   color: '#07112A',
                   fontWeight: 700,
                   fontSize: '15px',
-                  padding: '13px 26px',
-                  borderRadius: '8px'
+                  padding: '14px 28px',
+                  borderRadius: '10px',
+                  boxShadow: '0 4px 16px rgba(245,197,24,0.3)',
+                  border: 'none',
+                  cursor: 'pointer'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.background = '#FFD03A'}
-                onMouseLeave={(e) => e.currentTarget.style.background = '#F5C518'}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = '#FFD03A'
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.boxShadow = '0 8px 28px rgba(245,197,24,0.45)'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = '#F5C518'
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(245,197,24,0.3)'
+                }}
               >
-                See My Work
+                View Projects
                 <HiArrowDown
-                  size={15}
+                  size={16}
                   className="group-hover:translate-y-0.5 transition-transform duration-200"
                 />
               </button>
@@ -174,233 +230,249 @@ export default function Hero() {
                 onClick={() =>
                   document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
                 }
-                className="flex items-center gap-2 font-display transition-all duration-150"
+                className="flex items-center gap-2 font-display transition-all duration-300"
                 style={{
                   background: 'transparent',
                   border: '2px solid #4A7FD4',
                   color: '#FFFFFF',
                   fontWeight: 600,
                   fontSize: '15px',
-                  padding: '11px 24px',
-                  borderRadius: '8px'
+                  padding: '12px 26px',
+                  borderRadius: '10px',
+                  cursor: 'pointer'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.borderColor = '#F5C518'
                   e.currentTarget.style.color = '#F5C518'
+                  e.currentTarget.style.transform = 'translateY(-2px)'
+                  e.currentTarget.style.boxShadow = '0 4px 16px rgba(245,197,24,0.2)'
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.borderColor = '#4A7FD4'
                   e.currentTarget.style.color = '#FFFFFF'
+                  e.currentTarget.style.transform = 'translateY(0)'
+                  e.currentTarget.style.boxShadow = 'none'
                 }}
               >
-                Let's Talk
+                Get In Touch
               </button>
             </motion.div>
 
             {/* Metrics strip */}
-            <motion.div variants={fadeUp}>
+            <motion.div variants={fadeUp} style={{ marginTop: '8px' }}>
               <HeroMetrics />
             </motion.div>
 
-            {/* Tech Stack - Organized by Category */}
-            <motion.div variants={fadeUp} className="flex flex-col gap-3">
-              {/* Languages */}
-              <div className="flex flex-col gap-1.5">
-                <span 
-                  className="font-mono"
-                  style={{
-                    fontSize: '10px',
-                    letterSpacing: '0.05em',
-                    color: '#7AABEA',
-                    opacity: 0.7
-                  }}
-                >
-                  Languages
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {techStack.languages.map((tech, i) => (
-                    <motion.span
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 1.0 + i * 0.05 }}
-                      className="font-mono cursor-default transition-all duration-150"
-                      style={{
-                        fontSize: '13px',
-                        padding: '5px 12px',
-                        borderRadius: '6px',
-                        background: 'rgba(30,77,155,0.15)',
-                        border: '1px solid rgba(74,127,212,0.25)',
-                        color: '#A8C3EC',
-                        fontWeight: 500
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = '#F5C518'
-                        e.currentTarget.style.color = '#F5C518'
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(74,127,212,0.25)'
-                        e.currentTarget.style.color = '#A8C3EC'
-                      }}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </div>
-              </div>
-
-              {/* AI/ML Frameworks */}
-              <div className="flex flex-col gap-1.5">
-                <span 
-                  className="font-mono"
-                  style={{
-                    fontSize: '10px',
-                    letterSpacing: '0.05em',
-                    color: '#7AABEA',
-                    opacity: 0.7
-                  }}
-                >
-                  AI/ML Frameworks
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {techStack.aiFrameworks.map((tech, i) => (
-                    <motion.span
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 1.2 + i * 0.05 }}
-                      className="font-mono cursor-default transition-all duration-150"
-                      style={{
-                        fontSize: '13px',
-                        padding: '5px 12px',
-                        borderRadius: '6px',
-                        background: 'rgba(30,77,155,0.15)',
-                        border: '1px solid rgba(74,127,212,0.25)',
-                        color: '#A8C3EC',
-                        fontWeight: 500
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = '#F5C518'
-                        e.currentTarget.style.color = '#F5C518'
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(74,127,212,0.25)'
-                        e.currentTarget.style.color = '#A8C3EC'
-                      }}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Data & Visualization */}
-              <div className="flex flex-col gap-1.5">
-                <span 
-                  className="font-mono"
-                  style={{
-                    fontSize: '10px',
-                    letterSpacing: '0.05em',
-                    color: '#7AABEA',
-                    opacity: 0.7
-                  }}
-                >
-                  Data & Visualization
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {techStack.dataViz.map((tech, i) => (
-                    <motion.span
-                      key={tech}
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.3, delay: 1.4 + i * 0.05 }}
-                      className="font-mono cursor-default transition-all duration-150"
-                      style={{
-                        fontSize: '13px',
-                        padding: '5px 12px',
-                        borderRadius: '6px',
-                        background: 'rgba(30,77,155,0.15)',
-                        border: '1px solid rgba(74,127,212,0.25)',
-                        color: '#A8C3EC',
-                        fontWeight: 500
-                      }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.borderColor = '#F5C518'
-                        e.currentTarget.style.color = '#F5C518'
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.borderColor = 'rgba(74,127,212,0.25)'
-                        e.currentTarget.style.color = '#A8C3EC'
-                      }}
-                    >
-                      {tech}
-                    </motion.span>
-                  ))}
-                </div>
+            {/* Premium Tech Stack - Top 8 */}
+            <motion.div 
+              variants={fadeUp} 
+              className="flex flex-col gap-2"
+              style={{ marginTop: '4px' }}
+            >
+              <span 
+                className="font-mono"
+                style={{
+                  fontSize: '10px',
+                  letterSpacing: '0.08em',
+                  color: '#7AABEA',
+                  opacity: 0.7,
+                  fontWeight: 600,
+                  textTransform: 'uppercase'
+                }}
+              >
+                Core Stack
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {topSkills.map((tech, i) => (
+                  <motion.span
+                    key={tech}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 1.0 + i * 0.06 }}
+                    className="font-mono cursor-default transition-all duration-200"
+                    style={{
+                      fontSize: '13px',
+                      padding: '6px 14px',
+                      borderRadius: '7px',
+                      background: 'rgba(30,77,155,0.15)',
+                      border: '1px solid rgba(74,127,212,0.3)',
+                      color: '#A8C3EC',
+                      fontWeight: 500
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = '#F5C518'
+                      e.currentTarget.style.color = '#F5C518'
+                      e.currentTarget.style.background = 'rgba(245,197,24,0.08)'
+                      e.currentTarget.style.transform = 'translateY(-2px)'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = 'rgba(74,127,212,0.3)'
+                      e.currentTarget.style.color = '#A8C3EC'
+                      e.currentTarget.style.background = 'rgba(30,77,155,0.15)'
+                      e.currentTarget.style.transform = 'translateY(0)'
+                    }}
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
               </div>
             </motion.div>
           </motion.div>
 
           {/* ── RIGHT COLUMN — Profile ── */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.88, x: 40 }}
-            animate={{ opacity: 1, scale: 1,    x: 0 }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
             className="hidden lg:flex justify-center items-center relative"
           >
-            {/* Profile image with glow ring */}
-            <div className="relative animate-float" style={{ width: '320px', height: '320px' }}>
+            {/* Profile image container */}
+            <div className="relative" style={{ width: '380px', height: '380px' }}>
+              {/* Soft glow behind image */}
               <div
-                className="w-full h-full rounded-full overflow-hidden"
+                className="absolute inset-0 rounded-full blur-3xl"
                 style={{
-                  border: '3px solid #F5C518',
-                  boxShadow: '0 0 0 8px rgba(245,197,24,0.12), 0 8px 32px rgba(245,197,24,0.15)',
+                  background: 'radial-gradient(circle, rgba(245,197,24,0.12) 0%, transparent 70%)',
+                  transform: 'scale(1.15)'
+                }}
+              />
+              
+              {/* Animated rotating ring */}
+              <motion.div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  border: '3px solid transparent',
+                  borderTopColor: '#F5C518',
+                  borderRightColor: '#F5C518',
+                }}
+                animate={{ rotate: 360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: 'linear' }}
+              />
+
+              {/* Profile image */}
+              <div
+                className="relative w-full h-full rounded-full overflow-hidden"
+                style={{
+                  border: '4px solid #F5C518',
+                  boxShadow: '0 0 0 10px rgba(245,197,24,0.1), 0 12px 40px rgba(245,197,24,0.25), 0 0 80px rgba(245,197,24,0.08)',
                 }}
               >
                 <img
                   src={profileImg}
-                  alt="Abrham G/medhin — AI Systems Engineer"
-                  className="w-full h-full object-cover object-center scale-105"
+                  alt="Abrham G/Medhin — AI Engineer"
+                  className="w-full h-full object-cover object-center"
+                  style={{ transform: 'scale(1.05)' }}
                   loading="eager"
                 />
               </div>
 
-              {/* Floating badge — top right */}
+              {/* Floating tech badges - Repositioned */}
               <motion.div
-                initial={{ opacity: 0, scale: 0, x: 10 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{ delay: 1.1, duration: 0.5, type: 'spring', stiffness: 200 }}
-                className="absolute whitespace-nowrap"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.1, duration: 0.4, type: 'spring', stiffness: 200 }}
+                className="absolute"
                 style={{
-                  top: '-16px',
-                  right: '-24px',
-                  background: '#163060',
-                  borderRadius: '12px',
+                  top: '10%',
+                  left: '-8%',
+                  background: 'linear-gradient(135deg, #0F1E3D 0%, #1A2F5A 100%)',
+                  borderRadius: '10px',
                   padding: '8px 14px',
-                  border: '1px solid rgba(245,197,24,0.4)',
-                  boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+                  border: '1.5px solid rgba(122,171,234,0.4)',
+                  boxShadow: '0 6px 20px rgba(0,0,0,0.4)'
                 }}
               >
-                <div className="flex items-center gap-2">
-                  <span 
-                    className="rounded-full animate-pulse"
-                    style={{
-                      width: '6px',
-                      height: '6px',
-                      background: '#F5C518'
-                    }}
-                  />
-                  <span 
-                    className="font-mono font-bold"
-                    style={{
-                      fontSize: '11px',
-                      color: '#F5C518',
-                      letterSpacing: '0.02em'
-                    }}
-                  >
-                    AI Engineer
-                  </span>
-                </div>
+                <span 
+                  className="font-mono font-bold"
+                  style={{
+                    fontSize: '12px',
+                    color: '#7AABEA',
+                    letterSpacing: '0.03em'
+                  }}
+                >
+                  Python
+                </span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.3, duration: 0.4, type: 'spring', stiffness: 200 }}
+                className="absolute"
+                style={{
+                  top: '25%',
+                  right: '-10%',
+                  background: 'linear-gradient(135deg, #0F1E3D 0%, #1A2F5A 100%)',
+                  borderRadius: '10px',
+                  padding: '8px 14px',
+                  border: '1.5px solid rgba(245,197,24,0.5)',
+                  boxShadow: '0 6px 20px rgba(245,197,24,0.2)'
+                }}
+              >
+                <span 
+                  className="font-mono font-bold"
+                  style={{
+                    fontSize: '12px',
+                    color: '#F5C518',
+                    letterSpacing: '0.03em'
+                  }}
+                >
+                  LLMs
+                </span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.5, duration: 0.4, type: 'spring', stiffness: 200 }}
+                className="absolute"
+                style={{
+                  bottom: '25%',
+                  left: '-10%',
+                  background: 'linear-gradient(135deg, #0F1E3D 0%, #1A2F5A 100%)',
+                  borderRadius: '10px',
+                  padding: '8px 14px',
+                  border: '1.5px solid rgba(122,171,234,0.4)',
+                  boxShadow: '0 6px 20px rgba(0,0,0,0.4)'
+                }}
+              >
+                <span 
+                  className="font-mono font-bold"
+                  style={{
+                    fontSize: '12px',
+                    color: '#7AABEA',
+                    letterSpacing: '0.03em'
+                  }}
+                >
+                  Hugging Face
+                </span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.7, duration: 0.4, type: 'spring', stiffness: 200 }}
+                className="absolute"
+                style={{
+                  bottom: '10%',
+                  right: '-8%',
+                  background: 'linear-gradient(135deg, #0F1E3D 0%, #1A2F5A 100%)',
+                  borderRadius: '10px',
+                  padding: '8px 14px',
+                  border: '1.5px solid rgba(122,171,234,0.4)',
+                  boxShadow: '0 6px 20px rgba(0,0,0,0.4)'
+                }}
+              >
+                <span 
+                  className="font-mono font-bold"
+                  style={{
+                    fontSize: '12px',
+                    color: '#7AABEA',
+                    letterSpacing: '0.03em'
+                  }}
+                >
+                  Azure
+                </span>
               </motion.div>
             </div>
           </motion.div>
@@ -411,17 +483,18 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2.0, duration: 0.8 }}
+        transition={{ delay: 2.2, duration: 0.8 }}
         className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center"
-        style={{ bottom: '32px', gap: '8px' }}
+        style={{ bottom: '28px', gap: '6px' }}
       >
         <span 
           className="font-mono uppercase"
           style={{
-            fontSize: '10px',
+            fontSize: '9px',
             letterSpacing: '0.15em',
             color: '#4A7FD4',
-            opacity: 0.5
+            opacity: 0.6,
+            fontWeight: 600
           }}
         >
           scroll
@@ -431,8 +504,9 @@ export default function Hero() {
           transition={{ duration: 2.0, repeat: Infinity, ease: 'easeInOut' }}
           style={{
             width: '2px',
-            height: '40px',
-            background: 'linear-gradient(180deg, rgba(245,197,24,0.6) 0%, transparent 100%)'
+            height: '36px',
+            background: 'linear-gradient(180deg, rgba(245,197,24,0.7) 0%, transparent 100%)',
+            borderRadius: '2px'
           }}
         />
       </motion.div>

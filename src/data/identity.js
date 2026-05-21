@@ -1,31 +1,31 @@
 export const identity = {
   name: 'Abrham G/medhin',
-  title: 'AI Systems Engineer',
-  subtitle: 'Building intelligent applications at the intersection of Python, AI, and cloud infrastructure.',
-  tagline: 'I build systems that think.',
+  title: 'AI Engineer',
+  subtitle: 'Building production AI systems with Python, LLMs, and cloud infrastructure.',
+  tagline: 'AI systems that work in production.',
   
   location: 'Addis Ababa, Ethiopia',
-  locationNote: 'Available for remote roles globally',
+  locationNote: 'Open to remote opportunities',
   email: 'abrsh067@gmail.com',
   
   available: true,
   availabilityText: 'Open to AI engineering roles',
   
   manifesto:
-    'I believe the next generation of software is not written — it is designed with intelligence built in from the ground up. My work sits at the intersection of backend engineering, AI systems, and product thinking. I build applications that do not just process data — they understand it.',
+    'I build AI systems that solve real business problems. My focus is on taking machine learning models and LLM applications from prototype to production — handling the backend architecture, API design, deployment, and scaling that makes AI actually useful.',
   
   philosophy:
-    'Engineering is not about writing code. It is about solving the right problems with the right systems, at the right scale. AI is the most powerful tool in that toolkit right now — and I am learning to wield it precisely.',
+    'Good AI engineering is 20% model work and 80% infrastructure. I focus on building reliable systems: clean APIs, proper error handling, monitoring, and deployment pipelines that let AI applications run in production without constant babysitting.',
   
   focus: [
-    'AI application development',
-    'Intelligent backend systems',
-    'Cloud-native AI deployment',
-    'RAG & LLM integrations',
+    'LLM application development',
+    'RAG & vector search',
+    'FastAPI backend systems',
+    'Cloud deployment (Azure)',
   ],
   
   currentlyBuilding:
-    'AI-powered tools that help developers and teams work more intelligently.',
+    'Production-ready AI tools with FastAPI backends, LangChain integrations, and cloud deployment.',
   
   currentlyLearning: [
     'LangChain & LangGraph',
@@ -77,7 +77,7 @@ PROJECTS:
 CERTIFICATIONS:
 - Python for Data Science & AI (Skillsoft, 2024)
 - Azure Cloud Fundamentals (Skillsoft, 2024)
-- Django Web Development (Skillsoft, 2024)
+- Graph Neural Networks(Skillsoft, 2024)
 - SQL for Data Engineering (Skillsoft, 2023)
 
 PERSONALITY:

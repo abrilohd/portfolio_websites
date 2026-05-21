@@ -1,5 +1,3 @@
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
-
 const navLinks = [
   { label: 'Home',           href: '#home' },
   { label: 'About',          href: '#about' },
@@ -7,12 +5,6 @@ const navLinks = [
   { label: 'Projects',       href: '#projects' },
   { label: 'Certifications', href: '#certifications' },
   { label: 'Contact',        href: '#contact' },
-]
-
-const socials = [
-  { icon: <FaGithub size={18} />,   href: 'https://github.com/abrilohd',                               label: 'GitHub' },
-  { icon: <FaLinkedin size={18} />, href: 'https://www.linkedin.com/in/abrham-gebremedhin-962130360/', label: 'LinkedIn' },
-  { icon: <FaTwitter size={18} />,  href: 'https://x.com/abrsh067',                                    label: 'Twitter' },
 ]
 
 const scrollTo = (href) =>

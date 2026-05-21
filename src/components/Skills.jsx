@@ -1,6 +1,6 @@
+import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { skills } from '../data/skills'
-import SectionHeader from './SectionHeader'
 import {
   HiLightningBolt,
   HiServer,
@@ -10,19 +10,11 @@ import {
 } from 'react-icons/hi'
 
 const iconMap = {
-  brain:   <HiLightningBolt size={18} />,
-  server:  <HiServer size={18} />,
-  cloud:   <HiCloud size={18} />,
-  monitor: <HiDesktopComputer size={18} />,
-  chart:   <HiChartBar size={18} />,
-}
-
-const iconColorMap = {
-  brain:   'text-py-500',      // AI & ML - Python yellow
-  server:  'text-navy-300',    // Backend - navy
-  cloud:   'text-ai-400',      // Cloud - AI blue
-  monitor: 'text-navy-200',    // Frontend - lighter navy
-  chart:   'text-success',     // Data - success teal
+  brain:   <HiLightningBolt size={22} />,
+  server:  <HiServer size={22} />,
+  cloud:   <HiCloud size={22} />,
+  monitor: <HiDesktopComputer size={22} />,
+  chart:   <HiChartBar size={22} />,
 }
 
 const proficiency = {
@@ -56,94 +48,218 @@ const proficiency = {
   'Matplotlib':         75,
 }
 
-function SkillBar({ skill, index }) {
-  const level = proficiency[skill] || 70
-
+// SkillCard component for carousel
+function SkillCard({ data, dimmed = false, isActive = false }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -12 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.06 }}
-      className="flex flex-col gap-1.5"
-    >
-      <div className="flex items-center justify-between">
-        <span className="font-body text-sm font-medium text-navy-900 dark:text-navy-100">
-          {skill}
-        </span>
-        <span className="font-mono text-xs text-navy-400 dark:text-navy-200">
-          {level}%
-        </span>
-      </div>
-      <div className="h-1.5 rounded-full overflow-hidden bg-navy-700 dark:bg-navy-700">
-        <motion.div
-          initial={{ width: 0 }}
-          whileInView={{ width: `${level}%` }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.0, delay: 0.2 + index * 0.06, ease: [0.22, 1, 0.36, 1] }}
-          className="h-full rounded-full bg-py-500"
-        />
-      </div>
-    </motion.div>
-  )
-}
-
-function SkillCard({ group, index }) {
-  const iconColor = iconColorMap[group.icon] || 'text-py-500'
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="card"
-    >
+    <div className={`skill-card-inner ${dimmed ? 'skill-card-dimmed' : ''}`}>
       {/* Card header */}
-      <div className="flex items-start justify-between mb-5">
-        <div className="flex items-center gap-3">
-          <div className={`p-2 rounded-xl bg-navy-500/10 dark:bg-navy-600/20 ${iconColor} transition-colors duration-200`}>
-            {iconMap[group.icon] ?? <HiLightningBolt size={18} />}
-          </div>
-          <div>
-            <h3 className="font-display font-bold text-base text-navy-900 dark:text-white">
-              {group.category}
-            </h3>
-          </div>
-        </div>
-        <span className="tag-accent">
-          {group.items.length}
+      <div className="skill-card-header">
+        <span className="skill-card-icon">
+          {iconMap[data.icon] ?? <HiLightningBolt size={22} />}
         </span>
+        <h3 className="skill-card-title">{data.category}</h3>
+        <span className="skill-card-count">{data.items.length}</span>
       </div>
 
       {/* Skill bars */}
-      <div className="flex flex-col gap-3">
-        {group.items.map((skill, i) => (
-          <SkillBar key={skill} skill={skill} index={i} />
-        ))}
+      <div className="skill-list">
+        {data.items.map((skill) => {
+          const level = proficiency[skill] || 70
+          return (
+            <div key={skill} className="skill-row">
+              <div className="skill-row-meta">
+                <span className="skill-name">{skill}</span>
+                <span className="skill-pct">{level}%</span>
+              </div>
+              <div className="skill-bar-track">
+                <div
+                  className="skill-bar-fill"
+                  style={{ '--skill-width': `${level}%` }}
+                />
+              </div>
+            </div>
+          )
+        })}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
 export default function Skills() {
-  return (
-    <section id="skills" className="section-padding bg-navy-950 dark:bg-navy-950 relative overflow-hidden">
-      {/* Circuit overlay */}
-      <div className="absolute inset-0 circuit-bg opacity-5 pointer-events-none" />
-      
-      <div className="container-width relative z-10">
-        <SectionHeader
-          label="// SKILLS"
-          title="What I Work With"
-          description="Technologies and tools I use to build intelligent, scalable systems — from AI pipelines to cloud infrastructure."
-        />
+  const [active, setActive] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+  const [direction, setDirection] = useState('right')
+  const [progress, setProgress] = useState(0)
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {skills.map((group, i) => (
-            <SkillCard key={group.category} group={group} index={i} />
+  const skillCategories = skills
+
+  // Auto-advance
+  useEffect(() => {
+    if (isHovered) return
+    const timer = setInterval(() => {
+      setDirection('right')
+      setActive((prev) => (prev + 1) % skillCategories.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [isHovered, skillCategories.length])
+
+  // Progress bar animation
+  useEffect(() => {
+    setProgress(0)
+    const t = setTimeout(() => setProgress(100), 50)
+    return () => clearTimeout(t)
+  }, [active])
+
+  const goNext = () => {
+    setDirection('right')
+    setActive((prev) => (prev + 1) % skillCategories.length)
+  }
+
+  const goPrev = () => {
+    setDirection('left')
+    setActive((prev) => (prev - 1 + skillCategories.length) % skillCategories.length)
+  }
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === 'ArrowRight') goNext()
+      if (e.key === 'ArrowLeft') goPrev()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Compute prev, active, next indices
+  const prevIdx = (active - 1 + skillCategories.length) % skillCategories.length
+  const nextIdx = (active + 1) % skillCategories.length
+
+  return (
+    <section id="skills" className="relative overflow-hidden" style={{ background: '#07112A', padding: '80px 0' }}>
+      {/* Circuit overlay */}
+      <div className="absolute inset-0 circuit-bg opacity-[0.04] pointer-events-none" />
+
+      <div className="container-width relative z-10">
+        {/* Section header - CONSISTENT STYLE */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '48px' }}
+        >
+          <p 
+            className="font-mono"
+            style={{
+              fontSize: '11px',
+              color: '#F5C518',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 600,
+              marginBottom: '8px'
+            }}
+          >
+            {'// SKILLS'}
+          </p>
+          <h2 
+            className="font-display"
+            style={{
+              fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
+              fontWeight: 700,
+              color: '#FFFFFF',
+              marginBottom: '6px'
+            }}
+          >
+            What I Work With
+          </h2>
+          <p 
+            className="font-body"
+            style={{
+              fontSize: '1rem',
+              color: '#7AABEA',
+              maxWidth: '600px'
+            }}
+          >
+            Technologies and tools I use to build intelligent, scalable systems.
+          </p>
+        </motion.div>
+
+        {/* Carousel */}
+        <div
+          className="carousel-viewport"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* Progress bar */}
+          <div
+            className={`carousel-progress ${!isHovered ? 'running' : ''}`}
+            style={{ width: isHovered ? `${progress}%` : undefined }}
+          />
+
+          {/* Left arrow */}
+          <button
+            className="carousel-arrow carousel-arrow-left"
+            onClick={goPrev}
+            aria-label="Previous skill"
+          >
+            ‹
+          </button>
+
+          {/* Cards track */}
+          <div className="carousel-track">
+            {/* Prev peek card */}
+            <div
+              className="carousel-card carousel-card-peek carousel-card-peek-left"
+              onClick={goPrev}
+            >
+              <SkillCard data={skillCategories[prevIdx]} dimmed />
+            </div>
+
+            {/* Active card */}
+            <div
+              className={`carousel-card carousel-card-active slide-in-${direction}`}
+              key={active}
+            >
+              <SkillCard data={skillCategories[active]} isActive />
+            </div>
+
+            {/* Next peek card */}
+            <div
+              className="carousel-card carousel-card-peek carousel-card-peek-right"
+              onClick={goNext}
+            >
+              <SkillCard data={skillCategories[nextIdx]} dimmed />
+            </div>
+          </div>
+
+          {/* Right arrow */}
+          <button
+            className="carousel-arrow carousel-arrow-right"
+            onClick={goNext}
+            aria-label="Next skill"
+          >
+            ›
+          </button>
+        </div>
+
+        {/* Dot pagination */}
+        <div className="carousel-dots">
+          {skillCategories.map((cat, i) => (
+            <button
+              key={cat.category}
+              className={`carousel-dot ${i === active ? 'carousel-dot-active' : ''}`}
+              onClick={() => {
+                setDirection(i > active ? 'right' : 'left')
+                setActive(i)
+              }}
+              aria-label={`Go to ${cat.category}`}
+            />
           ))}
         </div>
+
+        {/* Category name indicators */}
+        <div className="carousel-category-name">{skillCategories[active].category}</div>
       </div>
     </section>
   )

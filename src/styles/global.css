@@ -196,6 +196,73 @@
     max-width: 800px;
   }
 
+  /* ═══════════════════════════════════════
+     SECTION BACKGROUNDS - THEME AWARE
+  ═══════════════════════════════════════ */
+  
+  /* Light sections */
+  .section-light {
+    background: #F0F4FF;
+  }
+  
+  .dark .section-light {
+    background: #0F2147;
+  }
+  
+  /* Dark sections */
+  .section-dark {
+    background: #07112A;
+  }
+  
+  .dark .section-dark {
+    background: #050B1A;
+  }
+
+  /* ═══════════════════════════════════════
+     TEXT COLORS - THEME AWARE
+  ═══════════════════════════════════════ */
+  
+  /* Section labels (// ABOUT, // SKILLS, etc.) */
+  .section-label-text {
+    color: #F5C518;
+  }
+  
+  /* Section titles */
+  .section-title-text {
+    color: #07112A;
+  }
+  
+  .section-dark .section-title-text,
+  .dark .section-title-text {
+    color: #FFFFFF;
+  }
+  
+  /* Section descriptions */
+  .section-desc-text {
+    color: #4A7FD4;
+  }
+  
+  .section-dark .section-desc-text {
+    color: #7AABEA;
+  }
+  
+  .dark .section-light .section-desc-text {
+    color: #7AABEA;
+  }
+
+  /* Footer link */
+  .footer-link {
+    color: #4A7FD4;
+  }
+  
+  .section-dark .footer-link {
+    color: #7AABEA;
+  }
+  
+  .dark .footer-link {
+    color: #7AABEA;
+  }
+
   /* Impact badge */
   .impact-badge {
     display: inline-flex;
@@ -240,6 +307,15 @@
     }
   }
 
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-12px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
   .neural-fade {
     animation: fadeIn 1.2s ease forwards;
   }
@@ -258,4 +334,945 @@
 
 @media (prefers-reduced-motion: reduce) {
   * { animation-duration: 0.01ms !important; }
+}
+
+
+/* ═══════════════════════════════════════
+   SKILLS SECTION — CAROUSEL LAYOUT
+═══════════════════════════════════════ */
+
+/* ─── CAROUSEL VIEWPORT ─── */
+.carousel-viewport {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  padding: 0 60px;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* ─── PROGRESS BAR ─── */
+.carousel-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: #F5C518;
+  border-radius: 0 2px 2px 0;
+  transition: width 0ms linear;
+  z-index: 5;
+}
+
+.carousel-progress.running {
+  transition: width 5000ms linear;
+  width: 100% !important;
+}
+
+/* ─── CARDS TRACK ─── */
+.carousel-track {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  width: 100%;
+}
+
+/* ─── CARD WRAPPERS ─── */
+.carousel-card {
+  transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+/* Active — full size, centered */
+.carousel-card-active {
+  width: 560px;
+  z-index: 3;
+  transform: scale(1);
+}
+
+/* Peek cards — SAME SIZE, just dimmed */
+.carousel-card-peek {
+  width: 560px;
+  z-index: 1;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 12px;
+  transform: scale(1);
+}
+
+.carousel-card-peek-left {
+  transform: scale(1) translateX(0);
+}
+
+.carousel-card-peek-right {
+  transform: scale(1) translateX(0);
+}
+
+.carousel-card-peek:hover {
+  transform: scale(1.02);
+  z-index: 2;
+}
+
+/* ─── SKILL CARD INNER ─── */
+.skill-card-inner {
+  background: #111827;
+  border: 1px solid rgba(74, 127, 212, 0.18);
+  border-radius: 12px;
+  padding: 32px;
+  transition: border-color 300ms ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Active card accent border top */
+.carousel-card-active .skill-card-inner {
+  border-color: rgba(245, 197, 24, 0.35);
+  border-top: 3px solid #F5C518;
+  padding-top: 30px;
+}
+
+/* Active card subtle glow */
+.carousel-card-active .skill-card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: linear-gradient(to bottom, rgba(245, 197, 24, 0.04), transparent);
+  pointer-events: none;
+}
+
+/* Dimmed peek cards */
+.skill-card-dimmed {
+  opacity: 0.35;
+  filter: grayscale(0.3);
+  pointer-events: none;
+}
+
+.carousel-card-peek:hover .skill-card-dimmed {
+  opacity: 0.75;
+  filter: grayscale(0);
+}
+
+/* ─── CARD HEADER ─── */
+.skill-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(74, 127, 212, 0.12);
+}
+
+.skill-card-icon {
+  font-size: 22px;
+  color: #F5C518;
+  flex-shrink: 0;
+}
+
+.skill-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #FFFFFF;
+  flex: 1;
+}
+
+.skill-card-count {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: #F5C518;
+  background: rgba(245, 197, 24, 0.12);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  border-radius: 20px;
+  padding: 2px 10px;
+}
+
+/* ─── SKILL ROWS ─── */
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.skill-row-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.skill-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #EAF1FB;
+  font-weight: 400;
+}
+
+.skill-pct {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #7AABEA;
+  font-weight: 500;
+}
+
+.skill-bar-track {
+  height: 5px;
+  background: rgba(26, 62, 122, 0.5);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(to right, #F5C518, #4A7FD4);
+  width: 0;
+  transition: width 800ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Trigger bar animation when parent card is active */
+.carousel-card-active .skill-bar-fill {
+  width: var(--skill-width);
+}
+
+/* Peek cards: bars show at reduced width, no animation */
+.skill-card-dimmed .skill-bar-fill {
+  width: var(--skill-width);
+  transition: none;
+  opacity: 0.4;
+}
+
+/* ─── ARROWS ─── */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  background: rgba(240, 244, 255, 0.95);
+  border: 1px solid rgba(74, 127, 212, 0.25);
+  color: #1E4D9B;
+  font-size: 32px;
+  line-height: 1;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 200ms ease;
+}
+
+.carousel-arrow:hover {
+  background: rgba(245, 197, 24, 0.12);
+  border-color: rgba(245, 197, 24, 0.5);
+  color: #F5C518;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-arrow:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+/* Dark sections get dark arrows */
+.section-dark .carousel-arrow {
+  background: rgba(13, 27, 62, 0.9);
+  border-color: rgba(74, 127, 212, 0.3);
+  color: #A8C3EC;
+}
+
+.section-dark .carousel-arrow:hover {
+  background: rgba(245, 197, 24, 0.12);
+  border-color: rgba(245, 197, 24, 0.5);
+  color: #F5C518;
+}
+
+/* Dark mode support */
+.dark .carousel-arrow {
+  background: rgba(13, 27, 62, 0.9);
+  border-color: rgba(74, 127, 212, 0.3);
+  color: #A8C3EC;
+}
+
+.dark .carousel-arrow:hover {
+  background: rgba(245, 197, 24, 0.12);
+  border-color: rgba(245, 197, 24, 0.5);
+  color: #F5C518;
+}
+
+.carousel-arrow-left {
+  left: 8px;
+}
+
+.carousel-arrow-right {
+  right: 8px;
+}
+
+/* ─── DOT PAGINATION ─── */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(74, 127, 212, 0.3);
+  border: none;
+  cursor: pointer;
+  transition: all 250ms ease;
+  padding: 0;
+}
+
+.carousel-dot-active {
+  width: 28px;
+  border-radius: 4px;
+  background: #F5C518;
+}
+
+.carousel-dot:hover:not(.carousel-dot-active) {
+  background: rgba(245, 197, 24, 0.4);
+}
+
+/* Light sections get darker dots */
+.section-light .carousel-dot {
+  background: rgba(30, 77, 155, 0.25);
+}
+
+.section-light .carousel-dot:hover:not(.carousel-dot-active) {
+  background: rgba(245, 197, 24, 0.5);
+}
+
+/* ─── CATEGORY NAME BELOW DOTS ─── */
+.carousel-category-name {
+  text-align: center;
+  margin-top: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #4A7FD4;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.section-dark .carousel-category-name {
+  color: #7AABEA;
+}
+
+.dark .carousel-category-name {
+  color: #7AABEA;
+}
+
+/* ─── SLIDE ANIMATIONS ─── */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+.carousel-card-active.slide-in-right {
+  animation: slideInRight 350ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.carousel-card-active.slide-in-left {
+  animation: slideInLeft 350ms cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .carousel-card-peek {
+    display: none;
+  }
+  .carousel-card-active {
+    width: 100%;
+    max-width: 480px;
+  }
+  .carousel-viewport {
+    padding: 0 56px;
+  }
+  .carousel-arrow-left {
+    left: 4px;
+  }
+  .carousel-arrow-right {
+    right: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-viewport {
+    padding: 0 44px;
+  }
+  .skill-card-inner {
+    padding: 24px 20px;
+  }
+  .skill-card-title {
+    font-size: 17px;
+  }
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   PROJECTS SECTION — CAROUSEL LAYOUT
+   (Matching Skills Section Design)
+═══════════════════════════════════════ */
+
+/* ─── PROJECT CARD INNER ─── */
+.project-card-inner {
+  background: #FFFFFF;
+  border: 1px solid rgba(74, 127, 212, 0.18);
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 300ms ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 420px;
+}
+
+/* Active card accent border top */
+.carousel-card-active .project-card-inner {
+  border-color: rgba(245, 197, 24, 0.35);
+  border-top: 3px solid #F5C518;
+  padding-top: 26px;
+  background: #FEFEFE;
+}
+
+/* Active card subtle glow */
+.carousel-card-active .project-card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(245, 197, 24, 0.04), transparent);
+  pointer-events: none;
+}
+
+/* Hover effect on active card */
+.carousel-card-active .project-card-inner:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(245, 197, 24, 0.12);
+}
+
+/* Dimmed peek cards */
+.project-card-dimmed {
+  opacity: 0.35;
+  filter: grayscale(0.3);
+  pointer-events: none;
+}
+
+.carousel-card-peek:hover .project-card-dimmed {
+  opacity: 0.75;
+  filter: grayscale(0);
+}
+
+/* ─── CARD HEADER ─── */
+.project-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(74, 127, 212, 0.12);
+}
+
+.project-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #07112A;
+  line-height: 1.3;
+}
+
+.project-card-status {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.project-card-metric {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+}
+
+.project-metric-icon {
+  font-size: 14px;
+  color: #F5C518;
+}
+
+.project-metric-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #F5C518;
+  letter-spacing: 0.01em;
+}
+
+/* ─── DESCRIPTION ─── */
+.project-description {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #1A3E7A;
+  line-height: 1.6;
+}
+
+/* ─── ACHIEVEMENTS ─── */
+.project-achievements {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-achievement-item {
+  display: flex;
+  align-items: start;
+  gap: 8px;
+}
+
+.project-achievement-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #F5C518;
+  flex-shrink: 0;
+  margin-top: 6px;
+}
+
+.project-achievement-text {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #1A3E7A;
+  line-height: 1.5;
+}
+
+/* ─── TECH TAGS ─── */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: auto;
+}
+
+.project-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 5px;
+  background: rgba(30, 77, 155, 0.08);
+  border: 1px solid rgba(74, 127, 212, 0.25);
+  color: #1E4D9B;
+  white-space: nowrap;
+  transition: all 200ms ease;
+}
+
+.carousel-card-active .project-tag:hover {
+  background: rgba(245, 197, 24, 0.12);
+  border-color: rgba(245, 197, 24, 0.4);
+  color: #F5C518;
+  transform: translateY(-2px);
+}
+
+/* ─── ACTIONS ─── */
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(74, 127, 212, 0.15);
+}
+
+.project-action-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4A7FD4;
+  text-decoration: none;
+  transition: all 200ms ease;
+}
+
+.project-action-link:hover {
+  color: #F5C518;
+  transform: translateX(2px);
+}
+
+.project-action-live {
+  color: #F5C518;
+}
+
+.project-action-live:hover {
+  color: #FFD03A;
+}
+
+/* ─── DARK MODE SUPPORT ─── */
+.dark .project-card-inner {
+  background: #111827;
+  border-color: rgba(74, 127, 212, 0.18);
+}
+
+.dark .carousel-card-active .project-card-inner {
+  background: #131E35;
+}
+
+.dark .project-card-title {
+  color: #FFFFFF;
+}
+
+.dark .project-description,
+.dark .project-achievement-text {
+  color: #A8C3EC;
+}
+
+.dark .project-tag {
+  background: rgba(30, 77, 155, 0.15);
+  border-color: rgba(74, 127, 212, 0.25);
+  color: #7AABEA;
+}
+
+.dark .project-action-link {
+  color: #7AABEA;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1400px) {
+  .carousel-viewport {
+    padding: 0 40px;
+  }
+  
+  .carousel-card-active,
+  .carousel-card-peek {
+    width: 480px;
+  }
+}
+
+@media (max-width: 900px) {
+  .carousel-card-peek {
+    display: none;
+  }
+  
+  .carousel-card-active {
+    width: 100%;
+    max-width: 520px;
+  }
+  
+  .carousel-viewport {
+    padding: 0 56px;
+  }
+  
+  .project-card-inner {
+    min-height: 380px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .carousel-viewport {
+    padding: 0 44px;
+  }
+  
+  .project-card-inner {
+    min-height: 360px;
+    padding: 20px;
+  }
+  
+  .project-card-title {
+    font-size: 16px;
+  }
+  
+  .carousel-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 26px;
+  }
+}
+
+
+/* ═══════════════════════════════════════
+   CERTIFICATIONS SECTION — CAROUSEL LAYOUT
+   (Matching Skills/Projects Design)
+═══════════════════════════════════════ */
+
+/* ─── CERT CARD INNER ─── */
+.cert-card-inner {
+  background: #111827;
+  border: 1px solid rgba(74, 127, 212, 0.18);
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 300ms ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 360px;
+}
+
+/* Active card accent border top */
+.carousel-card-active .cert-card-inner {
+  border-color: rgba(245, 197, 24, 0.35);
+  border-top: 3px solid #F5C518;
+  padding-top: 26px;
+  background: #131E35;
+}
+
+/* Active card subtle glow */
+.carousel-card-active .cert-card-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(245, 197, 24, 0.06), transparent);
+  pointer-events: none;
+}
+
+/* Dimmed peek cards */
+.cert-card-dimmed {
+  opacity: 0.35;
+  filter: grayscale(0.3);
+  pointer-events: none;
+}
+
+.carousel-card-peek:hover .cert-card-dimmed {
+  opacity: 0.75;
+  filter: grayscale(0);
+}
+
+/* Hover effect on active card */
+.carousel-card-active .cert-card-inner:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(245, 197, 24, 0.15);
+}
+
+/* ─── CARD HEADER ─── */
+.cert-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(74, 127, 212, 0.12);
+}
+
+.cert-badge-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.cert-header-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cert-card-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1.3;
+}
+
+.cert-category-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+/* ─── META ROW ─── */
+.cert-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cert-issuer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cert-check {
+  color: #1D9E75;
+  font-size: 14px;
+}
+
+.cert-issuer-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7AABEA;
+}
+
+.cert-date-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #F5C518;
+  background: rgba(245, 197, 24, 0.1);
+  border: 1px solid rgba(245, 197, 24, 0.25);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+/* ─── RELEVANCE ─── */
+.cert-relevance {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #A8C3EC;
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* ─── DATE DETAIL ─── */
+.cert-date-detail {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-top: 8px;
+  margin-top: auto;
+  border-top: 1px solid rgba(74, 127, 212, 0.08);
+}
+
+.cert-date-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: #4A7FD4;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cert-date-value {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #A8C3EC;
+  font-weight: 500;
+}
+
+/* ─── ACTIONS ─── */
+.cert-actions {
+  display: flex;
+  align-items: center;
+  padding-top: 12px;
+  border-top: 1px solid rgba(74, 127, 212, 0.12);
+}
+
+.cert-action-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #F5C518;
+  text-decoration: none;
+  transition: all 200ms ease;
+}
+
+.cert-action-link:hover {
+  color: #FFD03A;
+  transform: translateX(2px);
+}
+
+/* ─── LIGHT MODE SUPPORT ─── */
+html:not(.dark) .cert-card-inner {
+  background: #FFFFFF;
+  border-color: rgba(74, 127, 212, 0.15);
+}
+
+html:not(.dark) .carousel-card-active .cert-card-inner {
+  background: #FEFEFE;
+}
+
+html:not(.dark) .cert-card-title {
+  color: #07112A;
+}
+
+html:not(.dark) .cert-issuer-name {
+  color: #1E4D9B;
+}
+
+html:not(.dark) .cert-relevance,
+html:not(.dark) .cert-date-value {
+  color: #1A3E7A;
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 1400px) {
+  .cert-card-inner {
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 900px) {
+  .cert-card-inner {
+    min-height: 320px;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cert-card-inner {
+    min-height: 300px;
+    padding: 20px;
+  }
+  
+  .cert-card-title {
+    font-size: 15px;
+  }
+  
+  .cert-badge-icon {
+    font-size: 28px;
+  }
 }

@@ -134,7 +134,7 @@ Every project includes:
 ### **Certifications (5)**
 1. Python for Data Science & AI (AI/ML)
 2. Azure Cloud Fundamentals (Cloud)
-3. Django Web Development (Backend)
+3. Graph Neural Networks
 4. SQL for Data Engineering (Data)
 5. Advanced Python Programming (Backend)
 

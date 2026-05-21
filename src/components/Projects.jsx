@@ -1,171 +1,268 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { projects } from '../data/projects'
-import SectionHeader from './SectionHeader'
-import {
-  HiExternalLink,
-} from 'react-icons/hi'
+import { HiExternalLink } from 'react-icons/hi'
 import { FaGithub } from 'react-icons/fa'
 
 const statusBadges = {
-  'Production':   { bg: 'bg-success/15 dark:bg-success/15', border: 'border-success/30', text: 'text-success' },
-  'Open Source':  { bg: 'bg-navy-600/30 dark:bg-navy-600/30', border: 'border-navy-300/30', text: 'text-navy-300 dark:text-navy-300' },
-  'Hackathon':    { bg: 'bg-py-500/10 dark:bg-py-500/10', border: 'border-py-500/30', text: 'text-py-500' },
-  'Research':     { bg: 'bg-ai-400/10 dark:bg-ai-400/10', border: 'border-ai-400/30', text: 'text-ai-400' },
+  'Production':   { bg: 'rgba(74,222,128,0.12)', border: 'rgba(74,222,128,0.3)', color: '#4ADE80' },
+  'Open Source':  { bg: 'rgba(122,171,234,0.12)', border: 'rgba(122,171,234,0.3)', color: '#7AABEA' },
+  'Hackathon':    { bg: 'rgba(245,197,24,0.12)', border: 'rgba(245,197,24,0.3)', color: '#F5C518' },
+  'Research':     { bg: 'rgba(74,127,212,0.12)', border: 'rgba(74,127,212,0.3)', color: '#4A7FD4' },
 }
 
-function ProjectCard({ project, index }) {
-  const [hovered, setHovered] = useState(false)
-  const statusStyle = statusBadges[project.status] || statusBadges['Open Source']
+// ProjectCard component for carousel
+function ProjectCard({ data, dimmed = false }) {
+  const statusStyle = statusBadges[data.status] || statusBadges['Open Source']
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 36 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      onHoverStart={() => setHovered(true)}
-      onHoverEnd={() => setHovered(false)}
-      className={`${project.featured ? 'card-featured' : 'card'} relative overflow-hidden`}
-      style={{
-        transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
-        transition: 'transform 0.2s ease, border-color 0.2s ease',
-      }}
-    >
-      {/* Top row - Status badges */}
-      <div className="flex items-start justify-between gap-3 mb-4">
-        <div className="flex items-center gap-2">
-          {project.status && (
-            <span className={`font-mono text-xs px-2.5 py-1 rounded-tag border ${statusStyle.bg} ${statusStyle.border} ${statusStyle.text}`}>
-              {project.status}
-            </span>
-          )}
-          {project.featured && (
-            <span className="font-mono text-xs px-2.5 py-1 rounded-tag bg-py-500/10 border border-py-500/30 text-py-500">
-              ★ Featured
+    <div className={`project-card-inner ${dimmed ? 'project-card-dimmed' : ''}`}>
+      {/* Card header */}
+      <div className="project-card-header">
+        <div className="flex items-center justify-between w-full">
+          <h3 className="project-card-title">{data.title}</h3>
+          {data.status && (
+            <span 
+              className="project-card-status"
+              style={{
+                background: statusStyle.bg,
+                border: `1px solid ${statusStyle.border}`,
+                color: statusStyle.color
+              }}
+            >
+              {data.status}
             </span>
           )}
         </div>
-        {project.stars && (
-          <span className="font-mono text-xs text-navy-300 dark:text-navy-300">
-            ⭐ {project.stars}
-          </span>
+        {data.metric && (
+          <div className="project-card-metric">
+            <span className="project-metric-icon">{data.metricIcon || '↑'}</span>
+            <span className="project-metric-text">{data.metric}</span>
+          </div>
         )}
       </div>
 
-      {/* Title */}
-      <h3 className="font-display text-lg font-bold mb-2 text-navy-900 dark:text-white group-hover:text-py-500 transition-colors duration-200">
-        {project.title}
-      </h3>
-
-      {/* METRIC LINE - MANDATORY */}
-      {project.metric && (
-        <div className="metric flex items-center gap-1.5 mb-3">
-          <span className="text-py-400">{project.metricIcon || '↑'}</span>
-          <span>{project.metric}</span>
-        </div>
-      )}
-
       {/* Description */}
-      <p className="font-body text-sm text-navy-700 dark:text-navy-100 leading-relaxed mb-4 line-clamp-3">
-        {project.description}
-      </p>
+      <p className="project-description">{data.description}</p>
 
-      {/* Key achievements */}
-      {project.achievements && project.achievements.length > 0 && (
-        <div className="flex flex-col gap-2 mb-4">
-          {project.achievements.slice(0, 3).map((achievement, i) => (
-            <div key={i} className="flex items-start gap-2">
-              <div className="w-1 h-1 rounded-full bg-py-500 mt-1.5 flex-shrink-0" />
-              <span className="font-body text-sm text-navy-600 dark:text-navy-200">
-                {achievement}
-              </span>
+      {/* Achievements */}
+      {data.achievements && data.achievements.length > 0 && (
+        <div className="project-achievements">
+          {data.achievements.slice(0, 3).map((achievement, i) => (
+            <div key={i} className="project-achievement-item">
+              <div className="project-achievement-dot" />
+              <span className="project-achievement-text">{achievement}</span>
             </div>
           ))}
         </div>
       )}
 
-      {/* Stack tags */}
-      <div className="flex flex-wrap gap-1.5 mb-4">
-        {project.tags.slice(0, 5).map((tag) => (
-          <span key={tag} className="tag">
-            {tag}
-          </span>
+      {/* Tech stack tags */}
+      <div className="project-tags">
+        {data.tags.slice(0, 6).map((tag) => (
+          <span key={tag} className="project-tag">{tag}</span>
         ))}
       </div>
 
       {/* Actions */}
-      <div className="flex items-center gap-4 pt-4 border-t border-navy-600/20 dark:border-navy-600/15">
+      <div className="project-actions">
         <a
-          href={project.github}
+          href={data.github}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-1.5 font-mono text-xs font-semibold text-navy-600 dark:text-navy-300 hover:text-py-500 transition-colors duration-150"
+          className="project-action-link"
         >
-          <FaGithub size={13} />
-          Source
+          <FaGithub size={14} />
+          <span>Source</span>
         </a>
-        {project.live && (
+        {data.live && data.live !== '#' && (
           <a
-            href={project.live}
+            href={data.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1.5 font-mono text-xs font-semibold text-py-500 hover:text-py-400 transition-colors duration-150"
+            className="project-action-link project-action-live"
           >
-            <HiExternalLink size={13} />
-            Live Demo
+            <HiExternalLink size={14} />
+            <span>Live Demo</span>
           </a>
         )}
       </div>
-    </motion.div>
+    </div>
   )
 }
 
 export default function Projects() {
-  const [showAll, setShowAll] = useState(false)
+  const [active, setActive] = useState(0)
+  const [isHovered, setIsHovered] = useState(false)
+  const [direction, setDirection] = useState('right')
+  const [progress, setProgress] = useState(0)
 
-  const featured    = projects.filter((p) => p.featured)
-  const nonFeatured = projects.filter((p) => !p.featured)
-  const visible     = showAll ? projects : featured
+  const projectList = projects
+
+  // Auto-advance
+  useEffect(() => {
+    if (isHovered) return
+    const timer = setInterval(() => {
+      setDirection('right')
+      setActive((prev) => (prev + 1) % projectList.length)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [isHovered, projectList.length])
+
+  // Progress bar animation
+  useEffect(() => {
+    setProgress(0)
+    const t = setTimeout(() => setProgress(100), 50)
+    return () => clearTimeout(t)
+  }, [active])
+
+  const goNext = () => {
+    setDirection('right')
+    setActive((prev) => (prev + 1) % projectList.length)
+  }
+
+  const goPrev = () => {
+    setDirection('left')
+    setActive((prev) => (prev - 1 + projectList.length) % projectList.length)
+  }
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handler = (e) => {
+      if (e.key === 'ArrowRight') goNext()
+      if (e.key === 'ArrowLeft') goPrev()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  // Compute prev, active, next indices
+  const prevIdx = (active - 1 + projectList.length) % projectList.length
+  const nextIdx = (active + 1) % projectList.length
 
   return (
-    <section id="projects" className="section-padding bg-surface-light dark:bg-navy-800">
-      <div className="container-width">
-        <SectionHeader
-          label="// PROJECTS"
-          title="What I've Built"
-          description="Real systems shipped to production — AI-powered applications, backend infrastructure, and cloud tools."
-        />
+    <section id="projects" className="relative overflow-hidden section-light" style={{ padding: '80px 0' }}>
+      {/* Circuit overlay */}
+      <div className="absolute inset-0 circuit-bg opacity-[0.02] pointer-events-none" />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <AnimatePresence>
-            {visible.map((project, i) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={i}
-              />
-            ))}
-          </AnimatePresence>
+      <div className="container-width relative z-10">
+        {/* Section header - CONSISTENT STYLE */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          style={{ marginBottom: '48px' }}
+        >
+          <p 
+            className="font-mono section-label-text"
+            style={{
+              fontSize: '11px',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              fontWeight: 600,
+              marginBottom: '8px'
+            }}
+          >
+            {'// PROJECTS'}
+          </p>
+          <h2 
+            className="font-display section-title-text"
+            style={{
+              fontSize: 'clamp(1.75rem, 4vw, 2.25rem)',
+              fontWeight: 700,
+              marginBottom: '6px'
+            }}
+          >
+            What I've Built
+          </h2>
+          <p 
+            className="font-body section-desc-text"
+            style={{
+              fontSize: '1rem',
+              maxWidth: '600px'
+            }}
+          >
+            Real systems shipped to production — AI applications and backend infrastructure.
+          </p>
+        </motion.div>
+
+        {/* Carousel */}
+        <div
+          className="carousel-viewport"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          {/* Progress bar */}
+          <div
+            className={`carousel-progress ${!isHovered ? 'running' : ''}`}
+            style={{ width: isHovered ? `${progress}%` : undefined }}
+          />
+
+          {/* Left arrow */}
+          <button
+            className="carousel-arrow carousel-arrow-left"
+            onClick={goPrev}
+            aria-label="Previous project"
+          >
+            ‹
+          </button>
+
+          {/* Cards track */}
+          <div className="carousel-track">
+            {/* Prev peek card */}
+            <div
+              className="carousel-card carousel-card-peek carousel-card-peek-left"
+              onClick={goPrev}
+            >
+              <ProjectCard data={projectList[prevIdx]} dimmed />
+            </div>
+
+            {/* Active card */}
+            <div
+              className={`carousel-card carousel-card-active slide-in-${direction}`}
+              key={active}
+            >
+              <ProjectCard data={projectList[active]} />
+            </div>
+
+            {/* Next peek card */}
+            <div
+              className="carousel-card carousel-card-peek carousel-card-peek-right"
+              onClick={goNext}
+            >
+              <ProjectCard data={projectList[nextIdx]} dimmed />
+            </div>
+          </div>
+
+          {/* Right arrow */}
+          <button
+            className="carousel-arrow carousel-arrow-right"
+            onClick={goNext}
+            aria-label="Next project"
+          >
+            ›
+          </button>
         </div>
 
-        {nonFeatured.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mt-10"
-          >
+        {/* Dot pagination */}
+        <div className="carousel-dots">
+          {projectList.map((proj, i) => (
             <button
-              onClick={() => setShowAll(!showAll)}
-              className="btn-outline"
-            >
-              {showAll
-                ? 'Show Featured Only'
-                : `View All Projects (${projects.length})`}
-            </button>
-          </motion.div>
-        )}
+              key={proj.id}
+              className={`carousel-dot ${i === active ? 'carousel-dot-active' : ''}`}
+              onClick={() => {
+                setDirection(i > active ? 'right' : 'left')
+                setActive(i)
+              }}
+              aria-label={`Go to ${proj.title}`}
+            />
+          ))}
+        </div>
+
+        {/* Project name indicator */}
+        <div className="carousel-category-name">{projectList[active].title}</div>
       </div>
     </section>
   )

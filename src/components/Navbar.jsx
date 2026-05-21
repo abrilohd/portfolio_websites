@@ -7,7 +7,7 @@ import { useTheme } from '../context/ThemeContext'
 const links = [
   { label: 'Home',           href: '#home' },
   { label: 'About',          href: '#about' },
-  { label: 'Skills',         href: '#skills' },
+  { label: 'Expertise',      href: '#skills' },
   { label: 'Projects',       href: '#projects' },
   { label: 'Certifications', href: '#certifications' },
   { label: 'Contact',        href: '#contact' },
