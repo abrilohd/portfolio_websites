@@ -45,12 +45,9 @@ export default function NeuralCanvas() {
     const draw = () => {
       ctx.clearRect(0, 0, W, H)
 
-      const nodeColor = dark
-        ? 'rgba(99,102,241,'
-        : 'rgba(79,70,229,'
-      const lineColor = dark
-        ? 'rgba(139,92,246,'
-        : 'rgba(99,102,241,'
+      // Python yellow nodes with AI blue accents
+      const nodeColor = 'rgba(245,197,24,'  // py-500
+      const lineColor = 'rgba(74,127,212,'  // navy-300
 
       nodes.forEach((n) => {
         n.x += n.vx
@@ -62,17 +59,20 @@ export default function NeuralCanvas() {
 
         const pulseR = n.r + Math.sin(n.pulse) * 0.6
 
+        // Core node
         ctx.beginPath()
         ctx.arc(n.x, n.y, pulseR, 0, Math.PI * 2)
-        ctx.fillStyle = nodeColor + '0.7)'
+        ctx.fillStyle = nodeColor + '0.6)'
         ctx.fill()
 
+        // Glow ring
         ctx.beginPath()
         ctx.arc(n.x, n.y, pulseR + 2.5, 0, Math.PI * 2)
         ctx.fillStyle = nodeColor + '0.08)'
         ctx.fill()
       })
 
+      // Connection lines
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const a = nodes[i]
@@ -82,7 +82,7 @@ export default function NeuralCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy)
 
           if (dist < MAX_DIST) {
-            const alpha = (1 - dist / MAX_DIST) * 0.18
+            const alpha = (1 - dist / MAX_DIST) * 0.15
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
@@ -108,7 +108,7 @@ export default function NeuralCanvas() {
     <canvas
       ref={canvasRef}
       className="absolute inset-0 w-full h-full pointer-events-none"
-      style={{ opacity: dark ? 0.55 : 0.35 }}
+      style={{ opacity: dark ? 0.45 : 0.30 }}
     />
   )
 }

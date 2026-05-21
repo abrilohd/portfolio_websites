@@ -29,9 +29,7 @@ export default function PageLoader() {
     }
   }, [])
 
-  const bg   = dark ? 'bg-[#0F0F1A]' : 'bg-[#F4F4FF]'
-  const sub  = dark ? 'text-[#2D3748]' : 'text-[#CBD5E0]'
-  const line = dark ? 'bg-[#1E1E3A]' : 'bg-[#E2E2F0]'
+  const bg = dark ? 'bg-navy-950' : 'bg-surface-light'
 
   return (
     <AnimatePresence>
@@ -52,22 +50,23 @@ export default function PageLoader() {
             <motion.p
               animate={{ opacity: [0.6, 1, 0.6] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="text-2xl font-extrabold gradient-text tracking-tight"
+              className="text-2xl font-display font-extrabold tracking-tight"
             >
-              Abrham.
+              <span className="text-white dark:text-white">Abrham</span>
+              <span className="text-py-500">.</span>
             </motion.p>
-            <p className={`text-[10px] font-mono uppercase tracking-[0.25em] ${sub}`}>
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-navy-400 dark:text-navy-400">
               AI Systems Engineer
             </p>
           </motion.div>
 
           {/* Progress bar */}
-          <div className={`w-48 h-px rounded-full overflow-hidden ${line}`}>
+          <div className="w-48 h-px rounded-full overflow-hidden bg-navy-700 dark:bg-navy-700">
             <motion.div
               initial={{ width: '0%' }}
               animate={{ width: '100%' }}
               transition={{ duration: 1.7, ease: 'easeInOut' }}
-              className="h-full bg-gradient-to-r from-accent to-accent2"
+              className="h-full bg-gradient-to-r from-py-500 to-py-400"
             />
           </div>
 
@@ -79,7 +78,7 @@ export default function PageLoader() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -4 }}
               transition={{ duration: 0.25 }}
-              className={`text-[10px] font-mono ${sub}`}
+              className="font-mono text-[10px] text-navy-400 dark:text-navy-400"
             >
               {`> ${LINES[lineIndex]}`}
             </motion.p>

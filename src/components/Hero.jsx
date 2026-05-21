@@ -1,29 +1,22 @@
 import { motion } from 'framer-motion'
 import { HiArrowDown, HiDownload } from 'react-icons/hi'
 import { useState, useEffect } from 'react'
-import { useTheme } from '../context/ThemeContext'
-import NeuralCanvas  from './NeuralCanvas'
-import SystemStatus  from './SystemStatus'
-import HeroMetrics   from './HeroMetrics'
-import profileImg    from '../assets/images/profile.jpg'
+import CircuitOverlay from './CircuitOverlay'
+import HeroMetrics    from './HeroMetrics'
+import profileImg     from '../assets/images/profile.jpg'
 
 const roles = [
-  'AI Systems Engineer',
-  'Intelligent App Builder',
-  'Backend AI Architect',
-  'Python × AI Engineer',
+  'AI Engineer',
+  'Machine Learning Engineer',
+  'LLM Application Developer',
 ]
 
-const techBadges = [
-  'Python',
-  'FastAPI',
-  'LangChain',
-  'OpenAI API',
-  'React',
-  'Azure',
-  'Docker',
-  'PostgreSQL',
-]
+// Organized by category for a real AI Engineer portfolio
+const techStack = {
+  languages: ['Python', 'SQL'],
+  aiFrameworks: ['TensorFlow', 'PyTorch', 'LangChain', 'OpenAI', 'Hugging Face'],
+  dataViz: ['Pandas', 'NumPy', 'Matplotlib', 'Scikit-learn'],
+}
 
 const stagger = { animate: { transition: { staggerChildren: 0.08 } } }
 const fadeUp  = {
@@ -31,9 +24,13 @@ const fadeUp  = {
   animate:    { opacity: 1, y: 0 },
   transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] },
 }
+const fadeIn  = {
+  initial:    { opacity: 0 },
+  animate:    { opacity: 1 },
+  transition: { duration: 0.8, ease: 'easeOut' },
+}
 
 export default function Hero() {
-  const { dark } = useTheme()
   const [roleIndex, setRoleIndex] = useState(0)
   const [displayed, setDisplayed] = useState('')
   const [deleting,  setDeleting]  = useState(false)
@@ -62,52 +59,13 @@ export default function Hero() {
     }
   }, [displayed, deleting, roleIndex])
 
-  const heading   = dark ? 'text-[#E2E8F0]' : 'text-[#0F0F1A]'
-  const muted     = dark ? 'text-[#94A3B8]' : 'text-[#64748B]'
-  const badgeBg   = dark
-    ? 'bg-[#16162A] border-[#1E1E3A] text-[#94A3B8]'
-    : 'bg-white border-[#E2E2F0] text-[#64748B]'
-  const btnBorder = dark
-    ? 'border-[#1E1E3A] text-[#E2E8F0] hover:border-accent/60 hover:bg-accent/5'
-    : 'border-[#E2E2F0] text-[#0F0F1A] hover:border-accent/60 hover:bg-accent/5'
-
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden bg-navy-900"
     >
-      {/* Neural network canvas background */}
-      <NeuralCanvas />
-
-      {/* Gradient orbs */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div
-          className="absolute -top-40 -left-40 w-[700px] h-[700px] rounded-full blur-[120px] animate-glow-pulse"
-          style={{
-            background: 'radial-gradient(circle, #6366F1, transparent 68%)',
-            opacity: dark ? 0.09 : 0.06,
-          }}
-        />
-        <div
-          className="absolute -bottom-40 -right-20 w-[550px] h-[550px] rounded-full blur-[100px] animate-glow-pulse"
-          style={{
-            background: 'radial-gradient(circle, #8B5CF6, transparent 68%)',
-            opacity: dark ? 0.07 : 0.04,
-            animationDelay: '2s',
-          }}
-        />
-        {/* Subtle horizontal line across mid-hero */}
-        <div
-          className="absolute top-1/2 left-0 right-0 h-px opacity-[0.04]"
-          style={{
-            background:
-              'linear-gradient(90deg, transparent, #6366F1 30%, #8B5CF6 70%, transparent)',
-          }}
-        />
-      </div>
-
-      {/* Dot grid overlay */}
-      <div className="absolute inset-0 dot-grid opacity-100 pointer-events-none" />
+      {/* Circuit pattern overlay */}
+      <CircuitOverlay opacity={0.08} />
 
       <div className="container-width relative z-10 pt-24 pb-20">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -118,42 +76,73 @@ export default function Hero() {
             animate="animate"
             className="flex flex-col gap-6"
           >
-            {/* System status */}
+            {/* Eyebrow label */}
             <motion.div variants={fadeUp}>
-              <SystemStatus />
+              <p 
+                className="font-mono"
+                style={{
+                  fontSize: '13px',
+                  color: '#F5C518',
+                  letterSpacing: '0.05em',
+                  lineHeight: '1.5'
+                }}
+              >
+                AI Engineer · Addis Ababa, Ethiopia
+              </p>
             </motion.div>
 
-            {/* Headline */}
-            <motion.div variants={fadeUp} className="flex flex-col gap-2">
-              <h1
-                className={`text-[2.6rem] sm:text-5xl lg:text-[3.25rem] font-extrabold leading-[1.08] tracking-tight ${heading}`}
+            {/* Name */}
+            <motion.div variants={fadeUp} className="flex flex-col" style={{ gap: '8px' }}>
+              <h1 
+                className="font-display"
+                style={{
+                  fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+                  fontWeight: 800,
+                  color: '#FFFFFF',
+                  lineHeight: '1.1',
+                  letterSpacing: '-0.02em'
+                }}
               >
-                Hi, I'm{' '}
-                <span className="gradient-text">Abrham G/medhin</span>
+                Hi, I'm <span style={{ color: '#FFFFFF' }}>Abrham</span><span style={{ color: '#F5C518' }}>G/medhin</span>
               </h1>
 
-              {/* Typing role */}
-              <div className="h-10 flex items-center">
-                <span className="text-xl sm:text-2xl font-bold text-accent">
-                  {displayed}
-                </span>
+              {/* Subtitle */}
+              <h2 
+                className="font-display"
+                style={{
+                  fontSize: 'clamp(1.125rem, 2.5vw, 1.5rem)',
+                  fontWeight: 600,
+                  color: '#7AABEA',
+                  lineHeight: '1.4'
+                }}
+              >
+                {displayed}
                 <span
-                  className="ml-0.5 text-accent text-xl"
-                  style={{ animation: 'cursorBlink 1s step-end infinite' }}
+                  className="ml-0.5"
+                  style={{ 
+                    color: '#F5C518',
+                    fontSize: '1.25rem',
+                    animation: 'cursorBlink 1s step-end infinite' 
+                  }}
                 >
                   |
                 </span>
-              </div>
+              </h2>
             </motion.div>
 
             {/* Bio */}
             <motion.p
               variants={fadeUp}
-              className={`text-[15px] leading-[1.8] max-w-[480px] ${muted}`}
+              className="font-body leading-relaxed"
+              style={{
+                fontSize: '1.0625rem',
+                color: '#A8C3EC',
+                lineHeight: '1.7',
+                maxWidth: '540px'
+              }}
             >
-              I build intelligent backend systems and AI-powered applications
-              using Python, FastAPI, and modern LLM tooling. Focused on
-              shipping real AI products — not just demos.
+              I build AI solutions that solve real problems. From training ML models to deploying 
+              LLM applications, I turn data into intelligent systems that businesses actually use.
             </motion.p>
 
             {/* CTA buttons */}
@@ -162,35 +151,49 @@ export default function Hero() {
                 onClick={() =>
                   document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
                 }
-                className="group relative flex items-center gap-2 px-6 py-3 rounded-xl bg-accent hover:bg-accent/90 text-white font-semibold text-sm transition-all duration-200 hover:shadow-glow hover:-translate-y-0.5 overflow-hidden"
+                className="group flex items-center gap-2 font-display transition-all duration-150"
+                style={{
+                  background: '#F5C518',
+                  color: '#07112A',
+                  fontWeight: 700,
+                  fontSize: '15px',
+                  padding: '13px 26px',
+                  borderRadius: '8px'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.background = '#FFD03A'}
+                onMouseLeave={(e) => e.currentTarget.style.background = '#F5C518'}
               >
-                {/* Shimmer effect */}
-                <span
-                  className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                />
-                View My Work
+                See My Work
                 <HiArrowDown
                   size={15}
                   className="group-hover:translate-y-0.5 transition-transform duration-200"
                 />
               </button>
 
-              <a
-                href="/cv.pdf"
-                download
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl border font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5 ${btnBorder}`}
-              >
-                Download CV
-                <HiDownload size={15} />
-              </a>
-
               <button
                 onClick={() =>
                   document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })
                 }
-                className="flex items-center gap-2 px-6 py-3 rounded-xl text-accent font-semibold text-sm transition-all duration-200 hover:bg-accent/8 hover:-translate-y-0.5"
+                className="flex items-center gap-2 font-display transition-all duration-150"
+                style={{
+                  background: 'transparent',
+                  border: '2px solid #4A7FD4',
+                  color: '#FFFFFF',
+                  fontWeight: 600,
+                  fontSize: '15px',
+                  padding: '11px 24px',
+                  borderRadius: '8px'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.borderColor = '#F5C518'
+                  e.currentTarget.style.color = '#F5C518'
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.borderColor = '#4A7FD4'
+                  e.currentTarget.style.color = '#FFFFFF'
+                }}
               >
-                Let's Talk →
+                Let's Talk
               </button>
             </motion.div>
 
@@ -199,22 +202,142 @@ export default function Hero() {
               <HeroMetrics />
             </motion.div>
 
-            {/* Tech badges */}
-            <motion.div variants={fadeUp} className="flex flex-wrap gap-2 items-center">
-              <span className={`text-[11px] font-mono uppercase tracking-widest mr-2 ${muted} opacity-60`}>
-                stack
-              </span>
-              {techBadges.map((tech, i) => (
-                <motion.span
-                  key={tech}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 1.0 + i * 0.05 }}
-                  className={`px-3 py-1 rounded-full text-[11px] font-semibold border transition-all duration-200 cursor-default hover:border-accent/50 hover:text-accent ${badgeBg}`}
+            {/* Tech Stack - Organized by Category */}
+            <motion.div variants={fadeUp} className="flex flex-col gap-3">
+              {/* Languages */}
+              <div className="flex flex-col gap-1.5">
+                <span 
+                  className="font-mono"
+                  style={{
+                    fontSize: '10px',
+                    letterSpacing: '0.05em',
+                    color: '#7AABEA',
+                    opacity: 0.7
+                  }}
                 >
-                  {tech}
-                </motion.span>
-              ))}
+                  Languages
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {techStack.languages.map((tech, i) => (
+                    <motion.span
+                      key={tech}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 1.0 + i * 0.05 }}
+                      className="font-mono cursor-default transition-all duration-150"
+                      style={{
+                        fontSize: '13px',
+                        padding: '5px 12px',
+                        borderRadius: '6px',
+                        background: 'rgba(30,77,155,0.15)',
+                        border: '1px solid rgba(74,127,212,0.25)',
+                        color: '#A8C3EC',
+                        fontWeight: 500
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = '#F5C518'
+                        e.currentTarget.style.color = '#F5C518'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = 'rgba(74,127,212,0.25)'
+                        e.currentTarget.style.color = '#A8C3EC'
+                      }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+
+              {/* AI/ML Frameworks */}
+              <div className="flex flex-col gap-1.5">
+                <span 
+                  className="font-mono"
+                  style={{
+                    fontSize: '10px',
+                    letterSpacing: '0.05em',
+                    color: '#7AABEA',
+                    opacity: 0.7
+                  }}
+                >
+                  AI/ML Frameworks
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {techStack.aiFrameworks.map((tech, i) => (
+                    <motion.span
+                      key={tech}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 1.2 + i * 0.05 }}
+                      className="font-mono cursor-default transition-all duration-150"
+                      style={{
+                        fontSize: '13px',
+                        padding: '5px 12px',
+                        borderRadius: '6px',
+                        background: 'rgba(30,77,155,0.15)',
+                        border: '1px solid rgba(74,127,212,0.25)',
+                        color: '#A8C3EC',
+                        fontWeight: 500
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = '#F5C518'
+                        e.currentTarget.style.color = '#F5C518'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = 'rgba(74,127,212,0.25)'
+                        e.currentTarget.style.color = '#A8C3EC'
+                      }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Data & Visualization */}
+              <div className="flex flex-col gap-1.5">
+                <span 
+                  className="font-mono"
+                  style={{
+                    fontSize: '10px',
+                    letterSpacing: '0.05em',
+                    color: '#7AABEA',
+                    opacity: 0.7
+                  }}
+                >
+                  Data & Visualization
+                </span>
+                <div className="flex flex-wrap gap-2">
+                  {techStack.dataViz.map((tech, i) => (
+                    <motion.span
+                      key={tech}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.3, delay: 1.4 + i * 0.05 }}
+                      className="font-mono cursor-default transition-all duration-150"
+                      style={{
+                        fontSize: '13px',
+                        padding: '5px 12px',
+                        borderRadius: '6px',
+                        background: 'rgba(30,77,155,0.15)',
+                        border: '1px solid rgba(74,127,212,0.25)',
+                        color: '#A8C3EC',
+                        fontWeight: 500
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = '#F5C518'
+                        e.currentTarget.style.color = '#F5C518'
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = 'rgba(74,127,212,0.25)'
+                        e.currentTarget.style.color = '#A8C3EC'
+                      }}
+                    >
+                      {tech}
+                    </motion.span>
+                  ))}
+                </div>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -225,34 +348,15 @@ export default function Hero() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
             className="hidden lg:flex justify-center items-center relative"
           >
-            {/* Outer rotating conic ring */}
-            <motion.div
-              animate={{ rotate: 360 }}
-              transition={{ duration: 18, repeat: Infinity, ease: 'linear' }}
-              className="absolute w-[360px] h-[360px] rounded-full opacity-25"
-              style={{
-                background:
-                  'conic-gradient(from 0deg, transparent 50%, #6366F1 75%, #8B5CF6 85%, transparent)',
-              }}
-            />
-
-            {/* Secondary counter-rotating ring */}
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 28, repeat: Infinity, ease: 'linear' }}
-              className="absolute w-[315px] h-[315px] rounded-full opacity-15"
-              style={{
-                background:
-                  'conic-gradient(from 180deg, transparent 60%, #8B5CF6 80%, #6366F1 90%, transparent)',
-              }}
-            />
-
-            {/* Static glow ring */}
-            <div className="absolute w-[290px] h-[290px] rounded-full border border-accent/10 animate-glow-pulse" />
-
-            {/* Profile image — floating */}
-            <div className="relative w-[285px] h-[285px] animate-float">
-              <div className="w-full h-full rounded-full overflow-hidden glow-ring">
+            {/* Profile image with glow ring */}
+            <div className="relative animate-float" style={{ width: '320px', height: '320px' }}>
+              <div
+                className="w-full h-full rounded-full overflow-hidden"
+                style={{
+                  border: '3px solid #F5C518',
+                  boxShadow: '0 0 0 8px rgba(245,197,24,0.12), 0 8px 32px rgba(245,197,24,0.15)',
+                }}
+              >
                 <img
                   src={profileImg}
                   alt="Abrham G/medhin — AI Systems Engineer"
@@ -266,58 +370,39 @@ export default function Hero() {
                 initial={{ opacity: 0, scale: 0, x: 10 }}
                 animate={{ opacity: 1, scale: 1, x: 0 }}
                 transition={{ delay: 1.1, duration: 0.5, type: 'spring', stiffness: 200 }}
-                className="absolute -top-4 -right-6 glass rounded-xl px-3.5 py-2 shadow-glow border border-accent/25 whitespace-nowrap"
+                className="absolute whitespace-nowrap"
+                style={{
+                  top: '-16px',
+                  right: '-24px',
+                  background: '#163060',
+                  borderRadius: '12px',
+                  padding: '8px 14px',
+                  border: '1px solid rgba(245,197,24,0.4)',
+                  boxShadow: '0 4px 12px rgba(0,0,0,0.3)'
+                }}
               >
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-xs font-bold text-accent">AI Engineer</span>
-                </div>
-              </motion.div>
-
-              {/* Floating badge — bottom left */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0, x: -10 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{ delay: 1.3, duration: 0.5, type: 'spring', stiffness: 200 }}
-                className={`absolute -bottom-4 -left-6 glass rounded-xl px-3.5 py-2 border whitespace-nowrap ${
-                  dark ? 'border-[#1E1E3A]' : 'border-[#E2E2F0]'
-                }`}
-              >
-                <div className="flex items-center gap-2">
-                  <span className="text-xs font-mono text-accent opacity-80">{'>'}_</span>
-                  <span className={`text-xs font-bold ${dark ? 'text-[#94A3B8]' : 'text-[#64748B]'}`}>
-                    Python × Cloud
-                  </span>
-                </div>
-              </motion.div>
-
-              {/* Floating badge — left middle */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0, x: -10 }}
-                animate={{ opacity: 1, scale: 1, x: 0 }}
-                transition={{ delay: 1.5, duration: 0.5, type: 'spring', stiffness: 200 }}
-                className={`absolute top-1/2 -translate-y-1/2 -left-14 glass rounded-xl px-3 py-2 border whitespace-nowrap ${
-                  dark ? 'border-[#1E1E3A]' : 'border-[#E2E2F0]'
-                }`}
-              >
-                <div className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
-                  <span className={`text-[11px] font-bold ${dark ? 'text-[#94A3B8]' : 'text-[#64748B]'}`}>
-                    LLMs
+                  <span 
+                    className="rounded-full animate-pulse"
+                    style={{
+                      width: '6px',
+                      height: '6px',
+                      background: '#F5C518'
+                    }}
+                  />
+                  <span 
+                    className="font-mono font-bold"
+                    style={{
+                      fontSize: '11px',
+                      color: '#F5C518',
+                      letterSpacing: '0.02em'
+                    }}
+                  >
+                    AI Engineer
                   </span>
                 </div>
               </motion.div>
             </div>
-
-            {/* Corner grid accent */}
-            <div
-              className="absolute bottom-4 right-4 w-24 h-24 opacity-10"
-              style={{
-                backgroundImage:
-                  'radial-gradient(circle, #6366F1 1px, transparent 1px)',
-                backgroundSize: '10px 10px',
-              }}
-            />
           </motion.div>
         </div>
       </div>
@@ -327,15 +412,28 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2.0, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center"
+        style={{ bottom: '32px', gap: '8px' }}
       >
-        <span className={`text-[10px] font-mono uppercase tracking-[0.2em] ${dark ? 'text-[#2D3748]' : 'text-[#CBD5E0]'}`}>
+        <span 
+          className="font-mono uppercase"
+          style={{
+            fontSize: '10px',
+            letterSpacing: '0.15em',
+            color: '#4A7FD4',
+            opacity: 0.5
+          }}
+        >
           scroll
         </span>
         <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-px h-8 bg-gradient-to-b from-accent/60 to-transparent"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2.0, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            width: '2px',
+            height: '40px',
+            background: 'linear-gradient(180deg, rgba(245,197,24,0.6) 0%, transparent 100%)'
+          }}
         />
       </motion.div>
     </section>

@@ -33,15 +33,15 @@ export default function AskAbrham() {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, streaming])
 
-  const bg        = dark ? 'bg-[#0D0D1A]'    : 'bg-white'
-  const surface   = dark ? 'bg-[#12122A]'    : 'bg-[#F8F8FF]'
-  const border    = dark ? 'border-[#1E1E3A]' : 'border-[#E2E2F0]'
-  const text      = dark ? 'text-[#E2E8F0]'  : 'text-[#0F0F1A]'
-  const muted     = dark ? 'text-[#94A3B8]'  : 'text-[#64748B]'
-  const inputBg   = dark ? 'bg-[#16162A]'    : 'bg-[#F4F4FF]'
-  const msgUser   = 'bg-accent text-white'
+  const bg        = dark ? 'bg-navy-950'     : 'bg-white'
+  const surface   = dark ? 'bg-navy-800'     : 'bg-[#F8F8FF]'
+  const border    = dark ? 'border-navy-600/15' : 'border-[#E2E2F0]'
+  const text      = dark ? 'text-white'      : 'text-[#0F0F1A]'
+  const muted     = dark ? 'text-navy-200'   : 'text-[#64748B]'
+  const inputBg   = dark ? 'bg-navy-700'     : 'bg-[#F4F4FF]'
+  const msgUser   = 'bg-py-500 text-navy-900'
   const msgAI     = dark
-    ? 'bg-[#16162A] border border-[#1E1E3A] text-[#E2E8F0]'
+    ? 'bg-navy-700 border border-navy-600/20 text-white'
     : 'bg-[#F0F0FF] border border-[#E2E2F0] text-[#0F0F1A]'
 
   const handleSend = async (question) => {
@@ -128,27 +128,28 @@ export default function AskAbrham() {
         transition={{ delay: 2.5, duration: 0.5, type: 'spring' }}
         whileHover={{ scale: 1.06 }}
         whileTap={{ scale: 0.96 }}
-        className={`fixed bottom-24 right-8 z-40
+        className={`fixed z-40
           flex items-center gap-2.5
-          px-4 py-3 rounded-2xl
-          bg-accent hover:bg-accent/90
-          text-white font-semibold text-sm
-          shadow-glow hover:shadow-glow-lg
+          px-5 py-3.5 rounded-full
+          bg-py-500 hover:bg-py-400
+          text-navy-900 font-display font-bold text-sm
+          shadow-lg hover:shadow-xl
           transition-all duration-200
-          border border-accent/40
+          border-2 border-py-400
           ${open ? 'hidden' : 'flex'}`}
+        style={{ bottom: '32px', right: '32px' }}
         aria-label="Ask Abrham AI"
       >
         <motion.div
           animate={{ rotate: [0, 15, -15, 0] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
         >
-          <HiSparkles size={17} />
+          <HiSparkles size={18} />
         </motion.div>
         <span>Ask Abrham</span>
         <span
-          className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-green-400 border-2"
-          style={{ borderColor: dark ? '#0F0F1A' : '#F4F4FF' }}
+          className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-success border-2"
+          style={{ borderColor: dark ? '#07112A' : '#FFFFFF' }}
         />
       </motion.button>
 
@@ -174,16 +175,16 @@ export default function AskAbrham() {
                 ${border}`}
               style={{
                 background: dark
-                  ? 'linear-gradient(135deg, #12122A, #16162A)'
+                  ? 'linear-gradient(135deg, #0F2147, #163060)'
                   : 'linear-gradient(135deg, #F8F8FF, #F0F0FF)',
               }}
             >
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-8 h-8 rounded-xl bg-accent/15 border border-accent/25 flex items-center justify-center">
-                    <HiSparkles size={15} className="text-accent" />
+                  <div className="w-8 h-8 rounded-xl bg-py-500/15 border border-py-500/25 flex items-center justify-center">
+                    <HiSparkles size={15} className="text-py-500" />
                   </div>
-                  <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-green-400 border border-white" />
+                  <span className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-success border border-white" />
                 </div>
                 <div>
                   <p className={`text-sm font-bold ${text}`}>Ask Abrham</p>
@@ -195,7 +196,7 @@ export default function AskAbrham() {
                 {messages.length > 0 && (
                   <button
                     onClick={handleReset}
-                    className={`p-1.5 rounded-lg transition-colors ${muted} hover:text-accent`}
+                    className={`p-1.5 rounded-lg transition-colors ${muted} hover:text-py-500`}
                     aria-label="Reset conversation"
                     title="Reset conversation"
                   >
@@ -204,7 +205,7 @@ export default function AskAbrham() {
                 )}
                 <button
                   onClick={() => setOpen(false)}
-                  className={`p-1.5 rounded-lg transition-colors ${muted} hover:text-accent`}
+                  className={`p-1.5 rounded-lg transition-colors ${muted} hover:text-py-500`}
                   aria-label="Close"
                 >
                   <HiX size={16} />
@@ -222,8 +223,8 @@ export default function AskAbrham() {
                   className="flex flex-col gap-4"
                 >
                   <div className={`text-center py-4`}>
-                    <div className="w-12 h-12 rounded-2xl bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-3">
-                      <HiSparkles size={22} className="text-accent" />
+                    <div className="w-12 h-12 rounded-2xl bg-py-500/10 border border-py-500/20 flex items-center justify-center mx-auto mb-3">
+                      <HiSparkles size={22} className="text-py-500" />
                     </div>
                     <p className={`text-sm font-semibold ${text}`}>Ask me anything</p>
                     <p className={`text-xs mt-1 ${muted}`}>
@@ -244,7 +245,7 @@ export default function AskAbrham() {
                         onClick={() => handleSend(q)}
                         className={`text-left text-xs px-3.5 py-2.5 rounded-xl
                           border transition-all duration-200
-                          hover:border-accent/40 hover:text-accent
+                          hover:border-py-500/40 hover:text-py-500
                           ${surface} ${border} ${muted}`}
                       >
                         {q}
@@ -278,7 +279,7 @@ export default function AskAbrham() {
                       <motion.span
                         animate={{ opacity: [1, 0] }}
                         transition={{ duration: 0.6, repeat: Infinity }}
-                        className="inline-block w-0.5 h-3 bg-accent ml-0.5 align-middle"
+                        className="inline-block w-0.5 h-3 bg-py-500 ml-0.5 align-middle"
                       />
                     )}
                   </div>
@@ -304,7 +305,7 @@ export default function AskAbrham() {
             {/* Input area */}
             <div className={`px-3 py-3 border-t flex-shrink-0 ${border}`}>
               <div
-                className={`flex items-end gap-2 rounded-xl border px-3 py-2 transition-all duration-200 focus-within:border-accent/50 ${inputBg} ${border}`}
+                className={`flex items-end gap-2 rounded-xl border px-3 py-2 transition-all duration-200 focus-within:border-py-500/50 ${inputBg} ${border}`}
               >
                 <textarea
                   ref={inputRef}
@@ -329,7 +330,7 @@ export default function AskAbrham() {
                   className={`flex-shrink-0 p-1.5 rounded-lg transition-all duration-200
                     ${
                       input.trim() && !streaming
-                        ? 'bg-accent text-white hover:bg-accent/90'
+                        ? 'bg-py-500 text-navy-900 hover:bg-py-400'
                         : `${muted} opacity-40 cursor-not-allowed`
                     }`}
                   aria-label="Send message"

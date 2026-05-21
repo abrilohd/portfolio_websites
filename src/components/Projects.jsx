@@ -1,38 +1,22 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useTheme } from '../context/ThemeContext'
 import { projects } from '../data/projects'
 import SectionHeader from './SectionHeader'
 import {
-  HiCode,
   HiExternalLink,
-  HiLightningBolt,
-  HiChip,
-  HiCloud,
-  HiCube,
 } from 'react-icons/hi'
 import { FaGithub } from 'react-icons/fa'
 
-const typeIcon = {
-  'AI Application':     <HiChip size={13} />,
-  'AI-Enhanced Platform': <HiLightningBolt size={13} />,
-  'Infrastructure Tool':  <HiCube size={13} />,
-  'Cloud Infrastructure': <HiCloud size={13} />,
+const statusBadges = {
+  'Production':   { bg: 'bg-success/15 dark:bg-success/15', border: 'border-success/30', text: 'text-success' },
+  'Open Source':  { bg: 'bg-navy-600/30 dark:bg-navy-600/30', border: 'border-navy-300/30', text: 'text-navy-300 dark:text-navy-300' },
+  'Hackathon':    { bg: 'bg-py-500/10 dark:bg-py-500/10', border: 'border-py-500/30', text: 'text-py-500' },
+  'Research':     { bg: 'bg-ai-400/10 dark:bg-ai-400/10', border: 'border-ai-400/30', text: 'text-ai-400' },
 }
 
-function ProjectCard({ project, index, dark }) {
+function ProjectCard({ project, index }) {
   const [hovered, setHovered] = useState(false)
-
-  const heading = dark ? 'text-[#E2E8F0]' : 'text-[#0F0F1A]'
-  const muted   = dark ? 'text-[#94A3B8]' : 'text-[#64748B]'
-  const dimmed  = dark ? 'text-[#4A5568]' : 'text-[#CBD5E0]'
-  const divider = dark ? 'border-[#1E1E3A]' : 'border-[#E2E2F0]'
-  const tagBg   = dark
-    ? 'bg-[#0F0F1A] border-[#1E1E3A] text-[#94A3B8]'
-    : 'bg-[#F4F4FF] border-[#E2E2F0] text-[#64748B]'
-  const impactBg = dark
-    ? 'bg-green-500/8 border-green-500/15 text-green-400'
-    : 'bg-green-50 border-green-200 text-green-700'
+  const statusStyle = statusBadges[project.status] || statusBadges['Open Source']
 
   return (
     <motion.div
@@ -42,137 +26,113 @@ function ProjectCard({ project, index, dark }) {
       transition={{ duration: 0.65, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      className="glass gradient-border rounded-2xl p-6 flex flex-col gap-4 transition-all duration-300 group relative overflow-hidden"
+      className={`${project.featured ? 'card-featured' : 'card'} relative overflow-hidden`}
       style={{
         transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
-        transition: 'transform 0.3s ease, border-color 0.3s ease',
+        transition: 'transform 0.2s ease, border-color 0.2s ease',
       }}
     >
-      {/* Hover glow overlay */}
-      <AnimatePresence>
-        {hovered && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="absolute inset-0 pointer-events-none rounded-2xl"
-            style={{
-              background: 'radial-gradient(ellipse at 50% 0%, rgba(99,102,241,0.06), transparent 70%)',
-            }}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Top row */}
-      <div className="flex items-start justify-between gap-3 relative z-10">
-        <div className="p-2.5 rounded-xl bg-accent/10 text-accent group-hover:bg-accent/18 transition-colors duration-200">
-          <HiCode size={18} />
-        </div>
+      {/* Top row - Status badges */}
+      <div className="flex items-start justify-between gap-3 mb-4">
         <div className="flex items-center gap-2">
-          {project.type && (
-            <span className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold bg-accent/10 text-accent border border-accent/20">
-              {typeIcon[project.type]}
-              {project.type}
+          {project.status && (
+            <span className={`font-mono text-xs px-2.5 py-1 rounded-tag border ${statusStyle.bg} ${statusStyle.border} ${statusStyle.text}`}>
+              {project.status}
             </span>
           )}
           {project.featured && (
-            <span className="px-2.5 py-1 rounded-full text-[10px] font-semibold bg-violet-500/10 text-violet-400 border border-violet-500/20">
-              Featured
+            <span className="font-mono text-xs px-2.5 py-1 rounded-tag bg-py-500/10 border border-py-500/30 text-py-500">
+              ★ Featured
             </span>
           )}
         </div>
+        {project.stars && (
+          <span className="font-mono text-xs text-navy-300 dark:text-navy-300">
+            ⭐ {project.stars}
+          </span>
+        )}
       </div>
 
-      {/* Content */}
-      <div className="relative z-10 flex-1 flex flex-col gap-3">
-        <div>
-          <h3
-            className={`text-base font-bold mb-1 transition-colors duration-200 group-hover:text-accent ${heading}`}
-          >
-            {project.title}
-          </h3>
-          <p className={`text-[11px] font-semibold mb-2 ${muted}`}>
-            {project.subtitle}
-          </p>
-          <p className={`text-xs leading-relaxed ${muted}`}>
-            {project.description}
-          </p>
+      {/* Title */}
+      <h3 className="font-display text-lg font-bold mb-2 text-navy-900 dark:text-white group-hover:text-py-500 transition-colors duration-200">
+        {project.title}
+      </h3>
+
+      {/* METRIC LINE - MANDATORY */}
+      {project.metric && (
+        <div className="metric flex items-center gap-1.5 mb-3">
+          <span className="text-py-400">{project.metricIcon || '↑'}</span>
+          <span>{project.metric}</span>
         </div>
+      )}
 
-        {/* Impact line */}
-        {project.impact && (
-          <div className={`flex items-start gap-2 px-3 py-2 rounded-xl border text-[11px] ${impactBg}`}>
-            <HiLightningBolt size={12} className="mt-0.5 flex-shrink-0" />
-            <span className="leading-snug">{project.impact}</span>
-          </div>
-        )}
+      {/* Description */}
+      <p className="font-body text-sm text-navy-700 dark:text-navy-100 leading-relaxed mb-4 line-clamp-3">
+        {project.description}
+      </p>
 
-        {/* Architecture */}
-        {project.architecture && (
-          <p className={`text-[10px] font-mono leading-relaxed ${dimmed}`}>
-            {`// ${project.architecture}`}
-          </p>
-        )}
-      </div>
+      {/* Key achievements */}
+      {project.achievements && project.achievements.length > 0 && (
+        <div className="flex flex-col gap-2 mb-4">
+          {project.achievements.slice(0, 3).map((achievement, i) => (
+            <div key={i} className="flex items-start gap-2">
+              <div className="w-1 h-1 rounded-full bg-py-500 mt-1.5 flex-shrink-0" />
+              <span className="font-body text-sm text-navy-600 dark:text-navy-200">
+                {achievement}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
 
-      {/* Tags */}
-      <div className="flex flex-wrap gap-1.5 relative z-10">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className={`px-2.5 py-1 rounded-full text-[10px] font-semibold border ${tagBg}`}
-          >
+      {/* Stack tags */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {project.tags.slice(0, 5).map((tag) => (
+          <span key={tag} className="tag">
             {tag}
           </span>
         ))}
       </div>
 
       {/* Actions */}
-      <div className={`flex items-center gap-4 pt-3 border-t relative z-10 ${divider}`}>
+      <div className="flex items-center gap-4 pt-4 border-t border-navy-600/20 dark:border-navy-600/15">
         <a
           href={project.github}
           target="_blank"
           rel="noopener noreferrer"
-          className={`flex items-center gap-1.5 text-xs font-semibold transition-colors duration-200 hover:text-accent ${muted}`}
+          className="flex items-center gap-1.5 font-mono text-xs font-semibold text-navy-600 dark:text-navy-300 hover:text-py-500 transition-colors duration-150"
         >
           <FaGithub size={13} />
           Source
         </a>
-        <a
-          href={project.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`flex items-center gap-1.5 text-xs font-semibold transition-colors duration-200 hover:text-accent ${muted}`}
-        >
-          <HiExternalLink size={13} />
-          Live Demo
-        </a>
-        <span className={`ml-auto text-[10px] font-mono ${dimmed}`}>
-          {project.id}
-        </span>
+        {project.live && (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 font-mono text-xs font-semibold text-py-500 hover:text-py-400 transition-colors duration-150"
+          >
+            <HiExternalLink size={13} />
+            Live Demo
+          </a>
+        )}
       </div>
     </motion.div>
   )
 }
 
 export default function Projects() {
-  const { dark }    = useTheme()
   const [showAll, setShowAll] = useState(false)
 
   const featured    = projects.filter((p) => p.featured)
   const nonFeatured = projects.filter((p) => !p.featured)
   const visible     = showAll ? projects : featured
 
-  const toggleBtn = dark
-    ? 'border-[#1E1E3A] text-[#94A3B8] hover:border-accent/50 hover:text-[#E2E8F0]'
-    : 'border-[#E2E2F0] text-[#64748B] hover:border-accent/50 hover:text-[#0F0F1A]'
-
   return (
-    <section id="projects" className="section-padding">
+    <section id="projects" className="section-padding bg-surface-light dark:bg-navy-800">
       <div className="container-width">
         <SectionHeader
-          label="Projects"
+          label="// PROJECTS"
           title="What I've Built"
           description="Real systems shipped to production — AI-powered applications, backend infrastructure, and cloud tools."
         />
@@ -184,7 +144,6 @@ export default function Projects() {
                 key={project.id}
                 project={project}
                 index={i}
-                dark={dark}
               />
             ))}
           </AnimatePresence>
@@ -199,7 +158,7 @@ export default function Projects() {
           >
             <button
               onClick={() => setShowAll(!showAll)}
-              className={`px-6 py-3 rounded-xl border font-semibold text-sm transition-all duration-200 hover:bg-accent/5 ${toggleBtn}`}
+              className="btn-outline"
             >
               {showAll
                 ? 'Show Featured Only'

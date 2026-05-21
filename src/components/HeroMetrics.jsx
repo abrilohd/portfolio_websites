@@ -1,21 +1,16 @@
 import { motion } from 'framer-motion'
 import CountUp from 'react-countup'
 import { useInView } from 'react-intersection-observer'
-import { useTheme } from '../context/ThemeContext'
 
 const metrics = [
-  { value: 10,  suffix: '+', label: 'Systems shipped' },
-  { value: 3,   suffix: '+', label: 'AI integrations' },
-  { value: 5,   suffix: '',  label: 'Cloud deployments' },
-  { value: 100, suffix: '%', label: 'Remote ready' },
+  { value: 10,  suffix: '+', label: 'AI Projects' },
+  { value: 3,   suffix: '+', label: 'Years Experience' },
+  { value: 5,   suffix: '',  label: 'Certifications' },
+  { value: 95, suffix: '%', label: 'Client Satisfaction' },
 ]
 
 export default function HeroMetrics() {
   const { ref, inView } = useInView({ triggerOnce: true })
-  const { dark }        = useTheme()
-
-  const divider = dark ? 'bg-[#1E1E3A]'  : 'bg-[#E2E2F0]'
-  const label   = dark ? 'text-[#4A5568]' : 'text-[#94A3B8]'
 
   return (
     <motion.div
@@ -28,18 +23,33 @@ export default function HeroMetrics() {
       {metrics.map((m, i) => (
         <div key={m.label} className="flex items-center">
           <div className="flex flex-col items-start px-4 first:pl-0">
-            <span className={`text-lg font-extrabold leading-none gradient-text`}>
+            <span 
+              className="font-display leading-none"
+              style={{
+                fontSize: '1.75rem',
+                fontWeight: 800,
+                color: '#F5C518'
+              }}
+            >
               {inView
                 ? <CountUp end={m.value} duration={2} suffix={m.suffix} />
                 : `0${m.suffix}`
               }
             </span>
-            <span className={`text-[11px] mt-0.5 font-medium ${label}`}>
+            <span 
+              className="font-mono uppercase"
+              style={{
+                fontSize: '10px',
+                color: '#7AABEA',
+                marginTop: '2px',
+                letterSpacing: '0.05em'
+              }}
+            >
               {m.label}
             </span>
           </div>
           {i < metrics.length - 1 && (
-            <div className={`w-px h-7 ${divider} mx-1`} />
+            <div className="w-px h-7 bg-navy-600 mx-1" />
           )}
         </div>
       ))}
