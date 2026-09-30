@@ -1,4 +1,4 @@
-# 🚀 AI Engineer Portfolio
+# AI Engineer Portfolio
 
 A premium, fully responsive portfolio website showcasing AI engineering expertise, built with React, Tailwind CSS, and modern web technologies.
 
