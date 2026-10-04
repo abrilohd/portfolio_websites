@@ -1,6 +1,6 @@
 # Abrham G/medhin | AI Engineer Portfolio
 
-Hi, I’m Abrham — an AI Engineer building practical systems that mix machine learning, backend engineering, and cloud deployment.
+Hi, I’m Abrham - an AI Engineer building practical systems that mix machine learning, backend engineering, and cloud deployment.
 
 This portfolio is my digital home: a place to showcase the projects I build, the systems I design, and the kind of engineering problems I enjoy solving. It’s built for people who care about real-world AI systems, not just flashy demos.
 
@@ -20,7 +20,7 @@ This project is a personal portfolio website designed to reflect my work as:
 - a builder of production-ready systems
 - someone interested in LLM apps, cloud infrastructure, and practical automation
 
-I wanted a space that felt modern, professional, and personal — something that communicates technical ability without losing the human side.
+I wanted a space that felt modern, professional, and personal - something that communicates technical ability without losing the human side.
 
 ---
 
