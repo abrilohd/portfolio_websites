@@ -1,0 +1,233 @@
+/* ═══════════════════════════════════════════════════════════════
+   CENTRALIZED DESIGN TOKENS (SINGLE SOURCE OF TRUTH)
+   Image-Verified Brand System: 'Python and AI'
+   Core Brand Colors:
+     1. Deep Tech Navy: #0D3164 (Dominant canvas & brand foundation)
+     2. Python Gold:    #FAC23B (Primary actions, highlights & badges)
+     3. AI Tech Blue:   #1967B2 (Secondary technical accent & links)
+     4. Neural Silver:  #F6F5F1 (Light mode canvas & clean surfaces)
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── 1. CORE BRAND CONSTANTS ── */
+  --brand-navy:          #0D3164;
+  --brand-navy-rgb:      13, 49, 100;
+  --brand-gold:          #FAC23B;
+  --brand-gold-rgb:      250, 194, 59;
+  --brand-blue:          #1967B2;
+  --brand-blue-rgb:      25, 103, 178;
+  --brand-silver:        #F6F5F1;
+  --brand-silver-rgb:    246, 245, 241;
+
+  /* Brand Ramp Variables */
+  --navy-950:            #081E3F;
+  --navy-900:            #0D3164;
+  --navy-800:            #11366E;
+  --navy-700:            #143D7A;
+  --navy-600:            #1C4A86;
+  --navy-500:            #1967B2;
+  --navy-400:            #2D6BB5;
+  --navy-300:            #4A92D9;
+  --navy-200:            #82AEDB;
+  --navy-100:            #C6DBF2;
+  --navy-50:             #F6F5F1;
+
+  --py-900:              #0D3164;
+  --py-800:              #422800;
+  --py-700:              #754B00;
+  --py-600:              #E8B12E;
+  --py-500:              #FAC23B;
+  --py-400:              #FFCF5C;
+  --py-300:              #FFE08F;
+  --py-200:              #FFF0C2;
+  --py-100:              #FFF9E6;
+
+  --ai-900:              #0A2548;
+  --ai-800:              #0D3164;
+  --ai-700:              #12417E;
+  --ai-600:              #16529A;
+  --ai-500:              #1967B2;
+  --ai-400:              #2879CB;
+  --ai-300:              #4A92D9;
+  --ai-200:              #7CB2E8;
+  --ai-100:              #B6D6F6;
+  --ai-50:               #EAF3FC;
+
+  /* Semantic Status */
+  --color-success:       #1D9E75;
+  --color-warning:       #FAC23B;
+  --color-danger:        #D85A30;
+  --color-info:          #1967B2;
+
+  /* ── 2. TYPOGRAPHY TOKENS ── */
+  --font-display:        'Syne', sans-serif;
+  --font-body:           'DM Sans', sans-serif;
+  --font-mono:           'JetBrains Mono', monospace;
+
+  /* ── 3. SPACING SCALE ── */
+  --space-1:             0.25rem;  /* 4px */
+  --space-2:             0.5rem;   /* 8px */
+  --space-3:             0.75rem;  /* 12px */
+  --space-4:             1rem;     /* 16px */
+  --space-5:             1.25rem;  /* 20px */
+  --space-6:             1.5rem;   /* 24px */
+  --space-8:             2rem;     /* 32px */
+  --space-10:            2.5rem;   /* 40px */
+  --space-12:            3rem;     /* 48px */
+  --space-16:            4rem;     /* 64px */
+  --space-20:            5rem;     /* 80px */
+  --space-24:            6rem;     /* 96px */
+
+  /* ── 4. BORDER RADIUS TOKENS ── */
+  --radius-xs:           4px;
+  --radius-sm:           6px;
+  --radius-md:           8px;
+  --radius-lg:           12px;
+  --radius-xl:           16px;
+  --radius-2xl:          20px;
+  --radius-full:         9999px;
+
+  /* ── 5. TRANSITIONS ── */
+  --transition-fast:     150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal:   250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:     350ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-theme:    background-color 250ms ease, color 250ms ease, border-color 250ms ease, box-shadow 250ms ease;
+
+  /* ── 6. LIGHT THEME SPECIFICATION (NEURAL SILVER ATMOSPHERE) ── */
+  --bg-page:             #F6F5F1;  /* Neural Silver canvas */
+  --bg-surface:          #EEEDEA;  /* Secondary surface */
+  --bg-surface-elevated: #E5E4E0;  /* Elevated panel */
+  --bg-card:             #FFFFFF;  /* Crisp card background */
+  --bg-card-hover:       #FAFAFC;
+  --bg-card-dimmed:      rgba(255, 255, 255, 0.7);
+  --bg-input:            #FFFFFF;
+  --bg-modal:            rgba(246, 245, 241, 0.96);
+  --bg-nav:              rgba(246, 245, 241, 0.92);
+  --bg-footer:           #EEEDEA;
+  --bg-badge:            rgba(25, 103, 178, 0.08);
+
+  /* Typography Colors (Verified Contrast) */
+  --text-primary:        #0D3164;  /* Contrast 11.73:1 (WCAG AAA) */
+  --text-secondary:      #1C4A86;  /* Contrast 8.11:1 (WCAG AAA) */
+  --text-muted:          #4A6E9B;  /* Contrast 4.82:1 (WCAG AA) */
+  --text-accent:         #1967B2;  /* Contrast 5.31:1 (WCAG AA) */
+  --text-inverse:        #FFFFFF;
+
+  /* Borders & Dividers */
+  --border-subtle:       #D5E0ED;
+  --border-card:         #D5E0ED;
+  --border-hover:        #A8C4E5;
+  --border-accent:       rgba(250, 194, 59, 0.5);
+  --border-focus:        #1967B2;
+  --divider-color:       rgba(25, 103, 178, 0.15);
+
+  /* Buttons & Interactive */
+  --btn-primary-bg:      #FAC23B;
+  --btn-primary-text:    #0D3164;  /* Contrast 7.83:1 (WCAG AAA) */
+  --btn-primary-hover:   #E8B12E;
+  --btn-primary-shadow:  0 2px 12px rgba(250, 194, 59, 0.3);
+
+  --btn-secondary-bg:    transparent;
+  --btn-secondary-border:#1967B2;
+  --btn-secondary-text:  #1967B2;  /* Contrast 5.31:1 (WCAG AA) */
+  --btn-secondary-hover-bg: rgba(25, 103, 178, 0.08);
+
+  --btn-ghost-text:      #1C4A86;
+  --btn-ghost-hover:     #1967B2;
+
+  /* Navigation & Links */
+  --nav-link-color:      #1C4A86;
+  --nav-link-hover:      #0D3164;
+  --nav-link-active:     #1967B2;
+  --link-color:          #1967B2;
+  --link-hover:          #0D3164;
+
+  /* Shadows */
+  --shadow-sm:           0 1px 2px rgba(13, 49, 100, 0.05);
+  --shadow-md:           0 4px 6px -1px rgba(13, 49, 100, 0.08);
+  --shadow-lg:           0 10px 15px -3px rgba(13, 49, 100, 0.1);
+  --shadow-card:         0 4px 14px rgba(13, 49, 100, 0.06);
+  --shadow-card-hover:   0 12px 28px rgba(13, 49, 100, 0.12);
+  --shadow-glow-gold:    0 0 20px rgba(250, 194, 59, 0.25);
+  --shadow-glow-blue:    0 0 20px rgba(25, 103, 178, 0.2);
+
+  /* Focus States */
+  --focus-ring:          0 0 0 3px rgba(25, 103, 178, 0.35);
+  --focus-ring-offset:   2px;
+
+  /* Circuit Visual Elements */
+  --circuit-opacity:     0.035;
+  --circuit-stroke:      #1967B2;
+  --circuit-node:        #FAC23B;
+  --circuit-glow:        rgba(25, 103, 178, 0.2);
+}
+
+.dark {
+  /* ── 7. DARK THEME SPECIFICATION (DEEP TECH ATMOSPHERE) ── */
+  --bg-page:             #0D3164;  /* Deep Tech Navy canvas */
+  --bg-surface:          #11366E;  /* Secondary surface */
+  --bg-surface-elevated: #143D7A;  /* Elevated panel */
+  --bg-card:             #143D7A;  /* Elevated card surface */
+  --bg-card-hover:       #1A4B92;
+  --bg-card-dimmed:      rgba(20, 61, 122, 0.6);
+  --bg-input:            #092348;
+  --bg-modal:            rgba(13, 49, 100, 0.96);
+  --bg-nav:              rgba(13, 49, 100, 0.92);
+  --bg-footer:           #081E3F;
+  --bg-badge:            rgba(25, 103, 178, 0.25);
+
+  /* Typography Colors (Verified Contrast) */
+  --text-primary:        #F6F6F4;  /* Contrast 11.83:1 (WCAG AAA) */
+  --text-secondary:      #C6DBF2;  /* Contrast 9.03:1 (WCAG AAA) */
+  --text-muted:          #82AEDB;  /* Contrast 5.50:1 (WCAG AA) */
+  --text-accent:         #FAC23B;  /* Contrast 7.83:1 (WCAG AAA) */
+  --text-inverse:        #0D3164;
+
+  /* Borders & Dividers */
+  --border-subtle:       #1C4A86;
+  --border-card:         #1C4A86;
+  --border-hover:        #2D6BB5;
+  --border-accent:       rgba(250, 194, 59, 0.5);
+  --border-focus:        #FAC23B;
+  --divider-color:       rgba(74, 146, 217, 0.2);
+
+  /* Buttons & Interactive */
+  --btn-primary-bg:      #FAC23B;
+  --btn-primary-text:    #0D3164;  /* Contrast 7.83:1 (WCAG AAA) */
+  --btn-primary-hover:   #FFCF5C;
+  --btn-primary-shadow:  0 2px 14px rgba(250, 194, 59, 0.35);
+
+  --btn-secondary-bg:    transparent;
+  --btn-secondary-border:#FAC23B;
+  --btn-secondary-text:  #FAC23B;  /* Contrast 7.83:1 (WCAG AAA) */
+  --btn-secondary-hover-bg: rgba(250, 194, 59, 0.12);
+
+  --btn-ghost-text:      #C6DBF2;
+  --btn-ghost-hover:     #FAC23B;
+
+  /* Navigation & Links */
+  --nav-link-color:      #C6DBF2;
+  --nav-link-hover:      #FAC23B;
+  --nav-link-active:     #FAC23B;
+  --link-color:          #7CB2E8;  /* Contrast 5.72:1 (WCAG AA) */
+  --link-hover:          #FAC23B;
+
+  /* Shadows */
+  --shadow-sm:           0 1px 3px rgba(0, 0, 0, 0.35);
+  --shadow-md:           0 4px 6px -1px rgba(0, 0, 0, 0.45);
+  --shadow-lg:           0 10px 15px -3px rgba(0, 0, 0, 0.55);
+  --shadow-card:         0 4px 20px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover:   0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-glow-gold:    0 0 25px rgba(250, 194, 59, 0.35);
+  --shadow-glow-blue:    0 0 25px rgba(25, 103, 178, 0.4);
+
+  /* Focus States */
+  --focus-ring:          0 0 0 3px rgba(250, 194, 59, 0.45);
+  --focus-ring-offset:   2px;
+
+  /* Circuit Visual Elements */
+  --circuit-opacity:     0.06;
+  --circuit-stroke:      #1C4A86;
+  --circuit-node:        #FAC23B;
+  --circuit-glow:        rgba(250, 194, 59, 0.3);
+}

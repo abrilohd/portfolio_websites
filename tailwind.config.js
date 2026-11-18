@@ -18,76 +18,85 @@ export default {
         mono:    ['JetBrains Mono', 'monospace'],
       },
       colors: {
-        // ── NAVY RAMP (extracted from image background) ──
+        // ── 3 CORE BRAND IDENTIFIERS (IMAGE-VERIFIED) ──
+        brand: {
+          navy: '#0D3164',      // Core Canvas & Foundation
+          gold: '#FAC23B',      // Primary Action & Highlights (Python Snake)
+          blue: '#1967B2',      // Secondary Technical Accent (AI Circuitry)
+          silver: '#F6F5F1',    // Light Mode Canvas (Robot Face)
+        },
+
+        // ── SYSTEMATIC NAVY PALETTE ──
         navy: {
-          950: '#07112A',   // deepest dark bg (dark mode page)
-          900: '#0D1B3E',   // hero bg, footer bg
-          800: '#0F2147',   // section-alt bg dark
-          700: '#163060',   // card bg dark, nav bg dark
-          600: '#1A3E7A',   // card border dark, hover surface
-          500: '#1E4D9B',   // primary button default
-          400: '#2560C2',   // primary button hover
-          300: '#4A7FD4',   // links, icons, outlines
-          200: '#7AABEA',   // muted icon, disabled text dark
-          100: '#A8C3EC',   // very muted text dark
-          50:  '#D4E1F5',   // light mode muted text
+          950: '#081E3F',       // deepest shadow
+          900: '#0D3164',       // Core Brand Navy (Exact Canvas Background)
+          800: '#11366E',       // section background dark
+          700: '#143D7A',       // elevated card surface dark
+          600: '#1C4A86',       // card border / circuit lines
+          500: '#1967B2',       // AI tech blue
+          400: '#2D6BB5',       // interactive blue hover
+          300: '#4A92D9',       // illuminated circuit node / links dark
+          200: '#82AEDB',       // muted technical text dark
+          100: '#C6DBF2',       // secondary text dark
+          50:  '#F6F5F1',       // Neural Silver (Light mode canvas)
         },
-        // ── PYTHON YELLOW RAMP (extracted from Python logo) ──
+
+        // ── PYTHON GOLD ACCENT ──
         py: {
-          900: '#3D2A00',   // darkest yellow (text on yellow bg)
-          800: '#6B4900',   // heading on yellow surface
-          700: '#9A6C00',   // body on yellow surface
-          600: '#C48F00',   // yellow border
-          500: '#F5C518',   // PRIMARY ACCENT — Python yellow
-          400: '#FFD03A',   // accent hover
-          300: '#FFE17A',   // accent light
-          200: '#FFF1B3',   // accent tint
-          100: '#FFF8D6',   // light mode accent bg
-          50:  '#FFFDF0',   // lightest yellow surface
+          900: '#0D3164',       // text on yellow button (WCAG AAA 7.83:1)
+          800: '#422800',
+          700: '#754B00',
+          600: '#E8B12E',       // gold active / pressed
+          500: '#FAC23B',       // PRIMARY BRAND ACCENT (Exact Python Yellow)
+          400: '#FFCF5C',       // gold hover
+          300: '#FFE08F',
+          200: '#FFF0C2',
+          100: '#FFF9E6',
+          50:  '#FFFCF5',
         },
-        // ── AI BLUE RAMP (extracted from AI head illustration) ──
+
+        // ── AI TECH BLUE RAMP ──
         ai: {
-          900: '#030F1F',
-          800: '#071E3D',
-          700: '#0E2F5C',
-          600: '#163F7A',
-          500: '#1C5099',   // AI accent (circuit lines, brain nodes)
-          400: '#2B6CC4',
-          300: '#5291D8',
-          200: '#85B7EB',
-          100: '#C2DAFA',
-          50:  '#EAF1FB',   // light mode card bg, input bg
+          900: '#0A2548',
+          800: '#0D3164',
+          700: '#12417E',
+          600: '#16529A',
+          500: '#1967B2',       // PRIMARY AI ACCENT
+          400: '#2879CB',
+          300: '#4A92D9',
+          200: '#7CB2E8',
+          100: '#B6D6F6',
+          50:  '#EAF3FC',
         },
-        // ── NEUTRAL / SURFACE RAMP ──
+
+        // ── SURFACE SYSTEM ──
         surface: {
-          dark:    '#111827',  // dark mode card bg (not pure black)
-          darker:  '#0B1222',  // dark mode elevated card
-          light:   '#F0F4FF',  // light mode page bg (cool white, image-derived)
-          lighter: '#FFFFFF',  // light mode card surface
-          border:  '#1E3A6E',  // dark mode card border
-          borderl: '#C8D8F0',  // light mode card border
+          dark:    '#143D7A',   // elevated card surface dark
+          darker:  '#0D3164',   // root page background dark
+          light:   '#F6F5F1',   // Neural Silver canvas light
+          lighter: '#FFFFFF',   // crisp card surface light
+          border:  '#1C4A86',   // dark mode circuit border
+          borderl: '#D5E0ED',   // light mode silver border
         },
-        // ── SEMANTIC COLORS (harmonized with palette) ──
-        success: '#1D9E75',   // teal — from AI circuit node color
-        warning: '#F5C518',   // reuse Python yellow for warnings
-        danger:  '#D85A30',   // warm coral — not red (keeps warmth)
-        info:    '#4A7FD4',   // navy-300
+
+        // ── SEMANTIC STATUS ──
+        success: '#1D9E75',
+        warning: '#FAC23B',
+        danger:  '#D85A30',
+        info:    '#1967B2',
       },
-      // ── SPACING SCALE ──
       spacing: {
         '18': '4.5rem',
         '22': '5.5rem',
         '30': '7.5rem',
         '36': '9rem',
       },
-      // ── BORDER RADIUS ──
       borderRadius: {
         'card': '12px',
         'btn':  '8px',
         'tag':  '6px',
         'pill': '999px',
       },
-      // ── TYPOGRAPHY SCALE ──
       fontSize: {
         'display': ['clamp(2.5rem, 6vw, 4.5rem)', { lineHeight: '1.1', letterSpacing: '-0.02em', fontWeight: '800' }],
         'h1':      ['clamp(1.75rem, 4vw, 2.5rem)', { lineHeight: '1.2', letterSpacing: '-0.015em', fontWeight: '700' }],

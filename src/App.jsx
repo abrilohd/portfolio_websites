@@ -3,19 +3,25 @@ import Lenis from '@studio-freight/lenis'
 
 import { ThemeProvider } from './context/ThemeContext'
 
-import PageLoader     from './components/PageLoader'
-import CustomCursor   from './components/CustomCursor'
-import ScrollProgress from './components/ScrollProgress'
-import ScrollToTop    from './components/ScrollToTop'
-import Navbar         from './components/Navbar'
-import Hero           from './components/Hero'
-import About          from './components/About'
-import Skills         from './components/Skills'
-import Projects       from './components/Projects'
-import Certifications from './components/Certifications'
-import Contact        from './components/Contact'
-import Footer         from './components/Footer'
-import AskAbrham      from './components/AskAbrham'
+// Layout Components
+import {
+  PageLoader,
+  CustomCursor,
+  ScrollProgress,
+  ScrollToTop,
+  Navbar,
+  Footer,
+} from './components/layout'
+
+// Section Components
+import {
+  Hero,
+  About,
+  Skills,
+  Projects,
+  Certifications,
+  Contact,
+} from './components/sections'
 
 function AppInner() {
   useEffect(() => {
@@ -25,7 +31,10 @@ function AppInner() {
       smooth: true,
     })
 
-    const raf = (time) => { lenis.raf(time); requestAnimationFrame(raf) }
+    const raf = (time) => {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
+    }
     requestAnimationFrame(raf)
 
     return () => lenis.destroy()
@@ -52,7 +61,6 @@ function AppInner() {
         <Contact />
       </main>
       <Footer />
-      <AskAbrham />
     </>
   )
 }

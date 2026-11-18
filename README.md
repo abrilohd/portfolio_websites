@@ -21,7 +21,7 @@ A premium, fully responsive portfolio website showcasing AI engineering expertis
 
 ### 🧩 Components
 - **Hero Section**: Eye-catching introduction with animated metrics and tech stack
-- **About Section**: Professional bio with quick stats and work style cards
+- **About Section**: Professional bio with work style cards
 - **Skills Carousel**: Interactive 3-card carousel showcasing technical expertise
 - **Projects Showcase**: Carousel layout highlighting AI projects with live demos
 - **Certifications**: Professional credentials with category badges

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <rect width="64" height="64" rx="14" fill="#0D3164"/>
+  <!-- Circuit traces -->
+  <path d="M8 20h12v12m24-12h12v12M8 44h12V32m24 12h12V32" stroke="#1C4A86" stroke-width="2" fill="none" opacity="0.6"/>
+  <circle cx="20" cy="20" r="2.5" fill="#1967B2"/>
+  <circle cx="44" cy="20" r="2.5" fill="#1967B2"/>
+  <circle cx="20" cy="44" r="2.5" fill="#1967B2"/>
+  <circle cx="44" cy="44" r="2.5" fill="#1967B2"/>
+  <!-- Stylized "A" lettermark in Python Gold -->
+  <path d="M32 14L19 48h7l2.5-7h15l2.5 7h7L40 14h-8zm0 10l5 13H27l5-13z" fill="#FAC23B"/>
+  <!-- AI Neural node in center -->
+  <circle cx="32" cy="30" r="2.5" fill="#1967B2"/>
+</svg>
+

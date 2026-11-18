@@ -14,14 +14,13 @@ export function ThemeProvider({ children }) {
     if (dark) {
       root.classList.add('dark')
       root.classList.remove('light')
-      root.style.backgroundColor = '#07112A'
-      root.style.color = '#FFFFFF'
     } else {
       root.classList.add('light')
       root.classList.remove('dark')
-      root.style.backgroundColor = '#F0F4FF'
-      root.style.color = '#07112A'
     }
+    // Clean up any legacy inline DOM styles
+    root.style.removeProperty('background-color')
+    root.style.removeProperty('color')
     localStorage.setItem('theme', dark ? 'dark' : 'light')
   }, [dark])
 
