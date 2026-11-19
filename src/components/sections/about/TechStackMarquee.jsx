@@ -1,4 +1,6 @@
 import {
+  SiCplusplus,
+  SiGnubash,
   SiPython,
   SiJavascript,
   SiTypescript,
@@ -42,6 +44,8 @@ import {
 
 // Single unified stream of 37 technologies with authentic brand colors
 export const techStackItems = [
+  { name: 'C++', icon: SiCplusplus, color: '#00599C' }, // Official ISO C++ Blue
+  { name: 'Bash', icon: SiGnubash, color: '#4EAA25' }, // Official GNU Bash Green
   { name: 'Python', icon: SiPython, color: '#3776AB' }, // Official Python Steel Blue
   { name: 'JavaScript', icon: SiJavascript, color: '#EAB308' }, // Rich JS Gold (higher contrast than #F7DF1E on light surfaces)
   { name: 'TypeScript', icon: SiTypescript, color: '#3178C6' }, // Official TypeScript Blue

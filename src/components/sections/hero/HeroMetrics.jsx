@@ -17,10 +17,9 @@ export default function HeroMetrics() {
       initial={{ opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, delay: 0.55, ease: [0.22, 1, 0.36, 1] }}
-      className="grid grid-cols-3 sm:inline-flex items-center w-full sm:w-fit max-w-full transition-colors duration-300"
+      className="grid grid-cols-3 sm:inline-flex items-center w-full sm:w-fit max-w-full transition-colors duration-300 border border-[#0D3164]/15 dark:border-white/15"
       style={{
         background: 'var(--tag-bg)',
-        border: '0.5px solid color-mix(in srgb, var(--tag-border) 65%, transparent)',
         borderRadius: '12px',
         padding: '12px 4px',
       }}
@@ -77,10 +76,10 @@ export default function HeroMetrics() {
           {i < metrics.length - 1 && (
             <div
               aria-hidden="true"
+              className="bg-[#0D3164]/15 dark:bg-white/15"
               style={{
-                width: '0.5px',
+                width: '1px',
                 height: '28px',
-                background: 'color-mix(in srgb, var(--divider-color) 70%, transparent)',
                 flexShrink: 0,
                 margin: '0 2px',
               }}

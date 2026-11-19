@@ -31,7 +31,7 @@ npm start
 ### **Check These Features:**
 
 ✅ **Navigation**
-- Click all nav links (Home, About, Skills, Projects, Certifications, Contact)
+- Click all nav links (Home, About, Projects, Certifications, Contact)
 - Verify smooth scrolling
 - Test mobile menu (resize browser)
 
@@ -51,11 +51,6 @@ npm start
 - Click "View All Projects" to see all 6
 - Verify metric lines show (↑, ↓, ⚡)
 - Check status badges (Production, Open Source, etc.)
-
-✅ **Skills Section**
-- See 5 skill pillars
-- Check color-coded icons
-- Verify skill bars animate on scroll
 
 ✅ **Certifications**
 - See 5 certifications
@@ -123,18 +118,6 @@ Edit `src/data/certificates.js`:
   category: 'AI/ML',  // AI/ML, Cloud, Backend, Data
   credential: 'https://credential-url.com',
   // ... rest of fields
-}
-```
-
-### **4.4 Skills**
-
-Edit `src/data/skills.js`:
-
-```javascript
-{
-  category: 'Your Category',
-  icon: 'brain',  // brain, server, cloud, monitor, chart
-  items: ['Skill 1', 'Skill 2', 'Skill 3']
 }
 ```
 

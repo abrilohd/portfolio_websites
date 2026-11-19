@@ -17,7 +17,6 @@ import {
 import {
   Hero,
   About,
-  Skills,
   Projects,
   Certifications,
   Contact,
@@ -51,8 +50,6 @@ function AppInner() {
         <Hero />
         <div className="section-divider" />
         <About />
-        <div className="section-divider" />
-        <Skills />
         <div className="section-divider" />
         <Projects />
         <div className="section-divider" />

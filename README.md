@@ -22,7 +22,6 @@ A premium, fully responsive portfolio website showcasing AI engineering expertis
 ### 🧩 Components
 - **Hero Section**: Eye-catching introduction with animated metrics and tech stack
 - **About Section**: Professional bio with work style cards
-- **Skills Carousel**: Interactive 3-card carousel showcasing technical expertise
 - **Projects Showcase**: Carousel layout highlighting AI projects with live demos
 - **Certifications**: Professional credentials with category badges
 - **Contact Form**: EmailJS-powered form with social links
@@ -79,7 +78,6 @@ portfolio_websites/
 │   │   ├── Navbar.jsx           # Navigation with mobile menu
 │   │   ├── Hero.jsx              # Hero section
 │   │   ├── About.jsx             # About section
-│   │   ├── Skills.jsx            # Skills carousel
 │   │   ├── Projects.jsx          # Projects carousel
 │   │   ├── Certifications.jsx    # Certifications carousel
 │   │   ├── Contact.jsx           # Contact form + social links
@@ -90,7 +88,6 @@ portfolio_websites/
 │   │   └── ThemeContext.jsx      # Dark/light theme management
 │   ├── data/
 │   │   ├── identity.js           # Personal information
-│   │   ├── skills.js             # Skills data
 │   │   ├── projects.js           # Projects data
 │   │   └── certificates.js       # Certifications data
 │   ├── utils/
@@ -152,20 +149,6 @@ export const identity = {
   location: 'Your Location',
   // ... more fields
 }
-```
-
-### Skills
-
-Edit `src/data/skills.js`:
-```javascript
-export const skills = [
-  {
-    category: 'AI & Machine Learning',
-    icon: 'brain',
-    items: ['Python', 'TensorFlow', 'PyTorch', ...]
-  },
-  // ... more categories
-]
 ```
 
 ### Projects
