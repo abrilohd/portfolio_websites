@@ -17,6 +17,9 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    overflow-y: auto;
+    cursor: auto;
   }
 
   html.dark,
@@ -32,6 +35,19 @@
     background-color: var(--bg-page);
     color: var(--text-primary);
     transition: var(--transition-theme);
+    overflow-x: hidden;
+    overflow-y: auto;
+    cursor: auto;
+  }
+
+  /* Restore default native cursor behavior */
+  a,
+  button,
+  [role="button"],
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"] {
+    cursor: pointer;
   }
 
   /* Accessible focus ring for keyboard navigation */
@@ -1587,14 +1603,6 @@
     bottom: 1rem !important;
     right: 1rem !important;
     padding: 0.5rem !important;
-  }
-}
-
-/* ── Hide custom cursor dot/ring on touch/coarse-pointer devices ── */
-@media (pointer: coarse) {
-  .custom-cursor-dot,
-  .custom-cursor-ring {
-    display: none !important;
   }
 }
 
