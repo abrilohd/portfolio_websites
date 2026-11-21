@@ -24,7 +24,7 @@ export default function AboutArchPortrait() {
           bottom-0 anchors the subject's feet flush with the arch base. */}
       <img
         src={profileCutout}
-        alt="Abrham G/medhin — AI Engineer"
+        alt="Abrham G/medhin —  Software Engineer"
         className="absolute bottom-0 w-auto h-[380px] sm:h-[420px] lg:h-[470px] max-w-none object-contain pointer-events-none"
         loading="lazy"
       />

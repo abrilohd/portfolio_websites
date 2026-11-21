@@ -25,8 +25,7 @@ export default function Contact() {
             Let's Work Together
           </h2>
           <p className="font-body section-sub text-body-lg mt-3 max-w-xl mx-auto">
-            I'm available for freelance projects, full-time positions, and open-source collaboration.
-            I typically respond within 24 hours.
+            Available for full-time  engineering roles, high-impact contract projects, and strategic technical consulting. Delivering reliable web platforms, mobile apps, and production AI solutions for global clients.
           </p>
         </motion.div>
 

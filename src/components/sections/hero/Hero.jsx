@@ -3,12 +3,9 @@ import { useState, useEffect } from 'react'
 import CircuitOverlay from '../../common/CircuitOverlay'
 import HeroMetrics from './HeroMetrics'
 import HeroAvatar from './HeroAvatar'
+import { identity } from '../../../data/identity'
 
-const roles = [
-  'Full Stack Developer',
-  'Mobile Application Developer',
-  'AI Product Engineer',
-]
+const roles = identity.roles
 
 const stagger = { animate: { transition: { staggerChildren: 0.08 } } }
 const fadeUp = {
@@ -94,7 +91,7 @@ export default function Hero() {
               variants={fadeUp}
               className="font-body mt-3.5 sm:mt-5 text-[1rem] sm:text-[1.0625rem] xl:text-[1.125rem] leading-[1.65] max-w-[560px] text-[var(--text-secondary)]"
             >
-              Builds modern, reliable websites and mobile apps, engineered around your problem and ready for what comes next.
+              {identity.subtitle}
             </motion.p>
 
             {/* CTA Buttons */}

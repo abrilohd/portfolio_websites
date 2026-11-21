@@ -40,8 +40,8 @@ export default function ContactInfo({ fadeUp }) {
           Get In Touch
         </h3>
         <p className="font-body text-body-lg text-[var(--text-secondary)] leading-relaxed">
-          Whether you have a project in mind, want to collaborate, or just want to say hi,
-          feel free to reach out. I'm always open to discussing new opportunities.
+          Have a product to build, an application to scale, or an engineering role to fill?
+          Let's discuss how I can bring full stack, mobile, or AI product engineering leadership to your team.
         </p>
       </div>
 
@@ -80,7 +80,7 @@ export default function ContactInfo({ fadeUp }) {
           </p>
         </div>
         <p className="font-mono text-xs mt-1 ml-4 text-[var(--color-success)] font-medium">
-          Open to full-time, freelance, and remote roles.
+          Open to full-time  roles, remote teams, and select client contracts.
         </p>
       </div>
 

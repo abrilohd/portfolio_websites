@@ -188,7 +188,7 @@ export default function Projects() {
             What I&apos;ve Built
           </h2>
           <p className="font-body text-xs sm:text-sm text-[var(--text-secondary)] mt-0.5 sm:mt-1 leading-normal max-w-lg mx-auto">
-            Real systems shipped to production — AI applications &amp; backend infrastructure.
+            Production web applications, mobile apps, and scalable AI systems engineered for real-world impact.
           </p>
         </div>
       </div>

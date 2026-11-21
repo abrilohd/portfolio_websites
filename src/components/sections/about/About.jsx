@@ -27,7 +27,7 @@ export default function About() {
           className="font-body text-xs sm:text-sm lg:text-base xl:text-lg mt-1.5 max-w-2xl mx-auto text-[var(--text-secondary)]"
           style={{ lineHeight: '1.45' }}
         >
-          AI Engineer building production systems that scale.
+           Software Engineer building reliable web, mobile, and AI products that scale.
         </p>
       </motion.div>
 

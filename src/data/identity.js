@@ -1,37 +1,44 @@
 export const identity = {
   name: 'Abrham G/medhin',
-  title: 'AI Product Engineer',
-  subtitle: 'Building production AI systems with Python, LLMs, and cloud infrastructure.',
-  tagline: 'AI systems that work in production.',
+  title: 'Software Engineer',
+  subtitle:
+    'Engineering reliable web platforms, cross-platform mobile applications, and intelligent AI products from architecture to production. Available for global remote opportunities and select client projects.',
+  tagline: 'Reliable web applications, mobile platforms, and production AI products.',
+
+  roles: [
+    'Full Stack Developer',
+    'Mobile Application Developer',
+    'AI Product Engineer',
+  ],
 
   location: 'Addis Ababa, Ethiopia',
   locationNote: 'Open to opportunities',
   email: 'abrsh067@gmail.com',
 
   available: true,
-  availabilityText: 'Open to AI Product Engineering roles',
+  availabilityText: 'Open to  Software Engineer, Full Stack, Mobile & AI Product opportunities',
 
   manifesto:
-    'I build AI systems that solve real business problems. My focus is on taking machine learning models and LLM applications from prototype to production — handling the backend architecture, API design, deployment, and scaling that makes AI actually useful.',
+    'I build reliable web platforms, responsive cross-platform mobile applications, and production AI products that solve genuine business problems. From clean user interfaces to resilient backend architectures and cloud deployments, I take products end-to-end with an uncompromising focus on stability, security, and measurable client value.',
 
   philosophy:
-    'Good AI Product Engineering is 20% model work and 80% infrastructure. I focus on building reliable systems: clean APIs, proper error handling, monitoring, and deployment pipelines that let AI applications run in production without constant babysitting.',
+    'Great software engineering balances user experience with architectural discipline. Whether developing full-stack web platforms, crafting fluid mobile apps, or deploying production-grade AI systems, I prioritize maintainable code, resilient APIs, and automated pipelines that run dependably in production without continuous overhead.',
 
   focus: [
-    'LLM application development',
-    'RAG & vector search',
-    'FastAPI backend systems',
-    'Cloud deployment (Azure)',
+    'Full-stack web architecture & scalable APIs',
+    'Cross-platform mobile application development',
+    'AI product engineering & LLM integration',
+    'Cloud infrastructure, CI/CD & DevOps (Azure/Docker)',
   ],
 
   currentlyBuilding:
-    'Production-ready AI tools with FastAPI backends, LangChain integrations, and cloud deployment.',
+    'Scalable full-stack web applications, cross-platform mobile products, and production-grade AI systems backed by resilient cloud infrastructure.',
 
   currentlyLearning: [
-    'LangChain & LangGraph',
-    'Vector databases',
-    'AI agent architectures',
-    'Next.js + TypeScript',
+    'Advanced Distributed Systems',
+    'Mobile Performance & Native Bridges',
+    'Agentic AI Workflows & LangGraph',
+    'Next.js 15 & Enterprise TypeScript',
   ],
 
   socials: {
@@ -42,10 +49,9 @@ export const identity = {
   },
 
   stats: [
-    { value: 10, suffix: '+', label: 'Systems Built', description: 'Production-grade applications' },
-    { value: 3, suffix: '+', label: 'AI Integrations', description: 'LLM and ML-powered features' },
-    { value: 2, suffix: '+', label: 'Years Engineering', description: 'Full-stack and backend focus' },
-    { value: 100, suffix: '%', label: 'Ready', description: 'Built for distributed teams' },
+    { value: 10, suffix: '+', label: 'Projects Completed', description: 'Production web, mobile & AI apps' },
+    { value: 5, suffix: '+', label: 'Certifications', description: 'Validated engineering credentials' },
+    { value: 3, suffix: '+', label: 'Happy Clients', description: 'Delivering business-critical solutions' },
+    { value: 100, suffix: '%', label: 'Delivery Focus', description: 'Built for distributed global teams' },
   ],
 }
-

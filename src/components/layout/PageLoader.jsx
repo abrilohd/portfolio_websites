@@ -2,8 +2,8 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 const LINES = [
-  'initializing systems...',
-  'loading AI context...',
+  'initializing architecture...',
+  'loading production modules...',
   'launching portfolio...',
 ]
 
@@ -47,7 +47,7 @@ export default function PageLoader() {
               Abrham<span className="text-py-500">.</span>
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-navy-200">
-              AI Systems Engineer
+              Software Engineer
             </p>
           </motion.div>
 

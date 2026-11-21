@@ -23,7 +23,7 @@ export default function Footer() {
               <span className="text-py-500">.</span>
             </a>
             <p className="font-mono text-xs text-navy-500 dark:text-navy-300">
-              AI Systems Engineer · Addis Ababa, Ethiopia
+               Software Engineer · Addis Ababa, Ethiopia
             </p>
           </div>
 
@@ -59,7 +59,7 @@ export default function Footer() {
             © {year} Abrham G/medhin. All rights reserved.
           </p>
           <p className="font-mono text-xs text-py-600 dark:text-py-400 font-semibold">
-            Built with Python + AI Systems Mindset
+            Engineered for Web, Mobile &amp; Production AI
           </p>
         </div>
       </div>
