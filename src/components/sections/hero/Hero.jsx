@@ -94,7 +94,7 @@ export default function Hero() {
               variants={fadeUp}
               className="font-body mt-3.5 sm:mt-5 text-[1rem] sm:text-[1.0625rem] xl:text-[1.125rem] leading-[1.65] max-w-[560px] text-[var(--text-secondary)]"
             >
-              Building modern, reliable websites and mobile apps, engineered around your problem and ready for what comes next.
+              Builds modern, reliable websites and mobile apps, engineered around your problem and ready for what comes next.
             </motion.p>
 
             {/* CTA Buttons */}
