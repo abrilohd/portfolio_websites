@@ -1,394 +1,181 @@
-<<<<<<< HEAD
-# 🚀 Software Engineer & AI Product Portfolio
+# Abrham Gebremedhin - Software Engineer Portfolio
 
-A modern, high-performance portfolio website showcasing full-stack software engineering, mobile development, and production AI products — built with React 18, Vite, Tailwind CSS, Framer Motion, and deployed seamlessly on Vercel with serverless email delivery.
-
-![Portfolio Preview](https://img.shields.io/badge/Status-Production%20Ready-success)
-![React](https://img.shields.io/badge/React-18.x-blue)
-![Vite](https://img.shields.io/badge/Vite-8.x-646cff)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38bdf8)
-![License](https://img.shields.io/badge/License-MIT-green)
-=======
-# Abrham G/medhin | AI Engineer Portfolio
-
-Hi, I’m Abrham - an AI Engineer building practical systems that mix machine learning, backend engineering, and cloud deployment.
-
-This portfolio is my digital home: a place to showcase the projects I build, the systems I design, and the kind of engineering problems I enjoy solving. It’s built for people who care about real-world AI systems, not just flashy demos.
-
-![Portfolio Status](https://img.shields.io/badge/Status-Production%20Ready-success)
-![React](https://img.shields.io/badge/React-18.x-61DAFB)
-![Tailwind](https://img.shields.io/badge/Tailwind-3.x-38BDF8)
-![Vercel](https://img.shields.io/badge/Deploy-Vercel-000000)
->>>>>>> a2742d578b1c2d83cc37c71736edca3fa57c2513
+A personal portfolio website built with React 18, Vite, Tailwind CSS, and Framer Motion. The site presents full-stack web development, mobile applications, and artificial intelligence projects. It includes a serverless contact form powered by Resend and is configured for deployment on Vercel.
 
 ---
 
-## About this project
+## Overview
 
-<<<<<<< HEAD
-### 🎨 Design & UX
-- **Apple & FinTech Aesthetics**: Clean, intentional visual hierarchy with Python Gold (`#F5C518`) and Navy (`#0D3164`) brand identity.
-- **Dual Theme Support**: Flawless Light & Dark mode support defaulting to **Light Mode** across all devices, with instant toggle and zero contrast issues.
-- **Micro-Interactions & Fluid Animations**: Framer Motion powered slide transitions, staggered hero typography, ambient radial glows, and interactive cards.
-- **Mobile Floating Dock**: macOS/iOS-style floating bottom dock on mobile (`< md`) with active squircle tabs, animated indicators, and safe-area inset padding.
-- **Responsive Layouts**: Designed mobile-first and tested from 320px to 4K displays.
+This portfolio serves as a central place to showcase completed work, technical background, and certifications. It is designed to be fast, accessible, and responsive across all device sizes.
 
-### 🧩 Core Sections
-1. **Hero**: High-impact introduction featuring rotating typewriter roles, live availability pulse, production metrics (Years Experience, Production Deploys, Scaled Users), and stylized avatar badge.
-2. **About**: Architectural arch portrait, technical manifesto ("What I Do", "How I Work"), direct "Download CV" button pointing to `public/resume.pdf`, and an infinite single-row Tech Stack Marquee.
-3. **Projects Showcase**: Interactive carousel highlighting 6 projects with real screenshot mockups, tech stack tags, impact achievements, source code links, and conditional live demo buttons.
-4. **Certifications**: Apple showcase card carousel displaying 8 official credentials (Microsoft Azure AZ-204, Udemy AI, Coursera BERT/TensorFlow, Skillsoft certifications) with official badge/certificate images, "Verify" and "View Credential" actions, slide progress pill, and "View Full Badge Wallet" link.
-5. **Contact**: Unified 2-column split card featuring a Vercel serverless contact form (powered by Resend API), click-to-copy email utility with graceful clipboard fallback, and social links (GitHub, LinkedIn, Twitter/X).
-
-### 🛠️ Technical Highlights
-- **Vite 8 Build Tooling**: Sub-second Hot Module Replacement (HMR) and optimized Rollup production bundling.
-- **Vercel Serverless Function (`/api/contact`)**: Secure serverless backend endpoint that validates input and dispatches emails via Resend API without exposing secret keys to the browser.
-- **Local Dev Resend Middleware**: Built-in Vite dev server plugin allowing real email testing during local development.
-- **Zero Broken Links & Assets**: Fully verified asset imports, project screenshots, SVG badges, and document paths.
-=======
-This project is a personal portfolio website designed to reflect my work as:
-
-- an AI engineer
-- a backend-focused developer
-- a builder of production-ready systems
-- someone interested in LLM apps, cloud infrastructure, and practical automation
-
-I wanted a space that felt modern, professional, and personal - something that communicates technical ability without losing the human side.
->>>>>>> a2742d578b1c2d83cc37c71736edca3fa57c2513
+### Key Highlights
+- Clean visual layout with light and dark theme support (defaults to light mode).
+- Mobile navigation dock optimized for touch devices.
+- Interactive project showcase with direct links to source code and live demos.
+- Verified certifications section with links to official credentials.
+- Contact form connected to a secure serverless backend.
 
 ---
 
-## What’s inside
+## Sections
 
-- A polished portfolio landing page
-- About section describing my engineering mindset
-- Skills and technology focus areas
-- Featured projects with results and impact
-- Certifications and learning history
-- Contact section with social links
-- AI assistant widget for quick portfolio interactions
-- Light/dark theme support
-- Responsive layout for desktop, tablet, and mobile
+### 1. Home
+The landing area introduces my core technical roles using a smooth typewriter animation, key career metrics, and quick call-to-action buttons.
 
----
+### 2. About
+A summary of my engineering background, work philosophy, and technical focus areas. It includes a single-row continuous tech stack marquee and a direct link to download my resume (`resume.pdf`).
 
-## Tech stack
+### 3. Projects
+An interactive carousel presenting six featured projects. Each entry includes project details, core technologies used, measurable achievements, and links to GitHub repositories and live deployments.
 
-### Frontend
-- React
-- Tailwind CSS
-- Framer Motion
-- React Icons
+### 4. Certifications
+A card carousel presenting eight professional credentials from Microsoft, Udemy, Coursera, and Skillsoft. Each card displays official badge or certificate artwork, issuance dates, and external verification links.
 
-### AI / Product work
-- Python
-- FastAPI
-- Django
-- RAG systems
-- LLM integrations
-- Prompt engineering
-
-### Deployment / infrastructure
-- Vercel
-- Docker
-- Azure
-- GitHub Actions
-- CI/CD workflows
+### 5. Contact
+A split card layout providing direct contact details, one-click email copying with clipboard fallback, social profile links, and an inquiry form that delivers messages via an email API.
 
 ---
 
-## Featured focus areas
+## Tech Stack
 
-I work across the space between AI and software engineering. My main focus areas include:
-
-- LLM application development
-- RAG and vector search
-- FastAPI backend systems
-- Cloud deployment and automation
-- Data-driven product thinking
-- Production-grade AI engineering
-
----
-
-## Projects showcased
-
-This portfolio highlights projects such as:
-
-- Expense Intelligence System
-- Intelligent Content Platform
-- Cloud Execution Engine
-- Azure Resource Orchestrator
-- RAG-powered knowledge assistant
-- FastAPI microservices gateway
-
-Each project is presented with a short explanation, tech stack, and measurable outcomes.
+- **Frontend Library:** React 18
+- **Build Tool:** Vite 8
+- **Styling:** Tailwind CSS 3
+- **Animations:** Framer Motion
+- **Icons:** React Icons
+- **Backend / API:** Vercel Serverless Functions (Node.js runtime)
+- **Email Service:** Resend API
+- **Deployment:** Vercel
 
 ---
 
-## Local development
+## Project Structure
 
-### Prerequisites
-<<<<<<< HEAD
-- Node.js 18+ and npm
-=======
-
-- Node.js 18+
-- npm
-- Git
->>>>>>> a2742d578b1c2d83cc37c71736edca3fa57c2513
-
-### Install and run
-
-```bash
-<<<<<<< HEAD
-# Clone the repository
-git clone https://github.com/abrilohd/portfolio.git
-cd portfolio/portfolio_websites
-
-# Install dependencies
-npm install
-
-# Create local environment file
-cp .env.example .env
-```
-
-Add your Resend API key to `.env`:
-```env
-RESEND_API_KEY=re_your_api_key_here
-```
-
-### Development Server
-
-```bash
-npm start
-# or
-npm run dev
-```
-
-The application will start at `http://localhost:3000`.
-
-### Production Build
-
-```bash
-npm run build
-```
-
-Generates optimized production assets in `build/`. Preview the build locally with:
-```bash
-npm run preview
-```
-
----
-
-## 📁 Project Structure
-
-```
+```text
 portfolio_websites/
 ├── api/
-│   └── contact.js                # Vercel serverless function (Resend email delivery)
+│   └── contact.js                # Serverless contact handler using Resend
 ├── public/
-│   ├── favicon.ico
-│   ├── favicon.svg
-│   ├── manifest.json
-│   ├── robots.txt
-│   └── resume.pdf                # Downloadable CV
+│   ├── favicon.ico               # Browser favicon
+│   ├── favicon.svg               # Vector favicon
+│   ├── manifest.json             # Web application manifest
+│   ├── resume.pdf                # Downloadable resume
+│   └── robots.txt                # Search engine directives
 ├── src/
 │   ├── assets/
 │   │   └── images/
-│   │       ├── certificates/     # 11 official badge and certificate assets
-│   │       ├── project1.jpg - project6.jpg # Verified project screenshots
-│   │       ├── profile.jpg
-│   │       └── profile-cutout.png
+│   │       ├── certificates/     # Certificate images and badge icons
+│   │       ├── project1.jpg - project6.jpg # Project preview screenshots
+│   │       ├── profile.jpg       # Profile picture
+│   │       └── profile-cutout.png# Profile cut-out portrait
 │   ├── components/
-│   │   ├── common/               # CircuitOverlay, Badge, CustomCursor
+│   │   ├── common/               # Shared components (CircuitOverlay, Badge)
 │   │   ├── layout/               # Navbar, Footer, PageLoader, ScrollToTop
 │   │   └── sections/
-│   │       ├── hero/             # Hero, HeroAvatar, HeroMetrics
-│   │       ├── about/            # About, AboutBio, AboutArchPortrait, TechStackMarquee
-│   │       ├── projects/         # Projects carousel, ProjectCard
-│   │       ├── certifications/   # Certifications carousel, CertificateCard
-│   │       └── contact/          # Contact, ContactForm, ContactInfo
+│   │       ├── hero/             # Hero banner and metric counters
+│   │       ├── about/            # Biography, portrait, and tech marquee
+│   │       ├── projects/         # Projects carousel and project cards
+│   │       ├── certifications/   # Certifications carousel and cards
+│   │       └── contact/          # Contact details and email form
 │   ├── context/
-│   │   └── ThemeContext.jsx      # Theme provider (defaults strictly to Light Mode)
+│   │   └── ThemeContext.jsx      # Theme state management (light / dark)
 │   ├── data/
-│   │   ├── certificates.js       # 8 verified credentials with badge & image assets
-│   │   ├── identity.js           # Bio, roles, metrics, philosophy
-│   │   ├── navigation.js         # 5 navigation section anchors
-│   │   └── projects.js           # 6 production projects with live demos & tags
+│   │   ├── certificates.js       # Certification data
+│   │   ├── identity.js           # Personal bio, titles, and metrics
+│   │   ├── navigation.js         # Navigation links and section IDs
+│   │   └── projects.js           # Project portfolio data
 │   ├── hooks/
 │   │   ├── useActiveSection.js   # Scroll-spy navigation hook
-│   │   └── useCopyToClipboard.js # Click-to-copy hook with textarea fallback
+│   │   └── useCopyToClipboard.js # Clipboard utility hook
 │   ├── styles/
 │   │   ├── global.css            # Base styles, utility classes, and typography
-│   │   └── tokens.css            # Color tokens and theme variables
-│   ├── App.jsx                   # Root application component
-│   └── index.jsx                 # Client entry point
+│   │   └── tokens.css            # Color variables and design tokens
+│   ├── App.jsx                   # Main application component
+│   └── index.jsx                 # Application entry point
 ├── .env.example                  # Environment variable template
-├── vercel.json                   # Vercel routing & serverless build config
-├── vite.config.mjs               # Vite config & dev Resend middleware
-├── tailwind.config.js            # Tailwind styling tokens
-└── package.json
-=======
-git clone https://github.com/abrilohd/portfolio_websites.git
-cd portfolio_websites
-npm install
-npm start
-```
-
-The app should run locally at:
-
-```bash
-http://localhost:3000
->>>>>>> a2742d578b1c2d83cc37c71736edca3fa57c2513
+├── .gitignore                    # Git ignored files and directories
+├── DEPLOYMENT.md                 # Detailed deployment instructions
+├── FINAL_STATUS.md               # Audit and verification summary
+├── package.json                  # Dependencies and scripts
+├── tailwind.config.js            # Tailwind configuration
+├── vercel.json                   # Vercel deployment routes and build rules
+└── vite.config.mjs               # Vite bundler configuration and dev middleware
 ```
 
 ---
 
-<<<<<<< HEAD
-## ⚙️ Configuration & Environment Variables
+## Getting Started
 
-### Setting Up Resend for Contact Form
+### Prerequisites
+- Node.js 18 or newer
+- npm (comes with Node.js)
+- Git
 
-1. Create a free account at [resend.com](https://resend.com).
-2. Generate an API Key under **API Keys**.
-3. For local development, add to `.env`:
-   ```env
-   RESEND_API_KEY=re_your_key_here
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/abrilohd/portfolio.git
+   cd portfolio/portfolio_websites
    ```
-4. For Vercel production:
-   - Go to your Project Settings on Vercel → **Environment Variables**.
-   - Add `RESEND_API_KEY` with your Resend key.
-   - Deployed form submissions will automatically route via `api/contact.js` to `abrsh067@gmail.com`.
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create your local environment file:
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Add your Resend API key to `.env`:
+   ```env
+   RESEND_API_KEY=your_resend_api_key_here
+   ```
+   *(Note: You can obtain a free API key at [resend.com](https://resend.com). The site will render without this key, but the contact form submission requires it.)*
+
+### Available Scripts
+
+- **`npm run dev`** (or **`npm start`**): Starts the local development server at `http://localhost:3000`. Includes live reload and local middleware for the contact endpoint.
+- **`npm run build`**: Compiles and optimizes assets into the `build/` folder for production.
+- **`npm run preview`**: Locally serves the production build from the `build/` folder to verify production output.
 
 ---
 
-## 🚀 Vercel Deployment
+## Deployment to Vercel
 
-The repository includes a production-tuned `vercel.json` configured for:
-- Static client build output (`build/`) via Vite.
-- Serverless API function (`api/**/*.js`) via `@vercel/node`.
-- Direct routing for `/api/contact` preventing SPA index fallbacks.
-- Native filesystem asset handling (`{ "handle": "filesystem" }`).
+This repository is configured for deployment on Vercel through `vercel.json`.
 
-Deploying to Vercel:
-1. Push your changes to GitHub.
-2. In Vercel, import the repository and select branch `main` (or `sw-engineer`).
-3. Set the Environment Variable: `RESEND_API_KEY`.
-4. Deploy!
+1. Push your repository to GitHub.
+2. In Vercel, click **Add New Project** and select this repository.
+3. Keep default settings:
+   - **Framework Preset:** Vite (or Other)
+   - **Build Command:** `npm run build`
+   - **Output Directory:** `build`
+4. Add the following environment variable in Vercel settings:
+   - **Key:** `RESEND_API_KEY`
+   - **Value:** Your Resend API key
+5. Click **Deploy**.
+
+The routing in `vercel.json` ensures that:
+- Calls to `/api/contact` run the serverless function in `api/contact.js`.
+- Static files (`/assets/*`, `/resume.pdf`, `/favicon.*`) are served directly from the filesystem.
+- Single-page application routes resolve to `index.html`.
 
 ---
 
-## 👤 Author
+## Author
 
 **Abrham Gebremedhin**
 - Email: [abrsh067@gmail.com](mailto:abrsh067@gmail.com)
-- GitHub: [@abrilohd](https://github.com/abrilohd)
-- LinkedIn: [Abrham Gebremedhin](https://www.linkedin.com/in/abrham-gebremedhin-962130360/)
-- Twitter / X: [@abrsh067](https://x.com/abrsh067)
-=======
-## Environment variables
-
-If you want the AI chat and contact form to work fully, create a `.env` file in the root directory:
-
-```env
-REACT_APP_ANTHROPIC_API_KEY=your_anthropic_key
-REACT_APP_EMAILJS_SERVICE_ID=your_service_id
-REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
-REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-If you’re only testing the UI, the app can still run without these values.
-
----
-
-## Production build
-
-```bash
-npm run build
-```
-
-This creates a production-ready build folder for deployment.
-
----
-
-## Deployment
-
-This project is set up to deploy easily on Vercel.
-
-```bash
-npm install -g vercel
-vercel --prod
-```
-
-Or deploy through the Vercel dashboard by importing the repository and setting the project to use the React app build settings.
-
----
-
-## Project structure
-
-```bash
-portfolio_websites/
-├── public/
-├── src/
-│   ├── components/
-│   ├── context/
-│   ├── data/
-│   ├── utils/
-│   ├── App.jsx
-│   └── index.js
-├── package.json
-├── README.md
-├── .env
-├── tailwind.config.js
-└── vercel.json
-```
-
----
-
-## Why I built this
-
-I built this site to document my growth as an engineer and to make my work easier to understand for recruiters, collaborators, and clients.
-
-It is not just a portfolio for aesthetics. It is a practical representation of how I think:
-
-- build real things
-- keep systems reliable
-- make technical work understandable
-- focus on impact, not just hype
-
----
-
-## Connect with me
-
-- GitHub: [@abrilohd](https://github.com/abrilohd)
-- LinkedIn: [Abrham Gebremedhin](https://www.linkedin.com/in/abrham-gebremedhin-962130360/)
-- X/Twitter: [@abrsh067](https://x.com/abrsh067)
-- Email: [abrsh067@gmail.com](mailto:abrsh067@gmail.com)
->>>>>>> a2742d578b1c2d83cc37c71736edca3fa57c2513
+- GitHub: [github.com/abrilohd](https://github.com/abrilohd)
+- LinkedIn: [linkedin.com/in/abrham-gebremedhin-962130360](https://www.linkedin.com/in/abrham-gebremedhin-962130360/)
+- X / Twitter: [x.com/abrsh067](https://x.com/abrsh067)
 - Location: Addis Ababa, Ethiopia
 
 ---
 
-<<<<<<< HEAD
-## 📄 License
-
-This project is licensed under the MIT License.
-=======
 ## License
 
 This project is licensed under the MIT License.
-
----
-
-## Final note
-
-This portfolio is a reflection of my work, my interests, and my direction as an engineer.
-
-I’m building toward more meaningful AI systems, stronger backend foundations, and opportunities to contribute to teams solving real problems.
-
-If you’re building something interesting, I’d love to connect.
-
----
-
-Made with care by Abrham Gebremedhin.
->>>>>>> a2742d578b1c2d83cc37c71736edca3fa57c2513
