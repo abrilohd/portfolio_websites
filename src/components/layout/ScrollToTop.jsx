@@ -20,7 +20,7 @@ export default function ScrollToTop() {
           exit={{ opacity: 0, y: 20 }}
           transition={{ duration: 0.3 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="scroll-to-top-btn fixed bottom-6 right-6 z-40 p-3 rounded-xl bg-py-500 hover:bg-py-400 active:bg-py-600 text-brand-navy shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-py-500"
+          className="scroll-to-top-btn fixed bottom-20 right-4 md:bottom-6 md:right-6 z-40 p-3 rounded-xl bg-py-500 hover:bg-py-400 active:bg-py-600 text-brand-navy shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-py-500 cursor-pointer"
           aria-label="Back to top"
         >
           <HiArrowUp size={18} />
@@ -29,4 +29,3 @@ export default function ScrollToTop() {
     </AnimatePresence>
   )
 }
-

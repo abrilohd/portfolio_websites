@@ -1,119 +1,147 @@
-import { motion } from 'framer-motion'
-import { HiMail, HiLocationMarker, HiClock, HiExternalLink } from 'react-icons/hi'
+import { HiMail, HiLocationMarker, HiClock, HiCheck, HiDuplicate } from 'react-icons/hi'
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa'
-
-const contactInfo = [
-  { icon: <HiMail size={20} />,           label: 'Email',        value: 'abrsh067@gmail.com',    href: 'mailto:abrsh067@gmail.com' },
-  { icon: <HiLocationMarker size={20} />, label: 'Location',     value: 'Addis Ababa, Ethiopia', href: null },
-  { icon: <HiClock size={20} />,          label: 'Availability', value: 'Open to opportunities', href: null },
-]
+import useCopyToClipboard from '../../../hooks/useCopyToClipboard'
 
 const SOCIAL_LINKS = [
   {
     name: 'GitHub',
     handle: '@abrilohd',
     url: 'https://github.com/abrilohd',
-    icon: <FaGithub size={20} />,
-    color: 'var(--brand-gold)',
+    icon: <FaGithub size={15} />,
   },
   {
     name: 'LinkedIn',
     handle: 'Abrham Gebremedhin',
     url: 'https://www.linkedin.com/in/abrham-gebremedhin-962130360/',
-    icon: <FaLinkedin size={20} />,
-    color: 'var(--brand-blue)',
+    icon: <FaLinkedin size={15} />,
   },
   {
     name: 'Twitter / X',
     handle: '@abrsh067',
     url: 'https://x.com/abrsh067',
-    icon: <FaTwitter size={20} />,
-    color: 'var(--brand-blue)',
+    icon: <FaTwitter size={15} />,
   },
 ]
 
-export default function ContactInfo({ fadeUp }) {
+export default function ContactInfo() {
+  const { copied, copy } = useCopyToClipboard(2500)
+
+  const handleCopyEmail = (e) => {
+    e.preventDefault()
+    copy('abrsh067@gmail.com')
+  }
+
   return (
-    <motion.div {...fadeUp} transition={{ duration: 0.6, delay: 0.1 }} className="flex flex-col gap-5">
-      <div>
-        <h3 className="font-display text-h2 font-bold mb-3 text-[var(--text-primary)]">
+    <div className="p-6 sm:p-8 lg:p-10 flex flex-col justify-between bg-slate-50/90 dark:bg-[#092347]/90 border-b lg:border-b-0 lg:border-r border-slate-200/80 dark:border-white/10 relative overflow-hidden h-full">
+      {/* Subtle Ambient Radial Highlight */}
+      <div className="absolute -top-24 -left-24 w-60 h-60 rounded-full blur-3xl bg-[var(--brand-gold)]/10 dark:bg-[var(--brand-gold)]/5 pointer-events-none" />
+
+      {/* Top Header & Pitch */}
+      <div className="relative z-10">
+        <h3 className="font-display text-xl sm:text-2xl font-bold text-[#0D3164] dark:text-white tracking-tight mb-2.5">
           Get In Touch
         </h3>
-        <p className="font-body text-body-lg text-[var(--text-secondary)] leading-relaxed">
-          Have a product to build, an application to scale, or an engineering role to fill?
-          Let's discuss how I can bring full stack, mobile, or AI product engineering leadership to your team.
+        <p className="font-body text-xs sm:text-sm text-[var(--text-secondary)] leading-relaxed mb-6 sm:mb-8">
+          Have a product to build, an application to scale, or an engineering role to fill? Let&apos;s discuss how I can bring full stack, mobile, or AI product engineering leadership to your team.
         </p>
-      </div>
 
-      {/* Contact info cards */}
-      <div className="flex flex-col gap-3">
-        {contactInfo.map((item) => (
-          <div
-            key={item.label}
-            className="bg-[var(--bg-card)] border border-[var(--border-card)] rounded-xl px-5 py-4 flex items-center gap-4 hover:border-[var(--border-accent)] transition-all duration-200 shadow-[var(--shadow-sm)]"
-          >
-            <div className="p-2 rounded-lg bg-py-500/10 text-py-500 shrink-0">
-              {item.icon}
-            </div>
-            <div>
-              <p className="font-mono text-xs uppercase tracking-wider mb-0.5 text-[var(--text-muted)]">
-                {item.label}
-              </p>
-              {item.href ? (
-                <a href={item.href} className="font-body text-sm font-medium text-[var(--text-primary)] hover:text-py-500 transition-colors">
-                  {item.value}
+        {/* 3 Compact Contact Detail Rows */}
+        <div className="flex flex-col gap-3">
+          {/* 1. Email with Click-to-Copy & Mailto */}
+          <div className="flex items-center justify-between gap-3 p-3 sm:p-3.5 rounded-2xl bg-white/90 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/[0.08] shadow-sm transition hover:border-[#F5C518]/50">
+            <div className="flex items-center gap-3 min-w-0">
+              <div className="w-9 h-9 rounded-xl bg-py-500/15 text-py-600 dark:text-py-400 flex items-center justify-center shrink-0">
+                <HiMail size={18} />
+              </div>
+              <div className="min-w-0">
+                <p className="font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold">
+                  Email
+                </p>
+                <a
+                  href="mailto:abrsh067@gmail.com"
+                  className="font-body text-xs sm:text-sm font-semibold text-[#0D3164] dark:text-white hover:text-py-600 dark:hover:text-[#F5C518] transition-colors truncate block"
+                >
+                  abrsh067@gmail.com
                 </a>
+              </div>
+            </div>
+
+            <button
+              onClick={handleCopyEmail}
+              type="button"
+              title="Copy email to clipboard"
+              className="px-2.5 py-1.5 rounded-lg border border-slate-200 dark:border-white/10 hover:border-py-500 dark:hover:border-py-400 bg-slate-50 dark:bg-white/5 text-slate-600 dark:text-slate-300 hover:text-py-600 dark:hover:text-[#F5C518] text-[11px] font-mono font-medium transition flex items-center gap-1.5 shrink-0 active:scale-95 cursor-pointer"
+            >
+              {copied ? (
+                <>
+                  <HiCheck size={14} className="text-emerald-500" />
+                  <span className="text-emerald-500 font-semibold">Copied!</span>
+                </>
               ) : (
-                <p className="font-body text-sm font-medium text-[var(--text-primary)]">{item.value}</p>
+                <>
+                  <HiDuplicate size={14} />
+                  <span>Copy</span>
+                </>
               )}
+            </button>
+          </div>
+
+          {/* 2. Location */}
+          <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-white/90 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/[0.08] shadow-sm transition hover:border-[#F5C518]/50">
+            <div className="w-9 h-9 rounded-xl bg-py-500/15 text-py-600 dark:text-py-400 flex items-center justify-center shrink-0">
+              <HiLocationMarker size={18} />
+            </div>
+            <div className="min-w-0">
+              <p className="font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold">
+                Location
+              </p>
+              <p className="font-body text-xs sm:text-sm font-semibold text-[#0D3164] dark:text-white truncate">
+                Addis Ababa, Ethiopia
+              </p>
             </div>
           </div>
-        ))}
-      </div>
 
-      {/* Availability card */}
-      <div className="bg-[var(--bg-card)] border border-[var(--border-accent)] rounded-xl px-5 py-4 shadow-[var(--shadow-sm)]">
-        <div className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-[var(--color-success)] animate-pulse shrink-0" />
-          <p className="font-display text-base font-bold text-[var(--text-primary)]">
-            Currently available for hire
-          </p>
+          {/* 3. Availability */}
+          <div className="flex items-center gap-3 p-3 sm:p-3.5 rounded-2xl bg-white/90 dark:bg-white/[0.04] border border-slate-200/80 dark:border-white/[0.08] shadow-sm transition hover:border-[#F5C518]/50">
+            <div className="w-9 h-9 rounded-xl bg-py-500/15 text-py-600 dark:text-py-400 flex items-center justify-center shrink-0">
+              <HiClock size={18} />
+            </div>
+            <div className="min-w-0">
+              <p className="font-mono text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold">
+                Availability
+              </p>
+              <div className="flex items-center gap-2">
+                <p className="font-body text-xs sm:text-sm font-semibold text-[#0D3164] dark:text-white truncate">
+                  Open to opportunities
+                </p>
+              </div>
+            </div>
+          </div>
         </div>
-        <p className="font-mono text-xs mt-1 ml-4 text-[var(--color-success)] font-medium">
-          Open to full-time  roles, remote teams, and select client contracts.
-        </p>
       </div>
 
-      {/* Social links */}
-      <div className="mt-2">
-        <p className="font-mono text-xs uppercase tracking-wider text-[var(--text-muted)] mb-3">
-          Find me on
-        </p>
-        <div className="flex flex-col gap-2">
+      {/* Single-Row Compact Social Links */}
+      <div className="mt-6 sm:mt-8 pt-5 border-t border-slate-200/80 dark:border-white/10 relative z-10">
+        <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-slate-400 block mb-3">
+          FIND ME ON
+        </span>
+        <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-2.5">
           {SOCIAL_LINKS.map((social) => (
             <a
               key={social.name}
               href={social.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 bg-[var(--bg-card)] border border-[var(--border-card)] rounded-xl px-4 py-3 hover:border-[var(--border-accent)] hover:shadow-[var(--shadow-card-hover)] transition-all duration-200 group"
+              className="flex-1 sm:flex-initial px-3.5 py-2 rounded-xl border border-slate-300/80 dark:border-white/15 bg-white dark:bg-white/5 hover:border-[#F5C518] hover:text-[#F5C518] text-[#0D3164] dark:text-white text-xs font-semibold transition flex items-center justify-center gap-2 group shadow-sm active:scale-95"
             >
-              <div className="p-2 rounded-lg bg-py-500/10 shrink-0" style={{ color: social.color }}>
+              <span className="group-hover:scale-110 transition-transform">
                 {social.icon}
-              </div>
-              <div className="flex-1">
-                <p className="font-body text-sm font-semibold text-[var(--text-primary)]">
-                  {social.name}
-                </p>
-                <p className="font-mono text-xs text-[var(--text-muted)]">
-                  {social.handle}
-                </p>
-              </div>
-              <HiExternalLink size={16} className="text-[var(--text-muted)] group-hover:text-py-500 transition-colors" />
+              </span>
+              <span>{social.name}</span>
             </a>
           ))}
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }

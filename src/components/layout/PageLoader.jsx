@@ -34,7 +34,7 @@ export default function PageLoader() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center gap-6 bg-brand-navy dark:bg-brand-navy"
+          className="fixed inset-0 z-[99999] flex flex-col items-center justify-center gap-6 bg-[#F8F7F4] dark:bg-[#0D1B2E]"
         >
           {/* Logo */}
           <motion.div
@@ -43,21 +43,21 @@ export default function PageLoader() {
             transition={{ duration: 0.4 }}
             className="flex flex-col items-center gap-2"
           >
-            <p className="text-2xl font-display font-extrabold tracking-tight text-white">
-              Abrham<span className="text-py-500">.</span>
+            <p className="text-2xl font-display font-extrabold tracking-tight text-[#0D3164] dark:text-white">
+              Abrham<span className="text-[#F5C518]">.</span>
             </p>
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-navy-200">
-              Software Engineer
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#475569] dark:text-slate-300">
+              SOFTWARE ENGINEER
             </p>
           </motion.div>
 
           {/* Progress bar */}
-          <div className="w-40 h-[2px] rounded-full overflow-hidden bg-navy-700">
+          <div className="w-40 h-[2px] rounded-full overflow-hidden bg-slate-200 dark:bg-white/10">
             <motion.div
               initial={{ width: '0%' }}
               animate={{ width: '100%' }}
               transition={{ duration: 0.8, ease: 'easeInOut' }}
-              className="h-full bg-gradient-to-r from-py-500 to-py-400"
+              className="h-full bg-[#F5C518]"
             />
           </div>
 
@@ -69,7 +69,7 @@ export default function PageLoader() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -2 }}
               transition={{ duration: 0.15 }}
-              className="font-mono text-[10px] text-navy-300"
+              className="font-mono text-[10px] text-[#475569] dark:text-slate-400"
             >
               {`> ${LINES[lineIndex]}`}
             </motion.p>

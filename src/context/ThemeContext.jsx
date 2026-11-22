@@ -4,9 +4,12 @@ const ThemeContext = createContext(null)
 
 export function ThemeProvider({ children }) {
   const [dark, setDark] = useState(() => {
-    const saved = localStorage.getItem('theme')
-    if (saved) return saved === 'dark'
-    return window.matchMedia('(prefers-color-scheme: dark)').matches
+    try {
+      const saved = localStorage.getItem('theme')
+      if (saved) return saved === 'dark'
+    } catch (e) {}
+    // Default strictly to Light Mode on first visit across all devices
+    return false
   })
 
   useEffect(() => {
@@ -21,7 +24,9 @@ export function ThemeProvider({ children }) {
     // Clean up any legacy inline DOM styles
     root.style.removeProperty('background-color')
     root.style.removeProperty('color')
-    localStorage.setItem('theme', dark ? 'dark' : 'light')
+    try {
+      localStorage.setItem('theme', dark ? 'dark' : 'light')
+    } catch (e) {}
   }, [dark])
 
   return (

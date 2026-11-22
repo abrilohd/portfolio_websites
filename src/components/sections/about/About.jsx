@@ -1,19 +1,25 @@
 import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 import AboutArchPortrait from './AboutArchPortrait'
 import AboutBio from './AboutBio'
 import TechStackMarquee from './TechStackMarquee'
 
 export default function About() {
+  const { ref, inView } = useInView({
+    threshold: 0.2,
+  })
+
   return (
     <section
       id="about"
+      ref={ref}
       className="relative overflow-hidden bg-[var(--bg-page)] scroll-mt-16 min-h-[calc(100dvh-4rem)] flex flex-col justify-between pt-4 sm:pt-6 lg:pt-8 pb-6 sm:pb-8 lg:pb-10"
     >
       {/* ── Top Header: Anchored cleanly near the top of the viewport ── */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
+        viewport={{ once: true, amount: 0.2 }}
         transition={{ duration: 0.45, ease: 'easeOut' }}
         className="w-full max-w-6xl xl:max-w-7xl mx-auto px-5 sm:px-8 text-center relative z-10"
       >
@@ -27,7 +33,7 @@ export default function About() {
           className="font-body text-xs sm:text-sm lg:text-base xl:text-lg mt-1.5 max-w-2xl mx-auto text-[var(--text-secondary)]"
           style={{ lineHeight: '1.45' }}
         >
-           Software Engineer building reliable web, mobile, and AI products that scale.
+          Software Engineer who builds reliable web, mobile, and AI products that scale.
         </p>
       </motion.div>
 
@@ -50,7 +56,7 @@ export default function About() {
 
       {/* ── Bottom Single-Row Tech Stack Marquee: Anchored cleanly at bottom edge ── */}
       <div className="w-full max-w-7xl 2xl:max-w-[1440px] mx-auto px-4 sm:px-8 relative z-10 lg:scale-105 xl:scale-110 origin-bottom transition-transform duration-300">
-        <TechStackMarquee />
+        <TechStackMarquee inView={inView} />
       </div>
     </section>
   )

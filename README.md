@@ -1,9 +1,10 @@
-# 🚀 AI Engineer Portfolio
+# 🚀 Software Engineer & AI Product Portfolio
 
-A premium, fully responsive portfolio website showcasing AI engineering expertise, built with React, Tailwind CSS, and modern web technologies.
+A modern, high-performance portfolio website showcasing full-stack software engineering, mobile development, and production AI products — built with React 18, Vite, Tailwind CSS, Framer Motion, and deployed seamlessly on Vercel with serverless email delivery.
 
 ![Portfolio Preview](https://img.shields.io/badge/Status-Production%20Ready-success)
 ![React](https://img.shields.io/badge/React-18.x-blue)
+![Vite](https://img.shields.io/badge/Vite-8.x-646cff)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.x-38bdf8)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
@@ -12,57 +13,71 @@ A premium, fully responsive portfolio website showcasing AI engineering expertis
 ## ✨ Features
 
 ### 🎨 Design & UX
-- **Premium Design**: Professional, clean aesthetic with Python Yellow (#F5C518) brand identity
-- **Dual Theme Support**: Seamless dark/light mode toggle with persistent preferences
-- **Fully Responsive**: Optimized for all devices (320px → 1440px+)
-- **Smooth Animations**: Framer Motion powered transitions and interactions
-- **Custom Cursor**: Interactive cursor effects for enhanced UX
-- **Circuit Overlays**: Subtle tech-themed background patterns
+- **Apple & FinTech Aesthetics**: Clean, intentional visual hierarchy with Python Gold (`#F5C518`) and Navy (`#0D3164`) brand identity.
+- **Dual Theme Support**: Flawless Light & Dark mode support defaulting to **Light Mode** across all devices, with instant toggle and zero contrast issues.
+- **Micro-Interactions & Fluid Animations**: Framer Motion powered slide transitions, staggered hero typography, ambient radial glows, and interactive cards.
+- **Mobile Floating Dock**: macOS/iOS-style floating bottom dock on mobile (`< md`) with active squircle tabs, animated indicators, and safe-area inset padding.
+- **Responsive Layouts**: Designed mobile-first and tested from 320px to 4K displays.
 
-### 🧩 Components
-- **Hero Section**: Eye-catching introduction with animated metrics and tech stack
-- **About Section**: Professional bio with work style cards
-- **Projects Showcase**: Carousel layout highlighting AI projects with live demos
-- **Certifications**: Professional credentials with category badges
-- **Contact Form**: EmailJS-powered form with social links
-- **Ask Abrham AI**: Draggable AI chat widget powered by Claude API
+### 🧩 Core Sections
+1. **Hero**: High-impact introduction featuring rotating typewriter roles, live availability pulse, production metrics (Years Experience, Production Deploys, Scaled Users), and stylized avatar badge.
+2. **About**: Architectural arch portrait, technical manifesto ("What I Do", "How I Work"), direct "Download CV" button pointing to `public/resume.pdf`, and an infinite single-row Tech Stack Marquee.
+3. **Projects Showcase**: Interactive carousel highlighting 6 projects with real screenshot mockups, tech stack tags, impact achievements, source code links, and conditional live demo buttons.
+4. **Certifications**: Apple showcase card carousel displaying 8 official credentials (Microsoft Azure AZ-204, Udemy AI, Coursera BERT/TensorFlow, Skillsoft certifications) with official badge/certificate images, "Verify" and "View Credential" actions, slide progress pill, and "View Full Badge Wallet" link.
+5. **Contact**: Unified 2-column split card featuring a Vercel serverless contact form (powered by Resend API), click-to-copy email utility with graceful clipboard fallback, and social links (GitHub, LinkedIn, Twitter/X).
 
-### 🛠️ Technical Features
-- **React 18**: Modern React with hooks and functional components
-- **Tailwind CSS**: Utility-first styling with custom design system
-- **Framer Motion**: Smooth animations and page transitions
-- **EmailJS Integration**: Working contact form without backend
-- **Claude AI Integration**: Real-time AI chat assistant
-- **Theme Context**: Global dark/light mode management
-- **Responsive Breakpoints**: 6 breakpoints for perfect adaptation
-- **Performance Optimized**: ~117KB JS, ~9.5KB CSS (gzipped)
+### 🛠️ Technical Highlights
+- **Vite 8 Build Tooling**: Sub-second Hot Module Replacement (HMR) and optimized Rollup production bundling.
+- **Vercel Serverless Function (`/api/contact`)**: Secure serverless backend endpoint that validates input and dispatches emails via Resend API without exposing secret keys to the browser.
+- **Local Dev Resend Middleware**: Built-in Vite dev server plugin allowing real email testing during local development.
+- **Zero Broken Links & Assets**: Fully verified asset imports, project screenshots, SVG badges, and document paths.
 
 ---
 
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 16+ and npm/yarn
-- Git
+- Node.js 18+ and npm
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone https://github.com/abrhamgg/portfolio.git
+git clone https://github.com/abrilohd/portfolio.git
 cd portfolio/portfolio_websites
 
 # Install dependencies
 npm install
 
-# Create .env file
+# Create local environment file
 cp .env.example .env
-
-# Start development server
-npm start
 ```
 
-The app will open at `http://localhost:3000`
+Add your Resend API key to `.env`:
+```env
+RESEND_API_KEY=re_your_api_key_here
+```
+
+### Development Server
+
+```bash
+npm start
+# or
+npm run dev
+```
+
+The application will start at `http://localhost:3000`.
+
+### Production Build
+
+```bash
+npm run build
+```
+
+Generates optimized production assets in `build/`. Preview the build locally with:
+```bash
+npm run preview
+```
 
 ---
 
@@ -70,358 +85,98 @@ The app will open at `http://localhost:3000`
 
 ```
 portfolio_websites/
+├── api/
+│   └── contact.js                # Vercel serverless function (Resend email delivery)
 ├── public/
-│   ├── index.html
-│   └── assets/
+│   ├── favicon.ico
+│   ├── favicon.svg
+│   ├── manifest.json
+│   ├── robots.txt
+│   └── resume.pdf                # Downloadable CV
 ├── src/
+│   ├── assets/
+│   │   └── images/
+│   │       ├── certificates/     # 11 official badge and certificate assets
+│   │       ├── project1.jpg - project6.jpg # Verified project screenshots
+│   │       ├── profile.jpg
+│   │       └── profile-cutout.png
 │   ├── components/
-│   │   ├── Navbar.jsx           # Navigation with mobile menu
-│   │   ├── Hero.jsx              # Hero section
-│   │   ├── About.jsx             # About section
-│   │   ├── Projects.jsx          # Projects carousel
-│   │   ├── Certifications.jsx    # Certifications carousel
-│   │   ├── Contact.jsx           # Contact form + social links
-│   │   ├── AskAbrham.jsx         # AI chat widget
-│   │   ├── Footer.jsx            # Footer
-│   │   └── ...                   # Utility components
+│   │   ├── common/               # CircuitOverlay, Badge, CustomCursor
+│   │   ├── layout/               # Navbar, Footer, PageLoader, ScrollToTop
+│   │   └── sections/
+│   │       ├── hero/             # Hero, HeroAvatar, HeroMetrics
+│   │       ├── about/            # About, AboutBio, AboutArchPortrait, TechStackMarquee
+│   │       ├── projects/         # Projects carousel, ProjectCard
+│   │       ├── certifications/   # Certifications carousel, CertificateCard
+│   │       └── contact/          # Contact, ContactForm, ContactInfo
 │   ├── context/
-│   │   └── ThemeContext.jsx      # Dark/light theme management
+│   │   └── ThemeContext.jsx      # Theme provider (defaults strictly to Light Mode)
 │   ├── data/
-│   │   ├── identity.js           # Personal information
-│   │   ├── projects.js           # Projects data
-│   │   └── certificates.js       # Certifications data
-│   ├── utils/
-│   │   ├── askAbrham.js          # AI chat logic
-│   │   └── cn.js                 # Utility functions
+│   │   ├── certificates.js       # 8 verified credentials with badge & image assets
+│   │   ├── identity.js           # Bio, roles, metrics, philosophy
+│   │   ├── navigation.js         # 5 navigation section anchors
+│   │   └── projects.js           # 6 production projects with live demos & tags
+│   ├── hooks/
+│   │   ├── useActiveSection.js   # Scroll-spy navigation hook
+│   │   └── useCopyToClipboard.js # Click-to-copy hook with textarea fallback
 │   ├── styles/
-│   │   └── global.css            # Global styles + responsive CSS
-│   ├── App.jsx                   # Main app component
-│   └── index.js                  # Entry point
-├── .env                          # Environment variables
-├── tailwind.config.js            # Tailwind configuration
-├── package.json
-└── README.md
+│   │   ├── global.css            # Base styles, utility classes, and typography
+│   │   └── tokens.css            # Color tokens and theme variables
+│   ├── App.jsx                   # Root application component
+│   └── index.jsx                 # Client entry point
+├── .env.example                  # Environment variable template
+├── vercel.json                   # Vercel routing & serverless build config
+├── vite.config.mjs               # Vite config & dev Resend middleware
+├── tailwind.config.js            # Tailwind styling tokens
+└── package.json
 ```
 
 ---
 
-## ⚙️ Configuration
+## ⚙️ Configuration & Environment Variables
 
-### Environment Variables
+### Setting Up Resend for Contact Form
 
-Create a `.env` file in the root directory:
-
-```env
-# Anthropic API Key for Ask Abrham AI Widget
-REACT_APP_ANTHROPIC_API_KEY=your_anthropic_api_key
-
-# EmailJS Configuration for Contact Form
-REACT_APP_EMAILJS_SERVICE_ID=your_service_id
-REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
-REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
-```
-
-### Getting API Keys
-
-**Anthropic API (for AI Chat)**:
-1. Visit [https://console.anthropic.com](https://console.anthropic.com)
-2. Create an account and generate an API key
-3. Add to `.env` as `REACT_APP_ANTHROPIC_API_KEY`
-
-**EmailJS (for Contact Form)**:
-1. Visit [https://emailjs.com](https://emailjs.com)
-2. Create account → Add email service → Create template
-3. Get Service ID, Template ID, and Public Key
-4. Add to `.env` file
+1. Create a free account at [resend.com](https://resend.com).
+2. Generate an API Key under **API Keys**.
+3. For local development, add to `.env`:
+   ```env
+   RESEND_API_KEY=re_your_key_here
+   ```
+4. For Vercel production:
+   - Go to your Project Settings on Vercel → **Environment Variables**.
+   - Add `RESEND_API_KEY` with your Resend key.
+   - Deployed form submissions will automatically route via `api/contact.js` to `abrsh067@gmail.com`.
 
 ---
 
-## 🎨 Customization
+## 🚀 Vercel Deployment
 
-### Personal Information
+The repository includes a production-tuned `vercel.json` configured for:
+- Static client build output (`build/`) via Vite.
+- Serverless API function (`api/**/*.js`) via `@vercel/node`.
+- Direct routing for `/api/contact` preventing SPA index fallbacks.
+- Native filesystem asset handling (`{ "handle": "filesystem" }`).
 
-Edit `src/data/identity.js`:
-```javascript
-export const identity = {
-  name: 'Your Name',
-  title: 'Your Title',
-  email: 'your@email.com',
-  location: 'Your Location',
-  // ... more fields
-}
-```
-
-### Projects
-
-Edit `src/data/projects.js`:
-```javascript
-export const projects = [
-  {
-    id: 1,
-    title: 'Project Name',
-    description: 'Project description',
-    tags: ['Python', 'FastAPI', ...],
-    github: 'https://github.com/...',
-    live: 'https://...',
-    // ... more fields
-  },
-  // ... more projects
-]
-```
-
-### Theme Colors
-
-Edit `tailwind.config.js` to customize colors:
-```javascript
-colors: {
-  py: {
-    500: '#F5C518', // Python Yellow - brand color
-    // ... other shades
-  },
-  // ... other colors
-}
-```
-
----
-
-## 📱 Responsive Breakpoints
-
-```javascript
-'xs': '375px',   // Extra small phones
-'sm': '640px',   // Small phones (landscape)
-'md': '768px',   // Tablets
-'lg': '1024px',  // Small laptops
-'xl': '1280px',  // Desktops
-'2xl': '1440px', // Large desktops
-```
-
-### Responsive Features
-- **Mobile (<768px)**: Hamburger menu, single column layouts, 1-card carousels
-- **Tablet (768px-1024px)**: Adaptive layouts, 3-card carousels
-- **Desktop (>1024px)**: Full layouts, all features enabled
-
----
-
-## 🏗️ Build & Deploy
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-Output: `build/` directory with optimized static files
-
-### Deploy to Vercel
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel --prod
-```
-
-### Deploy to Netlify
-
-```bash
-# Install Netlify CLI
-npm i -g netlify-cli
-
-# Deploy
-netlify deploy --prod --dir=build
-```
-
-### Deploy to GitHub Pages
-
-```bash
-# Add to package.json
-"homepage": "https://yourusername.github.io/portfolio"
-
-# Install gh-pages
-npm install --save-dev gh-pages
-
-# Add deploy scripts
-"predeploy": "npm run build",
-"deploy": "gh-pages -d build"
-
-# Deploy
-npm run deploy
-```
-
----
-
-## 🧪 Testing
-
-### Run Development Server
-```bash
-npm start
-```
-
-### Build Test
-```bash
-npm run build
-```
-
-### Responsive Testing
-Test at these widths:
-- 320px (iPhone SE)
-- 375px (iPhone 12/13)
-- 768px (iPad)
-- 1024px (iPad Pro)
-- 1280px (Laptop)
-- 1440px (Desktop)
-
----
-
-## 📊 Performance
-
-**Bundle Sizes** (gzipped):
-- JavaScript: ~117 KB
-- CSS: ~9.5 KB
-- Total: ~127 KB
-
-**Lighthouse Scores**:
-- Performance: 95+
-- Accessibility: 100
-- Best Practices: 100
-- SEO: 100
-
----
-
-## 🛠️ Tech Stack
-
-### Core
-- **React 18** - UI library
-- **Tailwind CSS 3** - Styling
-- **Framer Motion** - Animations
-- **React Icons** - Icon library
-
-### APIs & Services
-- **EmailJS** - Contact form
-- **Anthropic Claude** - AI chat widget
-
-### Build Tools
-- **Create React App** - Build tooling
-- **PostCSS** - CSS processing
-- **Autoprefixer** - CSS vendor prefixes
-
----
-
-## 📝 Available Scripts
-
-```bash
-npm start          # Start development server
-npm run build      # Build for production
-npm test           # Run tests
-npm run eject      # Eject from CRA (one-way operation)
-```
-
----
-
-## 🎯 Features Checklist
-
-### Design
-- ✅ Premium professional aesthetic
-- ✅ Python Yellow (#F5C518) brand identity
-- ✅ Dark/light theme toggle
-- ✅ Smooth animations
-- ✅ Custom cursor
-- ✅ Circuit pattern overlays
-
-### Responsive
-- ✅ Mobile-first approach
-- ✅ 6 responsive breakpoints
-- ✅ Hamburger menu on mobile
-- ✅ Touch-friendly interactions
-- ✅ Adaptive carousels
-- ✅ Optimized typography
-
-### Functionality
-- ✅ Working contact form (EmailJS)
-- ✅ AI chat widget (Claude API)
-- ✅ Interactive carousels
-- ✅ Keyboard navigation
-- ✅ Auto-advance carousels
-- ✅ Social media links
-- ✅ Smooth scroll navigation
-
-### Performance
-- ✅ Optimized bundle size
-- ✅ Lazy loading
-- ✅ GPU-accelerated animations
-- ✅ Efficient CSS
-- ✅ Fast load times
-
-### Accessibility
-- ✅ Semantic HTML
-- ✅ Keyboard navigation
-- ✅ ARIA labels
-- ✅ Focus states
-- ✅ Screen reader friendly
-- ✅ Reduced motion support
-
----
-
-## 📚 Documentation
-
-- **[Quick Start Guide](./QUICK_START.md)** - Get started in 5 minutes
-- **[Implementation Summary](./IMPLEMENTATION_SUMMARY.md)** - Complete feature list
-- **[Responsive Guide](./RESPONSIVE_BREAKPOINTS_GUIDE.md)** - Responsive design details
-- **[Responsive Design Complete](./RESPONSIVE_DESIGN_COMPLETE.md)** - Full responsive documentation
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Deploying to Vercel:
+1. Push your changes to GitHub.
+2. In Vercel, import the repository and select branch `main` (or `sw-engineer`).
+3. Set the Environment Variable: `RESEND_API_KEY`.
+4. Deploy!
 
 ---
 
 ## 👤 Author
 
 **Abrham Gebremedhin**
-- Email: abrsh067@gmail.com
+- Email: [abrsh067@gmail.com](mailto:abrsh067@gmail.com)
 - GitHub: [@abrilohd](https://github.com/abrilohd)
 - LinkedIn: [Abrham Gebremedhin](https://www.linkedin.com/in/abrham-gebremedhin-962130360/)
-- Twitter: [@abrsh067](https://x.com/abrsh067)
+- Twitter / X: [@abrsh067](https://x.com/abrsh067)
 - Location: Addis Ababa, Ethiopia
 
 ---
 
-## 🙏 Acknowledgments
+## 📄 License
 
-- Design inspiration from modern AI/tech portfolios
-- Icons from [React Icons](https://react-icons.github.io/react-icons/)
-- Animations powered by [Framer Motion](https://www.framer.com/motion/)
-- AI chat powered by [Anthropic Claude](https://www.anthropic.com/)
-- Email service by [EmailJS](https://www.emailjs.com/)
-
----
-
-## 📞 Support
-
-If you have any questions or need help, feel free to:
-- Open an issue on GitHub
-- Email me at abrsh067@gmail.com
-- Connect on LinkedIn
-
----
-
-**⭐ If you like this project, please give it a star on GitHub!**
-
----
-
-Made with ❤️ by Abrham Gebremedhin
+This project is licensed under the MIT License.

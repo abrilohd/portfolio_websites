@@ -1,124 +1,44 @@
 # 🚀 Vercel Deployment Guide
 
-Quick guide to deploy your AI Engineer Portfolio to Vercel.
+Step-by-step production deployment guide for Abrham Gebremedhin's Portfolio (`sw-engineer` / `main` branch).
 
 ---
 
 ## Prerequisites
 
-- GitHub account
-- Vercel account (free tier works)
-- Git installed locally
+- GitHub account with push access
+- Vercel account
+- [Resend](https://resend.com) account & API Key for serverless contact delivery
 
 ---
 
-## 🎯 Quick Deploy (Recommended)
+## 🎯 Quick Deploy to Vercel
 
-### Option 1: Deploy via Vercel Dashboard
+### 1. Import Repository
+1. Navigate to [vercel.com/new](https://vercel.com/new).
+2. Connect your GitHub account and import `portfolio_websites` (or `portfolio`).
+3. Select your deployment branch: `main` (or `sw-engineer`).
 
-1. **Push to GitHub** (Already done ✅)
-   ```bash
-   git push origin Ai-Engineer
-   ```
+### 2. Configure Build & Output Settings
+Vercel automatically detects the configuration from `vercel.json` and `package.json`:
+- **Framework Preset**: Vite (or Other)
+- **Build Command**: `npm run build` (or `vite build`)
+- **Output Directory**: `build`
+- **Install Command**: `npm install`
 
-2. **Go to Vercel**
-   - Visit [vercel.com](https://vercel.com)
-   - Click "Add New Project"
-   - Import your GitHub repository
-   - Select the `Ai-Engineer` branch
+### 3. Add Environment Variables
+Under **Environment Variables**, add:
+```
+Name:  RESEND_API_KEY
+Value: re_your_resend_api_key_here
+```
 
-3. **Configure Build Settings**
-   - Framework Preset: **Create React App**
-   - Build Command: `npm run build`
-   - Output Directory: `build`
-   - Install Command: `npm install`
-
-4. **Add Environment Variables**
-   Click "Environment Variables" and add:
-   ```
-   REACT_APP_ANTHROPIC_API_KEY=your_key_here
-   REACT_APP_EMAILJS_SERVICE_ID=your_service_id
-   REACT_APP_EMAILJS_TEMPLATE_ID=your_template_id
-   REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key
-   ```
-
-5. **Deploy**
-   - Click "Deploy"
-   - Wait 2-3 minutes
-   - Your site will be live! 🎉
+### 4. Deploy!
+Click **Deploy**. Within 1–2 minutes, your portfolio will be live worldwide with SSL, Edge caching, and serverless contact delivery.
 
 ---
 
-### Option 2: Deploy via Vercel CLI
-
-1. **Install Vercel CLI**
-   ```bash
-   npm i -g vercel
-   ```
-
-2. **Login to Vercel**
-   ```bash
-   vercel login
-   ```
-
-3. **Deploy**
-   ```bash
-   cd portfolio_websites
-   vercel --prod
-   ```
-
-4. **Follow prompts**
-   - Set up and deploy: Yes
-   - Which scope: Your account
-   - Link to existing project: No
-   - Project name: portfolio (or your choice)
-   - Directory: ./
-   - Override settings: No
-
-5. **Add Environment Variables**
-   ```bash
-   vercel env add REACT_APP_ANTHROPIC_API_KEY
-   vercel env add REACT_APP_EMAILJS_SERVICE_ID
-   vercel env add REACT_APP_EMAILJS_TEMPLATE_ID
-   vercel env add REACT_APP_EMAILJS_PUBLIC_KEY
-   ```
-
-6. **Redeploy with env vars**
-   ```bash
-   vercel --prod
-   ```
-
----
-
-## 🔧 Environment Variables Setup
-
-### Anthropic API (for AI Chat)
-
-1. Visit [console.anthropic.com](https://console.anthropic.com)
-2. Create account / Login
-3. Go to API Keys
-4. Create new key
-5. Copy and add to Vercel
-
-### EmailJS (for Contact Form)
-
-1. Visit [emailjs.com](https://emailjs.com)
-2. Create account / Login
-3. Add Email Service (Gmail, Outlook, etc.)
-4. Create Email Template
-5. Get credentials:
-   - Service ID
-   - Template ID
-   - Public Key
-6. Add to Vercel
-
-**Note**: The contact form works in demo mode without EmailJS (logs to console)
-
----
-
-## 📋 Vercel Configuration
-
-The project includes `vercel.json` with optimal settings:
+## 📋 Vercel Architecture (`vercel.json`)
 
 ```json
 {
@@ -127,124 +47,50 @@ The project includes `vercel.json` with optimal settings:
     {
       "src": "package.json",
       "use": "@vercel/static-build",
-      "config": { "distDir": "build" }
+      "config": {
+        "distDir": "build"
+      }
+    },
+    {
+      "src": "api/**/*.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
-    { "src": "/static/(.*)", "dest": "/static/$1" },
-    { "src": "/(.*)", "dest": "/index.html" }
+    {
+      "src": "/api/contact",
+      "dest": "/api/contact.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/$1"
+    },
+    {
+      "handle": "filesystem"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
   ]
 }
 ```
 
----
-
-## ✅ Post-Deployment Checklist
-
-After deployment, verify:
-
-- [ ] Site loads correctly
-- [ ] All sections visible
-- [ ] Responsive design works (test on mobile)
-- [ ] Theme toggle works
-- [ ] Navigation works
-- [ ] Carousels advance
-- [ ] Contact form submits
-- [ ] AI chat widget works
-- [ ] No console errors
+### Why this configuration is rock-solid:
+1. **Serverless Function Isolation**: Requests to `/api/contact` route directly to the `@vercel/node` lambda in `api/contact.js`.
+2. **No SPA Rewrite Collision**: `/api/*` routes are handled before the SPA fallback, preventing API POST requests from being rewritten to `index.html`.
+3. **Filesystem Handler**: The `{ "handle": "filesystem" }` directive guarantees all static Vite bundles (`build/assets/*`), images, and public downloads (`/resume.pdf`) are served directly.
+4. **Clean SPA Routing**: Non-file paths fall through to `/index.html`.
 
 ---
 
-## 🔄 Continuous Deployment
+## ✅ Post-Deployment Verification Checklist
 
-Vercel automatically redeploys when you push to GitHub:
-
-```bash
-# Make changes
-git add .
-git commit -m "Update portfolio"
-git push origin Ai-Engineer
-
-# Vercel automatically deploys! 🎉
-```
-
----
-
-## 🌐 Custom Domain (Optional)
-
-1. Go to Vercel Dashboard
-2. Select your project
-3. Go to Settings → Domains
-4. Add your custom domain
-5. Follow DNS configuration instructions
-
----
-
-## 🐛 Troubleshooting
-
-### Build Fails
-
-**Issue**: Build fails on Vercel
-**Solution**: 
-- Check build logs in Vercel dashboard
-- Ensure all dependencies in package.json
-- Verify Node version (use 18.x)
-
-### Environment Variables Not Working
-
-**Issue**: API keys not working
-**Solution**:
-- Ensure variables start with `REACT_APP_`
-- Redeploy after adding env vars
-- Check variable names match exactly
-
-### 404 on Refresh
-
-**Issue**: Page not found when refreshing
-**Solution**: 
-- Ensure `vercel.json` is present
-- Check routes configuration
-- Redeploy
-
-### Slow Build
-
-**Issue**: Build takes too long
-**Solution**:
-- Normal for first build (3-5 minutes)
-- Subsequent builds are faster (1-2 minutes)
-- Check for large dependencies
-
----
-
-## 📊 Performance
-
-Expected Vercel deployment metrics:
-- Build time: 2-3 minutes
-- Bundle size: ~127 KB (gzipped)
-- Lighthouse score: 95+
-- First load: <2 seconds
-
----
-
-## 🎉 Success!
-
-Your portfolio is now live on Vercel! 
-
-**Next Steps**:
-1. Share your portfolio URL
-2. Add to LinkedIn/Resume
-3. Monitor analytics in Vercel dashboard
-4. Update content as needed
-
----
-
-## 📞 Support
-
-Need help?
-- Vercel Docs: [vercel.com/docs](https://vercel.com/docs)
-- Vercel Support: [vercel.com/support](https://vercel.com/support)
-- Email: abrsh067@gmail.com
-
----
-
-**Happy Deploying!** 🚀
+Once deployed to Vercel, verify:
+- [ ] Site loads cleanly in default **Light Mode** on both mobile and desktop.
+- [ ] Toggle theme to **Dark Mode** via top Navbar — check that contrast, text colors, and backgrounds adapt seamlessly across all 5 sections.
+- [ ] Test mobile bottom dock navigation (< md) — clicking icons smoothly scrolls to `#home`, `#about`, `#projects`, `#certifications`, `#contact`.
+- [ ] Click "Download CV" in the About section — verifies `/resume.pdf` downloads cleanly without 404 or index.html corruption.
+- [ ] In Projects carousel, cycle through all 6 projects — verify images load with `object-contain`, "Live Demo" appears only when available, and external links open in new tabs.
+- [ ] In Certifications carousel, verify official badge/certificate images render for all 8 items, click "Verify" and "View Full Badge Wallet".
+- [ ] Submit a test message through the Contact form — verify loading spinner, success banner, and receipt in `abrsh067@gmail.com` inbox.

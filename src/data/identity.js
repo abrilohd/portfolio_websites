@@ -2,7 +2,7 @@ export const identity = {
   name: 'Abrham G/medhin',
   title: 'Software Engineer',
   subtitle:
-    'Engineering reliable web platforms, cross-platform mobile applications, and intelligent AI products from architecture to production. Available for global remote opportunities and select client projects.',
+    'Built around your problem, ready for what comes next.',
   tagline: 'Reliable web applications, mobile platforms, and production AI products.',
 
   roles: [

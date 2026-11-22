@@ -9,7 +9,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-[var(--bg-footer)] border-t border-[var(--border-subtle)] transition-colors">
+    <footer className="bg-[var(--bg-footer)] border-t border-[var(--border-subtle)] transition-colors pb-24 md:pb-0">
       <div className="container-width py-12">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo & Headline */}
@@ -23,7 +23,7 @@ export default function Footer() {
               <span className="text-py-500">.</span>
             </a>
             <p className="font-mono text-xs text-navy-500 dark:text-navy-300">
-               Software Engineer · Addis Ababa, Ethiopia
+              Software Engineer.  Addis Ababa, Ethiopia
             </p>
           </div>
 
@@ -50,20 +50,12 @@ export default function Footer() {
             Get In Touch
           </a>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-[var(--border-subtle)] py-5">
-        <div className="container-width flex flex-col sm:flex-row items-center justify-between gap-2 text-center sm:text-left">
-          <p className="font-mono text-xs text-navy-500 dark:text-navy-300">
-            © {year} Abrham G/medhin. All rights reserved.
-          </p>
-          <p className="font-mono text-xs text-py-600 dark:text-py-400 font-semibold">
-            Engineered for Web, Mobile &amp; Production AI
-          </p>
+        <div className="mt-8 pt-8 border-t border-[var(--border-subtle)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-navy-500 dark:text-navy-400">
+          <p>© {year} Abrham Gebremedhin. Built for production.</p>
+          <p>Next-Gen Full Stack &amp; AI Engineering</p>
         </div>
       </div>
     </footer>
   )
 }
-

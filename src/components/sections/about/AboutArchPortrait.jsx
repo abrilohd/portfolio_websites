@@ -6,7 +6,7 @@ export default function AboutArchPortrait() {
     <motion.div
       initial={{ opacity: 0, scale: 0.95, y: 14 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       /* pt-8 on mobile gives the generous clearance between the subtitle and the top of the head.
          overflow-visible lets the head pop cleanly above the arch top-curve. */

@@ -99,10 +99,10 @@ export default function Hero() {
               variants={fadeUp}
               className="grid grid-cols-2 sm:flex sm:flex-row gap-3 sm:gap-4 w-full sm:w-auto mt-5 sm:mt-8"
             >
-              <button
-                onClick={() =>
-                  document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' })
-                }
+              <a
+                href="https://t.me/Asebg16"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center justify-center font-display font-bold whitespace-nowrap rounded-[10px] min-h-[48px] px-[18px] py-3 border-2 border-transparent cursor-pointer transition-all duration-300 w-full sm:w-auto hover:-translate-y-0.5"
                 style={{
                   background: 'var(--btn-primary-bg)',
@@ -119,8 +119,8 @@ export default function Hero() {
                   e.currentTarget.style.boxShadow = 'var(--btn-primary-shadow)'
                 }}
               >
-                View Projects
-              </button>
+                Book a Project
+              </a>
 
               <button
                 onClick={() =>

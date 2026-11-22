@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { useInView } from 'react-intersection-observer'
 import {
   SiCplusplus,
   SiGnubash,
@@ -85,11 +87,22 @@ export const techStackItems = [
   { name: 'Monitoring', icon: TbActivity, color: '#0891B2' }, // Telemetry / Grafana Cyan
 ]
 
-export default function TechStackMarquee() {
+export default function TechStackMarquee({ inView: inViewProp }) {
+  const { ref: localRef, inView: localInView } = useInView({ threshold: 0.2 })
+  const inView = typeof inViewProp === 'boolean' ? inViewProp : localInView
+  const [isHovered, setIsHovered] = useState(false)
+
   return (
-    <div className="w-full overflow-hidden select-none marquee-mask py-2">
+    <div ref={localRef} className="w-full overflow-hidden select-none marquee-mask py-2">
       {/* ── Single Smooth Infinite-Scrolling Row (70s linear infinite, authentic brand colors, pause-on-hover) ── */}
-      <div className="animate-marquee flex gap-8 md:gap-10 items-center">
+      <div
+        className="animate-marquee flex gap-8 md:gap-10 items-center"
+        style={{
+          animationPlayState: inView && !isHovered ? 'running' : 'paused',
+        }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {[...techStackItems, ...techStackItems].map((item, index) => {
           const Icon = item.icon
           return (
