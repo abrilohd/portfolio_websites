@@ -157,7 +157,11 @@ export default function CertificateCard({ data }) {
                 src={data.image}
                 alt={`${data.title} Certificate`}
                 onError={() => setImgError(true)}
-                className="relative z-10 max-h-[280px] sm:max-h-[340px] md:max-h-[390px] lg:max-h-[440px] xl:max-h-[480px] w-auto max-w-full object-contain rounded-xl sm:rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-[1.015]"
+                className="relative z-10 w-auto h-auto max-h-[300px] sm:max-h-[370px] md:max-h-[430px] lg:max-h-[490px] xl:max-h-[530px] max-w-full object-contain rounded-xl sm:rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-[1.015]"
+                style={{
+                  minWidth: 'min(100%, 250px)',
+                  minHeight: 'min(100%, 250px)',
+                }}
               />
             </div>
           ) : (
