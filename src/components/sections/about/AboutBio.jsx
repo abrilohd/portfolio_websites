@@ -36,8 +36,8 @@ export default function AboutBio() {
           - Desktop md+: left-aligned (md:justify-start) */}
       <div className="mt-5 pt-1 flex justify-center md:justify-start">
         <a
-          href="/resume.pdf"
-          download="Abrham_Resume.pdf"
+          href="/Abrham_Gebremedhin_soft.pdf"
+          download="Abrham_Gebremedhin_soft.pdf"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-2 font-display font-bold text-xs sm:text-sm px-6 py-2.5 rounded-xl transition-all duration-300 shadow-md hover:-translate-y-0.5 cursor-pointer select-none"

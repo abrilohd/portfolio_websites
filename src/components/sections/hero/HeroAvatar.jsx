@@ -21,7 +21,7 @@ export default function HeroAvatar() {
           viewBox="0 -60 500 680"
           className="w-full h-auto overflow-visible"
           role="img"
-          aria-label="Abrham G/medhin —  Software Engineer | Full Stack, Mobile &amp; AI Product Engineer"
+          aria-label="Abrham G/medhin - Software Engineer | Full Stack, Mobile &amp; AI Product Engineer"
           style={{ overflow: 'visible' }}
         >
           <defs>

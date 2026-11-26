@@ -26,7 +26,7 @@ export default function Contact() {
             Let&apos;s Work Together
           </h2>
           <p className="font-body text-xs sm:text-sm text-[var(--text-secondary)] mt-2 max-w-2xl mx-auto leading-relaxed">
-            Available for full-time engineering roles, high-impact contract projects, and strategic technical consulting. Delivering reliable web platforms, mobile apps, and production AI solutions.
+            Available for full time engineering roles, high impact contract projects, and strategic technical consulting. Delivering reliable web platforms, mobile apps, and production AI solutions.
           </p>
         </motion.div>
 

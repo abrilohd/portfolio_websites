@@ -699,19 +699,6 @@ export default function ProjectCard({ data }) {
             <span className="w-2.5 h-2.5 rounded-full bg-[#FFBD2E] inline-block shadow-sm" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#28C840] inline-block shadow-sm" />
           </div>
-
-          {/* Chrome Address Pill */}
-          <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-md bg-white/80 dark:bg-white/5 border border-slate-200/80 dark:border-white/10 text-[10px] sm:text-[11px] font-mono text-[var(--text-secondary)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 inline-block" />
-            <span className="truncate max-w-[130px] sm:max-w-[180px]">
-              https://{data.id}.app
-            </span>
-          </div>
-
-          {/* Right Brand Indicator */}
-          <span className="text-[9px] font-mono font-bold tracking-wider text-[var(--text-secondary)] opacity-60 uppercase">
-            AG.
-          </span>
         </div>
 
         {/* Visual Body: Real Project Screenshot inside flex-centered padded container */}

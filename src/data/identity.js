@@ -19,10 +19,10 @@ export const identity = {
   availabilityText: 'Open to  Software Engineer, Full Stack, Mobile & AI Product opportunities',
 
   manifesto:
-    'I build reliable web platforms, responsive cross-platform mobile applications, and production AI products that solve genuine business problems. From clean user interfaces to resilient backend architectures and cloud deployments, I take products end-to-end with an uncompromising focus on stability, security, and measurable client value.',
+    'I build reliable web platforms, responsive cross-platform mobile applications, and production AI products that solve genuine business problems. From clean user interfaces to resilient backend architectures and cloud deployments, I take products end to end with an uncompromising focus on stability, security, and measurable client value.',
 
   philosophy:
-    'Great software engineering balances user experience with architectural discipline. Whether developing full-stack web platforms, crafting fluid mobile apps, or deploying production-grade AI systems, I prioritize maintainable code, resilient APIs, and automated pipelines that run dependably in production without continuous overhead.',
+    'Great software engineering balances user experience with architectural discipline. Whether developing full stack web platforms, Building smooth mobile apps, or deploying production grade AI systems, I prioritize maintainable code, resilient APIs, and automated pipelines that run dependably in production without continuous overhead.',
 
   focus: [
     'Full-stack web architecture & scalable APIs',
@@ -32,7 +32,7 @@ export const identity = {
   ],
 
   currentlyBuilding:
-    'Scalable full-stack web applications, cross-platform mobile products, and production-grade AI systems backed by resilient cloud infrastructure.',
+    'Scalable full stack web applications, cross platform mobile products, and production grade AI systems backed by resilient cloud infrastructure.',
 
   currentlyLearning: [
     'Advanced Distributed Systems',

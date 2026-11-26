@@ -39,7 +39,7 @@ export default async function handler(req, res) {
       })
     }
 
-    const apiKey = process.env.RESEND_API_KEY
+    const apiKey = process.env.RESEND_API_KEY ? process.env.RESEND_API_KEY.trim() : ''
     if (!apiKey) {
       console.error('RESEND_API_KEY is missing from environment variables.')
       return res.status(500).json({

@@ -262,7 +262,7 @@
     max-width: 800px;
   }
 
-  /* Section Backgrounds — Token Synchronized */
+  /* Section Backgrounds -Token Synchronized */
   .section-light {
     background-color: var(--bg-surface);
   }
@@ -271,7 +271,7 @@
     background-color: var(--bg-page);
   }
 
-  /* Text Colors — Token Synchronized */
+  /* Text Colors -Token Synchronized */
   .section-label-text {
     color: var(--brand-gold);
   }
@@ -295,7 +295,7 @@
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   ABOUT SECTION — THEME AWARE
+   ABOUT SECTION -THEME AWARE
    ═══════════════════════════════════════════════════════════════ */
 
 .about-card {
@@ -377,9 +377,12 @@
 }
 
 @keyframes cursorBlink {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
@@ -389,6 +392,7 @@
   0% {
     transform: translateX(-100%);
   }
+
   100% {
     transform: translateX(200%);
   }
@@ -398,6 +402,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -408,6 +413,7 @@
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -415,9 +421,12 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-12px);
   }
@@ -428,6 +437,7 @@
     opacity: 0;
     transform: translateX(40px) scale(0.96);
   }
+
   to {
     opacity: 1;
     transform: translateX(0) scale(1);
@@ -439,6 +449,7 @@
     opacity: 0;
     transform: translateX(-40px) scale(0.96);
   }
+
   to {
     opacity: 1;
     transform: translateX(0) scale(1);
@@ -1312,7 +1323,7 @@
     font-size: 0.875rem !important;
   }
 
-  section#contact > div > div > div.grid {
+  section#contact>div>div>div.grid {
     grid-template-columns: 1fr;
     gap: 32px;
   }
@@ -1574,6 +1585,7 @@
   0% {
     transform: translateX(0%);
   }
+
   100% {
     transform: translateX(-50%);
   }
@@ -1590,7 +1602,7 @@
 }
 
 .marquee-mask {
-  /* Tightened fade to outer 5% only — edge icons stay crisp */
+  /* Tightened fade to outer 5% only -edge icons stay crisp */
   mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
 }
@@ -1605,4 +1617,3 @@
     padding: 0.5rem !important;
   }
 }
-

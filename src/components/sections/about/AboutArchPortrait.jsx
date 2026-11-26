@@ -14,7 +14,7 @@ export default function AboutArchPortrait() {
     >
       {/* ── Arch Backdrop ──
           ~3:4 proportion (w:h), rounded-t-full arch top + rounded-b-2xl smooth bottom corners.
-          No box-shadow, no border, no rectangular card — ONLY the arch fill. */}
+          No box-shadow, no border, no rectangular card -ONLY the arch fill. */}
       <div
         className="w-[260px] sm:w-[300px] lg:w-[340px] h-[320px] sm:h-[360px] lg:h-[410px] rounded-t-full rounded-b-2xl bg-[#0D3164]/[0.06] dark:bg-white/[0.06] relative pointer-events-none shrink-0"
       />
@@ -24,7 +24,7 @@ export default function AboutArchPortrait() {
           bottom-0 anchors the subject's feet flush with the arch base. */}
       <img
         src={profileCutout}
-        alt="Abrham G/medhin —  Software Engineer"
+        alt="Abrham G/medhin - Software Engineer"
         className="absolute bottom-0 w-auto h-[380px] sm:h-[420px] lg:h-[470px] max-w-none object-contain pointer-events-none"
         loading="lazy"
       />

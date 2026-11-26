@@ -139,7 +139,7 @@ export default function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* ── RIGHT COLUMN — Pop-Out Profile Portrait (strips unwanted mobile min-h-screen gap) ── */}
+          {/* ── RIGHT COLUMN -Pop-Out Profile Portrait (strips unwanted mobile min-h-screen gap) ── */}
           <div className="order-2 lg:order-none w-full flex justify-center items-center mt-2 sm:mt-4 lg:mt-0 [&>*]:!min-h-0 [&>*]:!h-auto [&>*]:!py-0 lg:[&>*]:!min-h-[auto] xl:scale-105 origin-center transition-transform duration-300">
             <HeroAvatar />
           </div>

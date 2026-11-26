@@ -11,7 +11,7 @@ export const projects = [
     title: 'Expenset - Smart Expense Tracker',
     subtitle: 'AI-powered financial tracking with predictive insights',
     description:
-      'A modern, full-stack expense tracking application with AI-powered insights, dual theme support, and responsive design — engineered with machine learning category prediction, anomaly detection, and interactive financial analytics.',
+      'A modern, full-stack expense tracking application with AI-powered insights, dual theme support, and responsive design -engineered with machine learning category prediction, anomaly detection, and interactive financial analytics.',
     image: project1Img,
     tags: ['Python', 'FastAPI', 'PostgreSQL', 'Chart.js', 'Machine Learning'],
     github: 'https://github.com/abrilohd',
@@ -87,7 +87,7 @@ export const projects = [
     title: 'Dejen Security',
     subtitle: 'Android SMS phishing & mobile fraud shield for Ethiopia (Project Manager)',
     description:
-      'An Android security application built to protect users in Ethiopia from SMS phishing, fake Telebirr lotteries, and fraudulent bank notifications — led end-to-end as Project Manager from threat modeling and sprint planning to release delivery.',
+      'An Android security application built to protect users in Ethiopia from SMS phishing, fake Telebirr lotteries, and fraudulent bank notifications -led end-to-end as Project Manager from threat modeling and sprint planning to release delivery.',
     image: project5Img,
     tags: ['Android', 'Mobile Security', 'Anti-Phishing', 'Project Management'],
     github: 'https://github.com/Dejen-Security/dejen',
@@ -105,9 +105,9 @@ export const projects = [
   {
     id: 'flutter-finance-app',
     title: 'Flutter Financial Control App',
-    subtitle: 'Cross-platform personal money & expense management mobile app',
+    subtitle: 'Cross platform personal money & expense management mobile app',
     description:
-      'A cross-platform Flutter mobile application designed for personal financial control, daily expense tracking, budget limits, and clear spending visibility across iOS and Android devices.',
+      'A cross platform Flutter mobile application designed for personal financial control, daily expense tracking, budget limits, and clear spending visibility across iOS and Android devices.',
     image: project6Img,
     tags: ['Flutter', 'Dart', 'Mobile Finance', 'Cross-Platform'],
     github: 'https://github.com/abrilohd/Flutter-cross-platform',
@@ -115,7 +115,7 @@ export const projects = [
     featured: false,
     status: 'In Development',
     achievements: [
-      'Clean cross-platform Flutter UI for tracking income, expenses, and budgets',
+      'Clean cross platform Flutter UI for tracking income, expenses, and budgets',
       'Category-level spending breakdown to keep daily personal finances in control',
       'Modular Dart state management built for smooth mobile performance',
     ],

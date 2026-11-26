@@ -133,7 +133,7 @@ export default function Certifications() {
     <section
       id="certifications"
       ref={ref}
-      className="relative overflow-hidden bg-[var(--bg-page)] scroll-mt-16 min-h-[calc(100dvh-4rem)] lg:h-[calc(100dvh-4rem)] lg:max-h-[calc(100dvh-4rem)] pt-3 sm:pt-4 pb-3 sm:pb-4 flex flex-col justify-between transition-colors duration-300"
+      className="relative overflow-hidden bg-[var(--bg-page)] scroll-mt-16 min-h-[calc(100dvh-4rem)] pt-4 sm:pt-6 pb-4 sm:pb-6 flex flex-col justify-between transition-colors duration-300"
     >
       {/* ─── 1. Header on One Single Line (No Eyebrow Label) ───────────────── */}
       <div className="w-full text-center px-4 flex-shrink-0 z-20">
@@ -149,12 +149,12 @@ export default function Certifications() {
 
       {/* ─── 2. Showcase Area: Apple Showcase Card + Right-Edge Peek ──────── */}
       <div className="relative w-full max-w-[1536px] mx-auto px-4 sm:px-6 lg:px-8 my-auto flex-1 min-h-0 flex items-center">
-        <div className="relative w-full h-full max-h-[460px] sm:max-h-[490px] lg:max-h-[510px] my-auto">
+        <div className="relative w-full h-full min-h-[480px] sm:min-h-[540px] md:min-h-[580px] lg:min-h-[620px] xl:min-h-[650px] max-h-[720px] my-auto">
           {/* High-contrast peek of next certification card on the right edge */}
           <div
             onClick={goNext}
             aria-label={`Next certification preview: ${nextCert.title}`}
-            className="absolute right-0 top-1/2 -translate-y-1/2 w-[10%] xl:w-[12%] h-[92%] rounded-l-[28px] bg-slate-100 dark:bg-[#111A2E] border-y border-l border-slate-200/90 dark:border-white/10 hidden lg:flex flex-col justify-center items-center opacity-80 hover:opacity-100 cursor-pointer transition-all duration-300 shadow-lg overflow-hidden p-3 z-0"
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-[9%] xl:w-[10%] h-[94%] rounded-l-[28px] bg-slate-100 dark:bg-[#111A2E] border-y border-l border-slate-200/90 dark:border-white/10 hidden lg:flex flex-col justify-center items-center opacity-80 hover:opacity-100 cursor-pointer transition-all duration-300 shadow-lg overflow-hidden p-3 z-0"
           >
             {nextCert.image && (
               <img
@@ -175,7 +175,7 @@ export default function Certifications() {
 
           {/* Single commanding active showcase card */}
           <div
-            className="relative z-10 w-full lg:w-[86%] xl:w-[87%] lg:ml-4 xl:ml-6 h-full rounded-[28px] overflow-hidden"
+            className="relative z-10 w-full lg:w-[89%] xl:w-[89%] lg:ml-2 xl:ml-3 h-full rounded-[28px] overflow-hidden"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onTouchStart={handleTouchStart}
@@ -236,7 +236,7 @@ export default function Certifications() {
           </button>
         </div>
 
-        {/* View Full Badge Wallet Footer Link */}
+        {/* View Skillsoft Badge Wallet Footer Link */}
         <div className="text-center mt-2 sm:mt-2.5">
           <a
             href="https://skillsoft.digitalbadges-eu.skillsoft.com/profile/eu-abrsh067647217/wallet"
@@ -244,7 +244,7 @@ export default function Certifications() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 font-mono text-xs sm:text-sm font-semibold text-[#0D3164] dark:text-[#F5C518] hover:underline transition-all duration-200"
           >
-            <span>View Full Badge Wallet</span>
+            <span>View Skillsoft Badge Wallet</span>
             <HiExternalLink size={16} />
           </a>
         </div>

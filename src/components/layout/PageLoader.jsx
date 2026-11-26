@@ -44,7 +44,7 @@ export default function PageLoader() {
             className="flex flex-col items-center gap-2"
           >
             <p className="text-2xl font-display font-extrabold tracking-tight text-[#0D3164] dark:text-white">
-              Abrham<span className="text-[#F5C518]">.</span>
+              Abrham G/medhin<span className="text-[#F5C518]">.</span>
             </p>
             <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-[#475569] dark:text-slate-300">
               SOFTWARE ENGINEER

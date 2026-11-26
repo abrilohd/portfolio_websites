@@ -143,47 +143,44 @@ export default function CertificateCard({ data }) {
       </div>
 
       {/* ── 2. Center Visual Stage: Real Certificate / Official Badge Showcase ── */}
-      <div className="flex-1 min-h-0 w-full flex items-center justify-center px-4 sm:px-8 pb-3 pt-0 z-10 relative">
+      <div className="flex-1 min-h-0 w-full flex items-center justify-center px-3 sm:px-6 md:px-8 pb-4 pt-1 z-10 relative">
         <div className="relative w-full h-full flex flex-col items-center justify-center">
-            {
-              data.image && !imgError ? (
-                <div className="relative max-h-full max-w-full flex items-center justify-center p-2 sm:p-3 rounded-2xl bg-slate-50/90 dark:bg-[#0A101D]/75 border border-slate-200/90 dark:border-white/10 shadow-[0_8px_30px_rgba(13,49,100,0.08)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.5)] backdrop-blur-md overflow-hidden group">
-                  {/* Subtle Ambient Radial Highlight Behind Image */}
-                  <div
-                    className="absolute inset-0 pointer-events-none opacity-30 blur-2xl"
-                    style={{ backgroundColor: cat.glow }}
-                  />
+          {data.image && !imgError ? (
+            <div className="relative max-h-full max-w-full flex items-center justify-center p-2.5 sm:p-4 rounded-2xl sm:rounded-3xl bg-slate-50/90 dark:bg-[#0A101D]/75 border border-slate-200/90 dark:border-white/10 shadow-[0_12px_36px_rgba(13,49,100,0.08)] dark:shadow-[0_16px_40px_rgba(0,0,0,0.5)] backdrop-blur-md overflow-hidden group">
+              {/* Subtle Ambient Radial Highlight Behind Image */}
+              <div
+                className="absolute inset-0 pointer-events-none opacity-30 blur-2xl"
+                style={{ backgroundColor: cat.glow }}
+              />
 
-                  <img
-                    src={data.image}
-                    alt={`${data.title} Certificate`}
-                    onError={() => setImgError(true)}
-                    className="relative z-10 max-h-[220px] sm:max-h-[250px] lg:max-h-[270px] w-auto max-w-full object-contain rounded-xl shadow-md transition-transform duration-300 group-hover:scale-[1.01]"
-                  />
-                </div>
+              <img
+                src={data.image}
+                alt={`${data.title} Certificate`}
+                onError={() => setImgError(true)}
+                className="relative z-10 max-h-[280px] sm:max-h-[340px] md:max-h-[390px] lg:max-h-[440px] xl:max-h-[480px] w-auto max-w-full object-contain rounded-xl sm:rounded-2xl shadow-md transition-transform duration-300 group-hover:scale-[1.015]"
+              />
+            </div>
+          ) : (
+            /* Fallback badge display */
+            <div className="w-full max-w-[380px] p-6 rounded-2xl bg-gradient-to-b from-slate-50 to-white dark:from-[#131F35] dark:to-[#0C1525] border border-slate-200/90 dark:border-white/10 shadow-lg flex flex-col items-center text-center">
+              {data.badge ? (
+                <img
+                  src={data.badge}
+                  alt={`${data.title} Badge`}
+                  className="w-20 h-20 sm:w-24 sm:h-24 mb-3 object-contain"
+                />
               ) : (
-                /* Fallback badge display */
-                    <div className="w-full max-w-[380px] p-5 rounded-2xl bg-gradient-to-b from-slate-50 to-white dark:from-[#131F35] dark:to-[#0C1525] border border-slate-200/90 dark:border-white/10 shadow-lg flex flex-col items-center text-center">
-                      {data.badge ? (
-                        <img
-                          src={data.badge}
-                          alt={`${data.title} Badge`}
-                          className="w-16 h-16 sm:w-20 sm:h-20 mb-3 object-contain"
-                        />
-                      ) : (
-                        <span className="text-3xl mb-2">{cat.icon}</span>
-                      )}
-                      <h4 className="font-display text-sm sm:text-base font-bold text-[#0D3164] dark:text-white">
-                        {data.title}
-                      </h4>
-                        <p className="text-xs text-[var(--text-secondary)] mt-1">
-                          {data.issuer}  {data.date}
-                        </p>
-                    </div>
+                <span className="text-4xl mb-2">{cat.icon || '🎓'}</span>
+              )}
+              <h4 className="font-display text-base sm:text-lg font-bold text-[#0D3164] dark:text-white">
+                {data.title}
+              </h4>
+              <p className="text-xs sm:text-sm text-[var(--text-secondary)] mt-1">
+                {data.issuer} · {data.date}
+              </p>
+            </div>
           )}
-
-
-                </div>
+        </div>
       </div>
       </div>
       )

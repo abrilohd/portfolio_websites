@@ -40,14 +40,14 @@ export default function About() {
       {/* ── Middle Main Split: Scales up portrait + notes on large monitors ── */}
       <div className="w-full max-w-6xl xl:max-w-7xl mx-auto px-5 sm:px-8 my-auto py-6 sm:py-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-12 items-center gap-8 sm:gap-10 lg:gap-14 xl:gap-20">
-          {/* Left Column — Arch Portrait (scales smoothly on lg/xl screens) */}
+          {/* Left Column -Arch Portrait (scales smoothly on lg/xl screens) */}
           <div className="md:col-span-5 flex justify-center items-center mt-3 sm:mt-1 md:mt-0">
             <div className="w-full flex justify-center lg:scale-110 xl:scale-[1.18] origin-center transition-transform duration-300">
               <AboutArchPortrait />
             </div>
           </div>
 
-          {/* Right Column — What I Do, How I Work, Download CV */}
+          {/* Right Column -What I Do, How I Work, Download CV */}
           <div className="md:col-span-7 flex flex-col justify-center lg:text-[1.06rem] xl:text-[1.125rem] [&_h3]:lg:text-xl [&_h3]:xl:text-2xl [&_p]:lg:text-base [&_p]:xl:text-[1.08rem] [&_p]:leading-relaxed">
             <AboutBio />
           </div>
