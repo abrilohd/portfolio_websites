@@ -1,13 +1,13 @@
 import azureImg from '../assets/images/certificates/azure.png'
-import msAzureBadge from '../assets/images/certificates/ms-azure-associate.svg'
+import msAzureBadge from '../assets/images/certificates/ms-azure-associate.png'
 import udemyCert from '../assets/images/certificates/udemy-ai.jpg'
 import courseraCert from '../assets/images/certificates/coursera-bert.jpg'
-import skillsoftPythonDs from '../assets/images/certificates/skillsoft-python-ds.svg'
-import skillsoftAzureCloud from '../assets/images/certificates/skillsoft-azure-cloud.svg'
+import skillsoftPythonDs from '../assets/images/certificates/skillsoft-python-ds.png'
+import skillsoftAzureCloud from '../assets/images/certificates/skillsoft-azure-cloud.png'
 import skillsoftGnn from '../assets/images/certificates/skillsoft-gnn-embed.png'
 import skillsoftGnnBadge from '../assets/images/certificates/skillsoft-gnn-badge.png'
-import skillsoftSql from '../assets/images/certificates/skillsoft-sql-data.svg'
-import skillsoftPythonAdv from '../assets/images/certificates/skillsoft-python-adv.svg'
+import skillsoftSql from '../assets/images/certificates/skillsoft-sql-data.png'
+import skillsoftPythonAdv from '../assets/images/certificates/skillsoft-python-adv.png'
 
 export const certificates = [
   {
